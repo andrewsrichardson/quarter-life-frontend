@@ -93,18 +93,6 @@ function Login(props) {
 }
 export default Login;
 
-export async function getStaticPaths() {
-  // Define the paths we want to prerender
-  const paths = [{ params: { id: "login" } }];
-  // for (let id = 1; id <= 100; id++) {
-  //   paths.push({ params: { id: String(id) } });
-  // }
-
-  // We'll pre-render only these paths at build time.
-  // { fallback: false } means other routes should 404.
-  return { paths, fallback: false };
-}
-
 export async function getStaticProps({ params }) {
   // Get the ID to render
   //   const { id } = params;
