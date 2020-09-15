@@ -1,7 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url("https://fonts.googleapis.com/css?family=Armata");
+@import url("https://fonts.googleapis.com/css?family=Bentham");
+@import url("https://fonts.googleapis.com/css?family=Palanquin");
 
 .grayscale {
   filter: grayscale(1);
+}
+.nav-link {
+  margin-left: 1rem;
 }

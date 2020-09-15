@@ -1,0 +1,9 @@
+.container {
+  margin-top: 30%;
+  max-width: 500px;
+  margin: auto;
+  border: 2px solid grey;
+}
+.submit {
+  margin: auto;
+}
