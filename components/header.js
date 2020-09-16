@@ -2,6 +2,7 @@ import Link from "next/link";
 import { logout } from "../lib/auth";
 import AppContext from "../context/AppContext";
 import React, { useContext } from "react";
+import { SITE_NAME } from "@/lib/constants";
 
 export default function Header() {
   const { user, setUser } = useContext(AppContext);
@@ -9,14 +10,17 @@ export default function Header() {
     <header className="flex justify-between container mx-auto p-5 pl-52">
       <h1 className="">
         <Link href="/">
-          <a className="hover:underline">QLC</a>
+          <a className="hover:underline">{SITE_NAME}</a>
         </Link>
         .
       </h1>
-      <div className="accounts">
+      <div className="flex">
+        <Link href="/questions">
+          <a className="nav-link hover:underline border-r-2 pr-10">Talk</a>
+        </Link>
         {user ? (
           <div className="flex">
-            <h2>{user.username}</h2>
+            <h2 className="nav-link">{user.username}</h2>
             <Link href="/">
               <a
                 className="nav-link hover:underline"
