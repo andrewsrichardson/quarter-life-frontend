@@ -1,14 +1,35 @@
+import { Input, FormControl, FormLabel, Button } from "@chakra-ui/core";
+
 import Container from "@/components/container";
 import Layout from "@/components/layout";
 import { getQuestionByID } from "@/lib/api";
 import Head from "next/head";
+import { useRouter } from "next/router";
+import AppContext from "../../context/AppContext";
 import CommentsList from "../../components/CommentList";
+import React, { useContext, useState } from "react";
+import {
+  createComment,
+  linkCommentToQuestion,
+} from "../../lib/forum-interactions";
 
 export default function ForumPost({ question }) {
-  const { title, user, created_at, comments, content } = question[0];
+  const { title, user, created_at, comments, content, id } = question[0];
+
+  const [data, updateData] = useState({ content: "" });
+  const [loading, setLoading] = useState(false);
+  // const [error, setError] = useState(false);
+  const router = useRouter();
+  const appContext = useContext(AppContext);
+  const commentIDs = comments.map((element) => {
+    return element.id;
+  });
 
   const { username } = user;
   const date = created_at.slice(0, 10);
+  function onChange(event) {
+    updateData({ ...data, [event.target.name]: event.target.value });
+  }
 
   return (
     <>
@@ -30,6 +51,49 @@ export default function ForumPost({ question }) {
             </h3>
             <p className="text-sm text-right">{date}</p>
           </div>
+          {appContext.isAuthenticated ? (
+            <div className="m-5">
+              <FormControl>
+                <FormLabel htmlFor="email">Add comment</FormLabel>
+                <Input
+                  onChange={(event) => onChange(event)}
+                  name="content"
+                  className="mb-5"
+                  type="text"
+                  id="content"
+                  size="sm"
+                  focusBorderColor="brand.900"
+                />
+              </FormControl>
+              <Button
+                variantColor="yellow"
+                size="xs"
+                onClick={() => {
+                  setLoading(true);
+                  createComment(data.content, appContext.user, id)
+                    .then((res) => {
+                      console.log(res);
+                      commentIDs.push(res.data.id.toString());
+                      linkCommentToQuestion(id, res.data.id, commentIDs).then(
+                        (res) => {
+                          router.reload();
+
+                          setLoading(false);
+                        }
+                      );
+                    })
+
+                    .catch(() => {
+                      setLoading(false);
+                    });
+                }}
+              >
+                {loading ? "Loading... " : "Submit"}
+              </Button>
+            </div>
+          ) : (
+            <p>Login to comment</p>
+          )}
           <CommentsList comments={comments}></CommentsList>
         </Container>
       </Layout>

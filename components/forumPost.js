@@ -8,7 +8,7 @@ export default function ForumPost(props) {
 
   return (
     <div className={styles.wrapper}>
-      <Link href={"/forum/" + id}>
+      <Link href={"/questions/" + id}>
         <h1 className="text-xl hover:underline">
           {" "}
           <a className="hover:underline cursor-pointer">{title}</a>
