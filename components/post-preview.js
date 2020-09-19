@@ -1,7 +1,8 @@
-import Avatar from './avatar'
-import Date from './date'
-import CoverImage from './cover-image'
-import Link from 'next/link'
+import Avatar from "./avatar";
+import Date from "./date";
+import CoverImage from "./cover-image";
+import Link from "next/link";
+import styles from "./more-stories.module.css";
 
 export default function PostPreview({
   title,
@@ -12,7 +13,7 @@ export default function PostPreview({
   slug,
 }) {
   return (
-    <div>
+    <div className={styles.story}>
       <div className="mb-5">
         <CoverImage slug={slug} title={title} url={coverImage.url} />
       </div>
@@ -27,5 +28,5 @@ export default function PostPreview({
       <p className="text-lg leading-relaxed mb-4">{excerpt}</p>
       <Avatar name={author.name} picture={author.picture} />
     </div>
-  )
+  );
 }
