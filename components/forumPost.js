@@ -7,7 +7,7 @@ export default function ForumPost(props) {
   const date = created_at.slice(0, 10);
 
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.wrapper + " outline"}>
       <Link href={"/questions/" + id}>
         <h1 className="text-xl hover:underline">
           {" "}

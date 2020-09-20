@@ -26,7 +26,7 @@ function Login(props) {
   return (
     <>
       <Header></Header>
-      <div className={styles.container}>
+      <div className={styles.container + " outline p-10"}>
         {Object.entries(error).length !== 0 &&
           error.constructor === Object &&
           error.message.map((error) => {
@@ -62,39 +62,29 @@ function Login(props) {
             focusBorderColor="brand.900"
           />
         </FormControl>
-        <Button
-          className={styles.submit}
-          variantColor="yellow"
-          onClick={() => {
-            setLoading(true);
-            login(data.identifier, data.password)
-              .then((res) => {
-                setLoading(false);
-                // set authed User in global context to update header/app state
-                appContext.setUser(res.data.user);
-              })
-              .catch((error) => {
-                setError(error.response.data);
-                setLoading(false);
-              });
-          }}
-        >
-          {loading ? "Loading... " : "Submit"}
-        </Button>
+        <div className="flex justify-center">
+          <Button
+            className={styles.submit}
+            variantColor="yellow"
+            onClick={() => {
+              setLoading(true);
+              login(data.identifier, data.password)
+                .then((res) => {
+                  setLoading(false);
+                  // set authed User in global context to update header/app state
+                  appContext.setUser(res.data.user);
+                })
+                .catch((error) => {
+                  setError(error.response.data);
+                  setLoading(false);
+                });
+            }}
+          >
+            {loading ? "Loading... " : "Submit"}
+          </Button>
+        </div>
       </div>
     </>
   );
 }
 export default Login;
-
-export async function getStaticProps({ params }) {
-  // Get the ID to render
-  //   const { id } = params;
-
-  //   // Get the data
-  //   const res = await fetch(`https://api.tvmaze.com/shows/${id}`);
-  //   const show = await res.json();
-
-  //   return { props: { show } };
-  return { props: { id: null } };
-}

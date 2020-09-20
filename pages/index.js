@@ -7,8 +7,31 @@ import Footer from "@/components/footer";
 import Link from "next/link";
 import MoreStories from "@/components/more-stories";
 import { getAllPostsForHome } from "lib/api";
+import { motion } from "framer-motion";
+import React, { useState } from "react";
 
 export default function Index({ allPosts, preview }) {
+  function AnimatedIntro(props) {
+    let intro = [];
+    for (let i = 0; i < props.columns; i++) {
+      intro.push(
+        <motion.h2
+          key={i}
+          animate={{ y: 30 }}
+          transition={{
+            duration: 2,
+            delay: i * 0.2,
+            repeat: Infinity,
+            repeatType: "reverse",
+          }}
+        >
+          20sos . 20sos . 20sos .{" "}
+        </motion.h2>
+      );
+    }
+    return intro;
+  }
+
   return (
     <>
       <Layout preview={preview}>
@@ -18,19 +41,19 @@ export default function Index({ allPosts, preview }) {
         <Container>
           <div className={styles.wrapper}>
             <section className={styles.intro}>
-              <img
+              <motion.img
                 src="/smiley.png"
                 className={styles.smiley}
                 alt="not so smiley"
+                animate={{ rotate: 0 }}
+                transition={{ duration: 5, ease: "linear" }}
+                whileHover={{ rotate: 360 }}
+                initial={false}
               />
               <div className={styles.spacer}></div>
               <div className={styles.titlecontent}>
                 <div className={styles.horizontaltext}>
-                  <h2>
-                    20sos . 20sos . 20sos . 20sos . 20sos . 20sos . 20sos .
-                    20sos . 20sos . 20sos . 20sos . 20sos . 20sos . 20sos .
-                    20sos .{" "}
-                  </h2>
+                  <AnimatedIntro columns={5}></AnimatedIntro>
                 </div>
                 <h1 className={styles.title}>{SITE_NAME}</h1>
               </div>
@@ -55,8 +78,8 @@ export default function Index({ allPosts, preview }) {
                 <h1 className={styles.problem}>What's the Problem?</h1>
                 <h2 className={styles.horizontaltext}>
                   20sos . 20sos . 20sos . 20sos . 20sos . 20sos . 20sos . 20sos
-                  . 20sos . 20sos . 20sos . 20sos . 20sos . 20sos . 20sos .{" "}
-                </h2>
+                  . 20sos . 20sos . 20sos . 20sos . 20sos . 20sos .
+                </h2>{" "}
               </div>
               <div className={styles.page2content}>
                 <p>
@@ -83,7 +106,7 @@ export default function Index({ allPosts, preview }) {
             <div className={styles.ourmission}>
               <div className={styles.leftspacer}>
                 <h1 className={styles.problem}>
-                  Our <span className={styles.highlight}>Mission</span>
+                  Our <span className="highlight">Mission</span>
                 </h1>
               </div>
               <div className={styles.ourmissioncontent}>
@@ -99,12 +122,12 @@ export default function Index({ allPosts, preview }) {
                 <p className={styles.sticky}>
                   We have frequent{" "}
                   <Link href="/posts">
-                    <a className={styles.highlight}>blog</a>
+                    <a className="highlight">blog</a>
                   </Link>{" "}
                   posts which offer practical advice to those having a QLC, as
                   well as{" "}
                   <Link href="/ ">
-                    <a className={styles.highlight}>think pieces</a>
+                    <a className="highlight">think pieces</a>
                   </Link>{" "}
                   raising awareness about the challenges facing young adults
                   today. Ultimately, we are here to help you navigate the rut

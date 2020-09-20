@@ -12,6 +12,8 @@ import {
   createComment,
   linkCommentToQuestion,
 } from "../../lib/forum-interactions";
+import Footer from "@/components/footer";
+import Link from "next/link";
 
 export default function ForumPost({ question }) {
   const { title, user, created_at, comments, content, id } = question[0];
@@ -35,11 +37,14 @@ export default function ForumPost({ question }) {
     <>
       <Layout>
         <Head>
-          <title>Talk</title>
+          <title>{title}</title>
         </Head>
         <Container>
           {" "}
-          <div className="border-b-2">
+          <div
+            className="bg-white p-5"
+            style={{ border: "4px solid black", borderTop: "0px" }}
+          >
             <h1 className="text-4xl">{title}</h1>
             <h2 className="text-xl m-10">{content}</h2>
 
@@ -77,7 +82,6 @@ export default function ForumPost({ question }) {
                       linkCommentToQuestion(id, res.data.id, commentIDs).then(
                         (res) => {
                           router.reload();
-
                           setLoading(false);
                         }
                       );
@@ -92,10 +96,15 @@ export default function ForumPost({ question }) {
               </Button>
             </div>
           ) : (
-            <p>Login to comment</p>
+            <Link href="/login">
+              <p className="hover:underline">Login to comment</p>
+            </Link>
           )}
-          <CommentsList comments={comments}></CommentsList>
+          <div className="min-h-screen">
+            <CommentsList comments={comments}></CommentsList>
+          </div>
         </Container>
+        <Footer></Footer>
       </Layout>
     </>
   );

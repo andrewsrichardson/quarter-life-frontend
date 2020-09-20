@@ -36,7 +36,7 @@ function Register() {
   return (
     <>
       <Header></Header>
-      <div className={styles.container}>
+      <div className={styles.container + " outline p-10"}>
         {Object.entries(error).length !== 0 &&
           error.constructor === Object &&
           error.message.map((error) => {
@@ -59,7 +59,7 @@ function Register() {
             focusBorderColor="brand.900"
             aria-describedby="email-helper-text"
           />
-          <FormHelperText id="email-helper-text">
+          <FormHelperText className="mb-5" id="email-helper-text">
             We'll never share your email.
           </FormHelperText>
         </FormControl>
@@ -67,18 +67,19 @@ function Register() {
           <FormLabel htmlFor="username">Username</FormLabel>
           <Input
             onChange={(event) => onChange(event)}
+            className="mb-5"
             name="username"
             type="text"
             id="username"
             focusBorderColor="brand.900"
             size="lg"
-            styles={{ marginBottom: "1rem" }}
           />
         </FormControl>
         <FormControl>
           <FormLabel htmlFor="password">Password</FormLabel>
           <Input
             onChange={(event) => onChange(event)}
+            className="mb-5"
             name="password"
             type="password"
             id="password"
@@ -86,23 +87,26 @@ function Register() {
             focusBorderColor="brand.900"
           />
         </FormControl>
-        <Button
-          onClick={() => {
-            setLoading(true);
-            registerUser(data.username, data.email, data.password)
-              .then((res) => {
-                setLoading(false);
-                // set authed User in global context to update header/app state
-                appContext.setUser(res.data.user);
-              })
-              .catch((error) => {
-                setError(error.response.data);
-                setLoading(false);
-              });
-          }}
-        >
-          {loading ? "Loading... " : "Submit"}
-        </Button>
+        <div className="flex justify-center">
+          <Button
+            variantColor="yellow"
+            onClick={() => {
+              setLoading(true);
+              registerUser(data.username, data.email, data.password)
+                .then((res) => {
+                  setLoading(false);
+                  // set authed User in global context to update header/app state
+                  appContext.setUser(res.data.user);
+                })
+                .catch((error) => {
+                  setError(error.response.data);
+                  setLoading(false);
+                });
+            }}
+          >
+            {loading ? "Loading... " : "Submit"}
+          </Button>
+        </div>
       </div>
     </>
   );

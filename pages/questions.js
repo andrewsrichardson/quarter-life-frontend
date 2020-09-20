@@ -8,6 +8,8 @@ import { SITE_NAME } from "../lib/constants";
 import React, { useContext } from "react";
 import AppContext from "../context/AppContext";
 import { useRouter } from "next/router";
+import Footer from "@/components/footer";
+import Link from "next/link";
 
 export default function Questions({ allQuestions }) {
   const appContext = useContext(AppContext);
@@ -26,10 +28,16 @@ export default function Questions({ allQuestions }) {
         </Head>
         <Container>
           {" "}
-          <section className="flex flex-col mb-5">
-            <h1 className="text-4xl">Welcome</h1>
-            <h2 className="">to the {SITE_NAME} forum.</h2>
-            <p className="text-sm">
+          <section
+            style={{
+              borderRight: "4px solid black",
+              borderLeft: "4px solid black",
+            }}
+            className="flex flex-col mb-5 mt-5 bg-white p-10 outline"
+          >
+            <h1 className="text-5xl">Welcome</h1>
+            <h2 className="text-4xl">to the {SITE_NAME} forum.</h2>
+            <p className="text-md">
               Feel free to chat about anyting relating to life worries.
             </p>
             <div className="self-end">
@@ -44,12 +52,19 @@ export default function Questions({ allQuestions }) {
                   Create Post
                 </Button>
               ) : (
-                <h3>Login to post</h3>
+                <h3>
+                  <Link href="/login">
+                    <a className="hover:underline">Login to post.</a>
+                  </Link>
+                </h3>
               )}
             </div>
           </section>
-          <div className="flex justify-center flex-wrap">{postList}</div>
+          <div className="min-h-screen">
+            <div className="flex justify-center flex-wrap">{postList}</div>
+          </div>
         </Container>
+        <Footer> </Footer>
       </Layout>
     </>
   );

@@ -13,4 +13,24 @@
 }
 main {
   background-color: #ffdc15;
+  border-top: 4px solid black;
+  scrollbar-color: yellow;
+}
+.outline {
+  border-top: 4px solid black;
+  border-bottom: 4px solid black;
+}
+.highlight {
+  background-color: blueviolet;
+  color: white;
+}
+body::-webkit-scrollbar {
+  width: 12px; /* width of the entire scrollbar */
+}
+body::-webkit-scrollbar-track {
+  background: #ffdc15; /* color of the tracking area */
+}
+body::-webkit-scrollbar-thumb {
+  background-color: #ffdc15; /* color of the scroll thumb */ /* roundness of the scroll thumb */
+  border: 3px solid orange; /* creates padding around scroll thumb */
 }

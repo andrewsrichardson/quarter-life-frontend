@@ -1,7 +1,8 @@
 .wrapper {
   position: relative;
   background-color: #ffdc15;
-  border: 4px solid black;
+  border-right: 4px solid black;
+  border-left: 4px solid black;
 }
 .intro {
   height: 500px;
@@ -26,17 +27,19 @@
   flex-direction: column;
   text-align: center;
 }
+.animationcontainer {
+  max-width: 700px;
+  display: flex;
+}
 .horizontaltext {
   font-size: 2rem;
   opacity: 0.4;
-  max-width: 700px;
   flex-grow: 2;
   display: flex;
-  flex-direction: column;
-  justify-content: end;
 }
 .horizontaltext > h2 {
   margin: auto;
+  max-width: 200px;
 }
 .title {
   font-size: 8rem;
@@ -61,10 +64,6 @@
 .descriptioncontent > h2 {
   font-size: 2rem;
   margin-bottom: 1rem;
-}
-.highlight {
-  background-color: blueviolet;
-  color: white;
 }
 .descriptioncontent > h3 {
   font-size: 1.2rem;
@@ -112,7 +111,7 @@
   flex-grow: 3;
 }
 .page2content {
-  min-height: 5000px;
+  min-height: 3000px;
   max-width: 700px;
   background-color: white;
   padding: 2rem;
@@ -123,8 +122,9 @@
   flex-direction: column;
   justify-content: space-evenly;
 }
-.page2content > p {
-  margin: 4rem;
+.page2content,
+.ourmissioncontent > p {
+  /* margin: 4rem; */
   font-size: 1.5rem;
 }
 .problem {
@@ -160,10 +160,6 @@
   position: relative;
   max-height: 1600px;
 }
-.ourmissioncontent > p {
-  margin: 4rem;
-  font-size: 1.5rem;
-}
 .ourmission > .leftspacer > h1 {
   max-width: 300px;
   position: -webkit-sticky;
@@ -179,4 +175,116 @@
 .sticky {
   position: sticky;
   top: 100px;
+}
+@media (max-width: 1024px) {
+  .smiley {
+    right: 400px;
+    max-width: 500px;
+    max-height: 500px;
+  }
+  .horizontaltext {
+    font-size: 2rem;
+  }
+  .spacer {
+    min-width: 200px;
+  }
+  .page2content {
+    min-height: auto;
+    margin: 0px;
+    border-bottom: 4px solid black;
+    border-right: 0px;
+  }
+  .page2 > .leftspacer {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+  .page2content > p,
+  .ourmissioncontent > p {
+    margin: 1rem;
+    margin-left: 0;
+    margin-right: 0;
+    font-size: 1rem;
+  }
+  .page2 > .rightspacer {
+    display: none;
+  }
+  .problem {
+    font-size: 2rem;
+  }
+  .ourmissioncontent {
+    min-height: 100%;
+    margin: 0;
+    border-right: 0;
+  }
+  .ourmission > .leftspacer {
+    border-top: 0px;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+}
+@media (max-width: 767px) {
+  .animationcontainer {
+    max-width: 100%;
+    display: flex;
+  }
+  .horizontaltext {
+    font-size: 1rem;
+    flex-grow: 0;
+  }
+  .horizontaltext > h2 {
+    max-width: 100px;
+  }
+  .intro {
+    width: 100%;
+  }
+  .smiley {
+    max-width: 200px;
+    max-height: 200px;
+    display: none;
+  }
+  .spacer {
+    display: none;
+  }
+  .title {
+    font-size: 4rem;
+  }
+  .intro {
+    height: 100%;
+  }
+  .descriptioncontent,
+  .ourmissioncontent {
+    border-right: 0px;
+    border-left: 0px;
+  }
+  .page2,
+  .ourmission {
+    flex-direction: column;
+  }
+  .page2 > .leftspacer > .horizontaltext {
+    display: none;
+  }
+  .problem {
+    font-size: 2rem;
+    text-align: center;
+  }
+  .page2content,
+  .ourmissioncontent > p {
+    margin-left: 0;
+    margin-right: 0;
+    font-size: 1rem;
+  }
+  .page2content {
+    min-height: 1000px;
+    padding: 2rem;
+    border-right: 0;
+    border-left: 0;
+    margin: 0;
+  }
+  .ourmission > .leftspacer {
+    border-top: 4px solid black;
+    border-bottom: 4px solid black;
+  }
+  .ourmissioncontent {
+    min-height: 100%;
+  }
 }

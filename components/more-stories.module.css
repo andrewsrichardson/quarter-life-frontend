@@ -9,3 +9,11 @@
   max-width: 45%;
   background-color: white;
 }
+@media (max-width: 700px) {
+  .story {
+    max-width: 95%;
+  }
+  .container {
+    flex-wrap: wrap;
+  }
+}

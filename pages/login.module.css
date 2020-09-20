@@ -2,7 +2,9 @@
   margin-top: 30%;
   max-width: 500px;
   margin: auto;
-  border: 2px solid grey;
+  border-right: 4px solid black;
+  border-left: 4px solid black;
+  background-color: white;
 }
 .submit {
   margin: auto;

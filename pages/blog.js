@@ -6,6 +6,7 @@ import Layout from "@/components/layout";
 import { getAllPostsForHome } from "@/lib/api";
 import Head from "next/head";
 import { SITE_NAME } from "@/lib/constants";
+import Footer from "@/components/footer";
 
 export default function Blog({ allPosts, preview }) {
   const heroPost = allPosts[0];
@@ -27,8 +28,12 @@ export default function Blog({ allPosts, preview }) {
               excerpt={heroPost.excerpt}
             />
           )}
-          {morePosts.length > 0 && <MoreStories posts={morePosts} />}
+          {morePosts.length > 0 && (
+            <MoreStories label={"Recent Posts"} posts={morePosts} />
+          )}
         </Container>
+
+        <Footer></Footer>
       </Layout>
     </>
   );

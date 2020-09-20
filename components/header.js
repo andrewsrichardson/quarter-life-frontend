@@ -16,54 +16,10 @@ export default function Header() {
   }
 
   return (
-    // <header className="flex  justify-evenly xl:justify-between container mx-auto p-5 pl-52">
-    //   <h1 className="">
-    //     <Link href="/">
-    //       <a className="hover:underline">{SITE_NAME}</a>
-    //     </Link>
-    //     .
-    //   </h1>
-    //   <div className="flex justify-between">
-    //     <Link href="">
-    //       <a className="nav-link hover:underline xl:pr-10">Topics</a>
-    //     </Link>
-    //     <Link href="/blog">
-    //       <a className="nav-link hover:underline xl:pr-10">Blog</a>
-    //     </Link>
-    //     <Link href="/questions">
-    //       <a className="nav-link hover:underline xl:border-r-2 pr-10">Talk</a>
-    //     </Link>
-    //     {user ? (
-    //       <div className="flex">
-    //         <h2 className="nav-link">{user.username}</h2>
-    //         <Link href="/">
-    //           <a
-    //             className="nav-link hover:underline"
-    //             onClick={() => {
-    //               logout();
-    //               setUser(null);
-    //             }}
-    //           >
-    //             Logout
-    //           </a>
-    //         </Link>
-    //       </div>
-    //     ) : (
-    //       <div className="flex">
-    //         <Link href="/login">
-    //           <a className="nav-link hover:underline">Login</a>
-    //         </Link>
-    //         <Link href="/register">
-    //           <a className="nav-link hover:underline">Register</a>
-    //         </Link>
-    //       </div>
-    //     )}
-    //   </div>
-    // </header>
     <div className="relative">
       <nav className="flex items-center justify-between flex-wrap p-6 w-full z-10 lg:container m-auto">
         <div className="flex items-center flex-no-shrink mr-6">
-          <Link href="/">
+          <Link href="/" replace>
             <a className="hover:underline">{SITE_NAME}</a>
           </Link>
         </div>
