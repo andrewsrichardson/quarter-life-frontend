@@ -202,6 +202,23 @@
   position: sticky;
   top: 100px;
 }
+.statistics {
+  display: flex;
+  max-width: 95%;
+  margin: auto;
+  border: 4px solid black;
+  background-color: white;
+  padding: 2rem;
+}
+.otherstats {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding-left: 1rem;
+}
+.otherstats > div > h3 {
+  font-size: 4rem;
+}
 @media (max-width: 1024px) {
   .horizontaltext {
     font-size: 2rem;
@@ -214,7 +231,6 @@
     font-size: 1.2rem;
   }
   .descriptionlinks {
-    /* border: 0px; */
     flex-grow: 2;
     border-top: 4px solid black;
   }
