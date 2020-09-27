@@ -24,7 +24,7 @@ export default function EffectsBarChart({ screenWidth }) {
   const barHeight = Math.max(10, innerHeight / LI_DATA.length / 2);
   const space = barHeight;
   return (
-    <>
+    <div className="flex flex-col">
       <svg width={width} height={height} className="m-auto">
         <Group top={10}>
           <LinearGradient
@@ -69,7 +69,7 @@ export default function EffectsBarChart({ screenWidth }) {
           })}
         </Group>
       </svg>
-      <p className="text-xs">
+      <p className="text-xs" style={{ maxHeight: "20px" }}>
         Source:{" "}
         <a
           target="_blank"
@@ -78,6 +78,6 @@ export default function EffectsBarChart({ screenWidth }) {
           LinkedIn
         </a>
       </p>
-    </>
+    </div>
   );
 }
