@@ -15,7 +15,6 @@ export default function Facts() {
         <Container>
           <Statistics />
         </Container>
-
         <Footer></Footer>
       </Layout>
     </>

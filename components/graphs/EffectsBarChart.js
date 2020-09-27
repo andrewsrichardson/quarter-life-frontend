@@ -25,7 +25,7 @@ export default function EffectsBarChart({ screenWidth }) {
   const space = barHeight;
   return (
     <>
-      <svg width={width} height={height}>
+      <svg width={width} height={height} className="m-auto">
         <Group top={10}>
           <LinearGradient
             id="bar-fill"

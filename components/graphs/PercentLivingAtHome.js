@@ -15,7 +15,9 @@ const y = (d) => d.percent;
 
 const Statistics = ({ data = [], screenWidth, screenHeight }) => {
   const height = Math.min(400, 0.4 * screenHeight);
-  const width = Math.min(600, 0.8 * screenWidth);
+  const width = Math.min(600, 0.75 * screenWidth);
+  let ticks = 15;
+  if (screenWidth < 400) ticks = 7;
 
   const {
     showTooltip,
@@ -101,7 +103,7 @@ const Statistics = ({ data = [], screenWidth, screenHeight }) => {
     return datum;
   }
   return (
-    <div className="bg-white max-w-max-content relative relative m-auto mb-20">
+    <div className="bg-white max-w-max-content relative relative m-auto mb-20 mt-20">
       <h3 className="sm:text:sm text-xl">
         Percentage of people in the UK living with their parents by Age
       </h3>
@@ -151,7 +153,7 @@ const Statistics = ({ data = [], screenWidth, screenHeight }) => {
           <AxisBottom
             scale={xScale}
             label="Age"
-            numTicks={15}
+            numTicks={ticks}
             top={yMax}
             hideAxisLine
           />

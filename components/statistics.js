@@ -15,9 +15,9 @@ export default function Statistics() {
         The <span className="highlight">Facts</span>
       </h1>
       <div className={styles.otherstats}>
-        <div className="flex mt-10 mb-20">
-          <h2>75%</h2>
-          <p>
+        <div className="flex flex-col m-auto mt-20 mb-20 ">
+          <h2 className="text-center">75%</h2>
+          <p className="max-w-sm">
             of 25-33 year olds have experienced a quarter-life crisis, with the
             average age being 27. The number one cause of the crisis in this
             study were fears around finding a career they are passionate about,
@@ -28,7 +28,7 @@ export default function Statistics() {
           </p>
         </div>
         <div className={styles.barChart}>
-          <p className="max-w-md m-auto mt-10">
+          <p className="max-w-md m-auto">
             Thought it was just you? This chart shows percentages of people who
             career-pivoted during the ages of 25-33. Chances are that something
             on this list is something that you've had on your mind for yourself,
@@ -45,7 +45,7 @@ export default function Statistics() {
           <h1>
             The <span className="highlight">Takeaway</span>
           </h1>
-          <p className="m-10">
+          <p className="m-10 text-xl">
             Whilst there is room for more research, it is clear that young
             adults increasingly want meaning and purpose from their jobs, are
             struggling financially and as a result, are unable to get on the
