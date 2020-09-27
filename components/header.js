@@ -50,7 +50,7 @@ export default function Header() {
         >
           <ul className="list-reset lg:flex justify-end flex-1 items-center">
             <li className="mr-3 mb-10 xl:mb-0">
-              <Link href="">
+              <Link href="/#topics">
                 <a className="nav-link hover:underline xl:pr-10">Topics</a>
               </Link>
             </li>

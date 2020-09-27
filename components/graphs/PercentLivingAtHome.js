@@ -7,18 +7,16 @@ import { curveLinear } from "@vx/curve";
 import { GridColumns } from "@vx/grid";
 import { LegendOrdinal } from "@vx/legend";
 import { localPoint } from "@vx/event";
-import { useTooltip, useTooltipInPortal, TooltipWithBounds } from "@vx/tooltip";
+import { useTooltip, TooltipWithBounds } from "@vx/tooltip";
 import { LinearGradient } from "@vx/gradient";
-
-// dimensions
-const height = 400;
-const width = 600;
-
 // accessors
 const x = (d) => d.age;
 const y = (d) => d.percent;
 
-const Statistics = ({ data = [] }) => {
+const Statistics = ({ data = [], screenWidth, screenHeight }) => {
+  const height = Math.min(400, 0.4 * screenHeight);
+  const width = Math.min(600, 0.8 * screenWidth);
+
   const {
     showTooltip,
     hideTooltip,
@@ -31,19 +29,14 @@ const Statistics = ({ data = [] }) => {
     tooltipOpen: true,
     tooltipLeft: width / 3,
     tooltipTop: height / 3,
-    tooltipData: "Move me with your mouse or finger",
-  });
-
-  const { containerRef, TooltipInPortal } = useTooltipInPortal({
-    detectBounds: true,
-    scroll: true,
+    tooltipData: "",
   });
 
   function handleMouseOver(d, event) {
     const coords = localPoint(event.target.ownerSVGElement, event);
     showTooltip({
-      tooltipLeft: coords.x,
-      tooltipTop: coords.y,
+      tooltipLeft: coords.x - 20,
+      tooltipTop: coords.y + 50,
       tooltipData: Math.round(d) + "% difference",
     });
   }
@@ -108,8 +101,8 @@ const Statistics = ({ data = [] }) => {
     return datum;
   }
   return (
-    <div className="bg-white max-w-max-content relative border-r-2">
-      <h3 className="text-xl">
+    <div className="bg-white max-w-max-content relative relative m-auto mb-20">
+      <h3 className="sm:text:sm text-xl">
         Percentage of people in the UK living with their parents by Age
       </h3>
       <p className="text-xs">
@@ -128,7 +121,16 @@ const Statistics = ({ data = [] }) => {
         direction="row"
         itemMargin={5}
       />
-      <svg width={width} height={height} ref={containerRef}>
+      {tooltipOpen && (
+        <TooltipWithBounds
+          key={Math.random()}
+          top={tooltipTop}
+          left={tooltipLeft}
+        >
+          {tooltipData}
+        </TooltipWithBounds>
+      )}
+      <svg width={width} height={height}>
         <Group top={10} left={60}>
           <LinearGradient
             id="area-fill"
@@ -138,15 +140,7 @@ const Statistics = ({ data = [] }) => {
             toOpacity={0.5}
             vertical={true}
           />
-          {tooltipOpen && (
-            <TooltipInPortal
-              key={Math.random()}
-              top={tooltipTop}
-              left={tooltipLeft}
-            >
-              {tooltipData}
-            </TooltipInPortal>
-          )}
+
           <rect width={xMax} height={yMax} fill="url(#area-fill)" />
           <AxisLeft
             scale={yScale}
@@ -193,12 +187,15 @@ const Statistics = ({ data = [] }) => {
           ))}
         </Group>
       </svg>
-      <p className="max-w-2xl m-auto text-sm">
+      <p className="max-w-2xl m-auto">
         In 1997 the most common living arrangement for young adults (18-34) was
         as a couple with one or more children (29%), whereas in 2017 it was
         living with parents at 32% of the same age group. The report suggested
         that rising costs of both buying and renting property, coupled with an
         increase in the average age to have children and marry may play a part.
+        Theres no doubt here however, that this causes stress for the aspiring
+        young adult, especially when cultural norms suggest moving out is of the
+        highest priority.
       </p>
     </div>
   );

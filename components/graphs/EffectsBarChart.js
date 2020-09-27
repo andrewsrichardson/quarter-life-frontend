@@ -8,8 +8,6 @@ import { LinearGradient } from "@vx/gradient";
 import { LI_DATA } from "@/lib/constants";
 import Text from "@vx/text/lib/Text";
 
-const height = 400;
-const width = 600;
 const margin = 10;
 
 // accessors
@@ -17,12 +15,14 @@ const x = (d) => d.label;
 const y = (d) => d.percent;
 const dataMax = 50;
 
-export default function EffectsBarChart() {
+export default function EffectsBarChart({ screenWidth }) {
+  const height = 400;
+  const width = Math.min(600, 0.8 * screenWidth);
+
   const innerWidth = width - margin;
   const innerHeight = height - margin;
   const barHeight = Math.max(10, innerHeight / LI_DATA.length / 2);
   const space = barHeight;
-
   return (
     <>
       <svg width={width} height={height}>
@@ -47,13 +47,17 @@ export default function EffectsBarChart() {
                   stroke="#fff"
                   strokeWidth={2}
                   fill="url(#bar-fill)"
-                  //   onMouseMove={() => e => this.handleMouseOverBar(e, d)}
-                  //   onMouseOut={() => hideTooltip}
                 />
-                <Text x={0} y={i * 2 * barHeight + space}>
+                <Text
+                  key={i + LI_DATA.length}
+                  x={0}
+                  y={i * 2 * barHeight + space}
+                  fontSize={width / 30}
+                >
                   {d.label}
                 </Text>
                 <Text
+                  key={i + LI_DATA.length * 2}
                   x={(innerWidth * d.percent) / dataMax + 20}
                   y={i * 2 * barHeight + space + barHeight - 3}
                   opacity={0.5}

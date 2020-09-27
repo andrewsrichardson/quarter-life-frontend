@@ -8,8 +8,7 @@ import Link from "next/link";
 import MoreStories from "@/components/more-stories";
 import { getAllPostsForHome } from "lib/api";
 import { motion } from "framer-motion";
-import PercentLivingAtHome from "@/components/graphs/PercentLivingAtHome";
-import EffectsBarChart from "@/components/graphs/EffectsBarChart";
+import Topics from "@/components/topics";
 
 export default function Index({ allPosts, preview }) {
   function AnimatedIntro(props) {
@@ -85,7 +84,7 @@ export default function Index({ allPosts, preview }) {
               </h2>
               <h2>
                 Hear the{" "}
-                <Link href="/">
+                <Link href="/facts">
                   <p className={styles.link}>
                     <a className="highlight">Facts</a>
                     <img
@@ -151,7 +150,7 @@ export default function Index({ allPosts, preview }) {
                 </Link>{" "}
                 posts which offer practical advice to those having a QLC, as
                 well as{" "}
-                <Link href="/ ">
+                <Link href="/#topics">
                   <a className="highlight">think pieces</a>
                 </Link>{" "}
                 raising awareness about the challenges facing young adults
@@ -163,56 +162,37 @@ export default function Index({ allPosts, preview }) {
             </div>
             <div className={styles.rightspacer}></div>
           </div>
-          <section className={styles.statistics}>
-            <PercentLivingAtHome data={ONS_DATA} />
-            <div className={styles.otherstats}>
-              <div className="flex">
-                <h3>75%</h3>
-                <p>
-                  of 25-33 year olds have experienced a quarter-life crisis,
-                  with the average age being 27. The number one cause of the
-                  crisis in this study were fears around finding a career they
-                  are passionate about, even more so than about finding a life
-                  partner (47%) or dealing with student debt (22%). Another top
-                  reason was comparing themselves to their more successful
-                  friends. Nearly half (48%) say this has caused them anxiety.
-                </p>
-              </div>
-              <div className="flex">
-                <p className="max-w-md m-auto mr-10">
-                  of 25-33 year olds have experienced a quarter-life crisis,
-                  with the average age being 27. The number one cause of the
-                  crisis in this study were fears around finding a career they
-                  are passionate about, even more so than about finding a life
-                  partner (47%) or dealing with student debt (22%). Another top
-                  reason was comparing themselves to their more successful
-                  friends. Nearly half (48%) say this has caused them anxiety.
-                </p>
-                <EffectsBarChart />
-              </div>
-
-              <div className="flex flex-col">
-                <h1>
-                  The <span className="highlight">Takeaway</span>
-                </h1>
-                <p>
-                  Whilst there is room for more research, it is clear that young
-                  adults increasingly want meaning and purpose from their jobs,
-                  are struggling financially and as a result, are unable to get
-                  on the property ladder. Interestingly, they identify as lonely
-                  far more often than their predecessors; whether this is real
-                  or perceived, it is worrying all the same. All of these
-                  factors are causing angst and leading them into periods of
-                  emotional turmoil. In addition, social media seems to be
-                  stoking the flames of a QLC also, offering 24 hour updates on
-                  their peers' successes and fuelling a competetive comparison
-                  culture. Drawing on these themes, we have crafted a set of
-                  topics which touch on these issues and offer practical advice.
-                </p>
-              </div>
-            </div>
-          </section>
           <Container>
+            <div className={styles.fact}>
+              <div className={styles.facttext}>
+                <h3>
+                  <span>75%</span>
+                </h3>
+                <p>
+                  of 25-33 year olds have experienced a quarter-life crisis,
+                  with the average age being 27. The number one cause of the
+                  crisis in this study were fears around finding a career they
+                  are passionate about, even more so than about finding a life
+                  partner (47%) or dealing with student debt (22%). Another top
+                  reason was comparing themselves to their more successful
+                  friends. Nearly half (48%) say this has caused them anxiety.
+                </p>
+              </div>
+              <h2 className="text-3xl text-center m-5">
+                See the{" "}
+                <Link href="/facts">
+                  <p className={styles.link}>
+                    <a className="highlight">Facts</a>
+                    <img
+                      className="arrow"
+                      src="/right-arrow-button.png"
+                      alt="arrow"
+                    ></img>
+                  </p>
+                </Link>
+              </h2>
+            </div>
+            <Topics />
             <MoreStories label={"Recent Posts"} posts={allPosts}></MoreStories>
           </Container>
         </div>

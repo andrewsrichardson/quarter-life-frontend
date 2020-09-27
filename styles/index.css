@@ -12,9 +12,12 @@
   margin-left: 1rem;
 }
 main {
-  /* background-color: #ffdc15; */
   border-top: 4px solid black;
-  /* scrollbar-color: yellow; */
+}
+html {
+  scroll-behavior: smooth;
+  scrollbar-width: auto;
+  scrollbar-color: #b1ede8 #54bab2;
 }
 .outline {
   border-top: 4px solid black;
