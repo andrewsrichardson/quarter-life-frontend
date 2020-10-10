@@ -32,11 +32,12 @@ export default function Questions({ allQuestions }) {
             style={{
               borderRight: "4px solid black",
               borderLeft: "4px solid black",
+              borderTop: "0px",
             }}
-            className="flex flex-col mb-5 mt-5 bg-white p-10 outline"
+            className="flex flex-col mb-5 pt-5 bg-white p-10 outline"
           >
             <h1 className="text-5xl">Welcome</h1>
-            <h2 className="text-4xl">to the {SITE_NAME} forum.</h2>
+            <h2 className="text-3xl">to the {SITE_NAME} forum.</h2>
             <p className="text-md">
               Feel free to chat about anyting relating to life worries.
             </p>

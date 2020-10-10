@@ -11,6 +11,9 @@ import styles from "./login.module.css";
 import React, { useState, useContext, useEffect } from "react";
 import { useRouter } from "next/router";
 import { registerUser } from "../lib/auth";
+import Link from "next/link";
+
+const backendUrl = process.env.NEXT_PUBLIC_STRAPI_API_URL;
 
 function Register() {
   const [data, updateData] = useState({
@@ -55,7 +58,8 @@ function Register() {
             name="email"
             type="email"
             id="email"
-            size="lg"
+            borderColor="gray.400"
+            size="md"
             focusBorderColor="brand.900"
             aria-describedby="email-helper-text"
           />
@@ -70,9 +74,10 @@ function Register() {
             className="mb-5"
             name="username"
             type="text"
+            borderColor="gray.400"
             id="username"
             focusBorderColor="brand.900"
-            size="lg"
+            size="md"
           />
         </FormControl>
         <FormControl>
@@ -83,13 +88,14 @@ function Register() {
             name="password"
             type="password"
             id="password"
-            size="lg"
+            size="md"
+            borderColor="gray.400"
             focusBorderColor="brand.900"
           />
         </FormControl>
         <div className="flex justify-center">
           <Button
-            variantColor="yellow"
+            bg="brand.900"
             onClick={() => {
               setLoading(true);
               registerUser(data.username, data.email, data.password)
@@ -107,6 +113,32 @@ function Register() {
             {loading ? "Loading... " : "Submit"}
           </Button>
         </div>
+        <p className="text-center mt-10">Or..</p>
+
+        <div className="flex justify-center mt-10 mb-3">
+          <a href={`${backendUrl}/connect/google`}>
+            <Button className={styles.submit} variantColor="red">
+              Connect to Google
+            </Button>
+          </a>
+        </div>
+        <div className="flex justify-center">
+          <a href={`${backendUrl}/connect/facebook`}>
+            <Button className={styles.submit} variantColor="blue">
+              Connect to Facebook
+            </Button>
+          </a>
+        </div>
+        <p className="text-xs mt-10 text-gray-800">
+          By registering you are agreeing to our{" "}
+          <Link href="/terms-and-conditions">
+            <a className="underline">T&Cs</a>
+          </Link>{" "}
+          and
+          <Link href="/privacy-policy">
+            <a className="underline">Privacy Policy.</a>
+          </Link>
+        </p>
       </div>
     </>
   );

@@ -47,7 +47,6 @@ export default function ForumPost({ question }) {
           >
             <h1 className="text-4xl">{title}</h1>
             <h2 className="text-xl m-10">{content}</h2>
-
             <h3 className="text-sm">{"by " + username}</h3>
             <h3 className="text-sm">
               {comments.length.toString() +

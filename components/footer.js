@@ -9,20 +9,28 @@ export default function Footer() {
           {SITE_NAME}
         </h3>
         <div className="flex flex-col justify-center items-center lg:pl-4 lg:w-1/2">
-          <Link href="">
+          <Link href="/#topics">
             <a className="hover:underline mb-5">Topics</a>
           </Link>
-          <Link href="">
+          <Link href="/blog">
             <a className="hover:underline mb-5">Blog</a>
           </Link>
-          <Link href="">
+          <Link href="/questions">
             <a className="hover:underline mb-5">Talk</a>
           </Link>
           <Link href="">
             <a className="hover:underline mb-5">About Us</a>
           </Link>
-          <Link href="">
-            <a className="hover:underline mb-5">Privacy Policy</a>
+          <Link href="mailto:drew@20sos.co.uk">
+            <a className="hover:underline mb-5">Contact</a>
+          </Link>
+        </div>
+        <div className="flex flex-col justify-center items-center lg:pl-4 lg:w-1/2">
+          <Link href="/terms-and-conditions">
+            <a className="hover:underline mb-5 text-sm">T&C</a>
+          </Link>
+          <Link href="/privacy-policy">
+            <a className="hover:underline mb-5 text-sm">Privacy Policy</a>
           </Link>
         </div>
       </div>
