@@ -41,7 +41,7 @@ function MyApp({ Component, pageProps }) {
       ...theme.colors,
       brand: {
         900: "#b1ede8",
-        800: "#AE2770",
+        800: "#d81e5b",
         700: "2C2C4A",
       },
     },

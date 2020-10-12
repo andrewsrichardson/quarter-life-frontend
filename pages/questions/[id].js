@@ -14,13 +14,13 @@ import {
 } from "../../lib/forum-interactions";
 import Footer from "@/components/footer";
 import Link from "next/link";
+import PostBody from "@/components/post-body";
 
 export default function ForumPost({ question }) {
   const { title, user, created_at, comments, content, id } = question[0];
 
   const [data, updateData] = useState({ content: "" });
   const [loading, setLoading] = useState(false);
-  // const [error, setError] = useState(false);
   const router = useRouter();
   const appContext = useContext(AppContext);
   const commentIDs = comments.map((element) => {
@@ -46,7 +46,7 @@ export default function ForumPost({ question }) {
             style={{ border: "4px solid black", borderTop: "0px" }}
           >
             <h1 className="text-4xl">{title}</h1>
-            <h2 className="text-xl m-10">{content}</h2>
+            <PostBody content={content} />
             <h3 className="text-sm">{"by " + username}</h3>
             <h3 className="text-sm">
               {comments.length.toString() +
@@ -56,13 +56,16 @@ export default function ForumPost({ question }) {
             <p className="text-sm text-right">{date}</p>
           </div>
           {appContext.isAuthenticated ? (
-            <div className="m-5">
+            <div
+              style={{ border: "4px solid black", borderTop: "0px" }}
+              className="m-5 mt-0 p-5 bg-white"
+            >
               <FormControl>
                 <FormLabel htmlFor="email">Add comment</FormLabel>
                 <Input
                   onChange={(event) => onChange(event)}
                   name="content"
-                  className="mb-5"
+                  className="mb-1"
                   type="text"
                   id="content"
                   size="sm"
@@ -70,7 +73,8 @@ export default function ForumPost({ question }) {
                 />
               </FormControl>
               <Button
-                variantColor="yellow"
+                bg="brand.800"
+                color="white"
                 size="xs"
                 onClick={() => {
                   setLoading(true);

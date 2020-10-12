@@ -7,21 +7,22 @@ export default function ForumPost(props) {
   const date = created_at.slice(0, 10);
 
   return (
-    <div className={styles.wrapper + " outline"}>
-      <Link href={"/questions/" + id}>
+    <Link href={"/questions/" + id}>
+      <div className={styles.wrapper}>
         <h1 className="text-xl hover:underline">
           {" "}
           <a className="hover:underline cursor-pointer">{title}</a>
         </h1>
-      </Link>
-
-      <h3 className="text-sm">{"by " + username}</h3>
-      <h3 className="text-sm">
-        {comments.length.toString() +
-          " comment" +
-          (comments.length == 1 ? "" : "s")}
-      </h3>
-      <p className="text-sm text-right">{date}</p>
-    </div>
+        <div className="flex">
+          <h3 className="text-xs text-gray-600 mr-8">{"by " + username}</h3>
+          <h3 className="text-xs text-gray-600 justify-self-start">
+            {comments.length.toString() +
+              " comment" +
+              (comments.length == 1 ? "" : "s")}
+          </h3>
+          <p className="text-xs text-gray-600 text-right ml-auto">{date}</p>
+        </div>
+      </div>
+    </Link>
   );
 }

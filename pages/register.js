@@ -12,6 +12,8 @@ import React, { useState, useContext, useEffect } from "react";
 import { useRouter } from "next/router";
 import { registerUser } from "../lib/auth";
 import Link from "next/link";
+import Head from "next/head";
+import { SITE_NAME } from "../lib/constants";
 
 const backendUrl = process.env.NEXT_PUBLIC_STRAPI_API_URL;
 
@@ -38,6 +40,9 @@ function Register() {
 
   return (
     <>
+      <Head>
+        <title>{"Register | " + SITE_NAME}</title>
+      </Head>
       <Header></Header>
       <div className={styles.container + " outline p-10"}>
         {Object.entries(error).length !== 0 &&
@@ -114,7 +119,19 @@ function Register() {
           </Button>
         </div>
         <p className="text-center mt-10">Or..</p>
-
+        <FormControl>
+          <FormLabel htmlFor="username">Username</FormLabel>
+          <Input
+            onChange={(event) => onChange(event)}
+            className="mb-5"
+            name="username"
+            type="text"
+            borderColor="gray.400"
+            id="username"
+            focusBorderColor="brand.900"
+            size="md"
+          />
+        </FormControl>
         <div className="flex justify-center mt-10 mb-3">
           <a href={`${backendUrl}/connect/google`}>
             <Button className={styles.submit} variantColor="red">
@@ -144,15 +161,3 @@ function Register() {
   );
 }
 export default Register;
-
-export async function getStaticProps({ params }) {
-  // Get the ID to render
-  //   const { id } = params;
-
-  //   // Get the data
-  //   const res = await fetch(`https://api.tvmaze.com/shows/${id}`);
-  //   const show = await res.json();
-
-  //   return { props: { show } };
-  return { props: { id: null } };
-}

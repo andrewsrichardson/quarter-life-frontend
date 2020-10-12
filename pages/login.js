@@ -6,6 +6,8 @@ import React, { useState, useContext, useEffect } from "react";
 import { useRouter } from "next/router";
 import { login } from "../lib/auth";
 import Link from "next/link";
+import Head from "next/head";
+import { SITE_NAME } from "../lib/constants";
 
 const backendUrl = process.env.NEXT_PUBLIC_STRAPI_API_URL;
 
@@ -28,7 +30,11 @@ function Login(props) {
 
   return (
     <>
+      <Head>
+        <title>{"Login | " + SITE_NAME}</title>
+      </Head>
       <Header></Header>
+
       <div className={styles.container + " outline p-10"}>
         {Object.entries(error).length !== 0 &&
           error.constructor === Object &&

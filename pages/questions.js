@@ -2,7 +2,7 @@ import { Button } from "@chakra-ui/core";
 import Container from "@/components/container";
 import ForumPost from "@/components/forumPost";
 import Layout from "@/components/layout";
-import { getAllQuestionsForForum } from "@/lib/api";
+import { getAllQuestionsForForum, getCategories } from "@/lib/api";
 import Head from "next/head";
 import { SITE_NAME } from "../lib/constants";
 import React, { useContext } from "react";
@@ -11,7 +11,7 @@ import { useRouter } from "next/router";
 import Footer from "@/components/footer";
 import Link from "next/link";
 
-export default function Questions({ allQuestions }) {
+export default function Questions({ allQuestions, categories }) {
   const appContext = useContext(AppContext);
   const router = useRouter();
 
@@ -20,49 +20,71 @@ export default function Questions({ allQuestions }) {
   }
 
   const postList = allQuestions.map(toPost);
+  const tagsList = categories.__type.enumValues.map((category) => {
+    return (
+      <p className="pb-1">
+        {"#" + category.name.charAt(0).toUpperCase() + category.name.slice(1)}
+      </p>
+    );
+  });
+
   return (
     <>
       <Layout>
         <Head>
-          <title>Talk</title>
+          <title>Talk | 20sos</title>
         </Head>
         <Container>
           {" "}
-          <section
-            style={{
-              borderRight: "4px solid black",
-              borderLeft: "4px solid black",
-              borderTop: "0px",
-            }}
-            className="flex flex-col mb-5 pt-5 bg-white p-10 outline"
-          >
-            <h1 className="text-5xl">Welcome</h1>
-            <h2 className="text-3xl">to the {SITE_NAME} forum.</h2>
-            <p className="text-md">
-              Feel free to chat about anyting relating to life worries.
-            </p>
-            <div className="self-end">
-              {appContext.isAuthenticated ? (
-                <Button
-                  size="sm"
-                  variantColor="yellow"
-                  onClick={() => {
-                    router.push("/questions/create");
-                  }}
-                >
-                  Create Post
-                </Button>
-              ) : (
-                <h3>
-                  <Link href="/login">
-                    <a className="hover:underline">Login to post.</a>
-                  </Link>
-                </h3>
-              )}
+          <div className="flex flex">
+            <div className="flex-grow">
+              <section
+                style={{
+                  borderRight: "4px solid black",
+                  borderLeft: "4px solid black",
+                  borderTop: "0px",
+                }}
+                className="flex flex-col mb-5 pt-5 bg-white p-10 outline"
+              >
+                <h1 className="text-5xl">Welcome</h1>
+                <p className="text-md">
+                  We're helping each other figure out what's going on in our
+                  lives.
+                </p>
+                <div className="self-end">
+                  {appContext.isAuthenticated ? (
+                    <Button
+                      size="sm"
+                      bg="brand.800"
+                      color="white"
+                      onClick={() => {
+                        router.push("/questions/create");
+                      }}
+                    >
+                      Create Post
+                    </Button>
+                  ) : (
+                    <h3 className="highlight text-xl">
+                      <Link href="/login">
+                        <a className="hover:underline">Login to post.</a>
+                      </Link>
+                    </h3>
+                  )}
+                </div>
+              </section>
+              <div className="min-h-screen">
+                <div className="flex justify-center flex-wrap flex-2">
+                  {postList}
+                </div>
+              </div>
             </div>
-          </section>
-          <div className="min-h-screen">
-            <div className="flex justify-center flex-wrap">{postList}</div>
+            <div
+              style={{ height: "max-content" }}
+              className="max-w-7xl m-10  p-10 bg-white outline"
+            >
+              <h2 className="text-2xl pb-2">Categories</h2>
+              {tagsList}
+            </div>
           </div>
         </Container>
         <Footer> </Footer>
@@ -73,7 +95,8 @@ export default function Questions({ allQuestions }) {
 
 export async function getServerSideProps() {
   const allQuestions = (await getAllQuestionsForForum()) || [];
+  const categories = (await getCategories()) || [];
   return {
-    props: { allQuestions },
+    props: { allQuestions, categories },
   };
 }

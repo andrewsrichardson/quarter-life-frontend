@@ -189,7 +189,7 @@ const Statistics = ({ data = [], screenWidth, screenHeight }) => {
           ))}
         </Group>
       </svg>
-      <p className="max-w-2xl m-auto">
+      <p className="max-w-2xl m-auto text-xl">
         In 1997 the most common living arrangement for young adults (18-34) was
         as a couple with one or more children (29%), whereas in 2017 it was
         living with parents at 32% of the same age group. The report suggested
