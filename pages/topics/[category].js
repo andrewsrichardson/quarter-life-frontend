@@ -41,68 +41,75 @@ export default function Category({ topic, content }) {
     : "Topic";
 
   function BlogPosts() {
-    const postList = topic.posts.map((post, index) => {
-      return (
-        <Link
-          className={styles.blogLink}
-          key={index}
-          href={"/posts/" + post.slug}
-        >
-          <div
-            className={
-              styles.blogLink + " flex max-h-14 justify-between  pl-2 pr-2"
-            }
+    if (topic.posts[0]) {
+      const postList = topic.posts.map((post, index) => {
+        return (
+          <Link
+            className={styles.blogLink}
+            key={index}
+            href={"/posts/" + post.slug}
           >
-            <h1
-              style={{ wordWrap: "break-word", maxWidth: "80%" }}
-              className="mt-auto mb-auto"
+            <div
+              className={
+                styles.blogLink + " flex max-h-14 justify-between  pl-2 pr-2"
+              }
             >
-              {index + 1 + ". " + post.title}
-            </h1>
-            <img
-              src={`${
-                post.coverImage.url.startsWith("/")
-                  ? process.env.NEXT_PUBLIC_STRAPI_API_URL
-                  : ""
-              }${post.coverImage.url}`}
-              className="w-16 h-19"
-            />
-          </div>
-        </Link>
-      );
-    });
-    return postList;
+              <h1
+                style={{ wordWrap: "break-word", maxWidth: "80%" }}
+                className="mt-auto mb-auto"
+              >
+                {index + 1 + ". " + post.title}
+              </h1>
+              <img
+                src={`${
+                  post.coverImage.url.startsWith("/")
+                    ? process.env.NEXT_PUBLIC_STRAPI_API_URL
+                    : ""
+                }${post.coverImage.url}`}
+                className="w-16 h-19"
+              />
+            </div>
+          </Link>
+        );
+      });
+      return postList;
+    } else return [];
   }
 
   function BookReviews() {
-    const postList = topic.bookReviews.map((post, index) => {
-      return (
-        <Link
-          className={styles.blogLink}
-          key={index}
-          href={"/posts/" + post.slug}
-        >
-          <div
-            className={
-              styles.blogLink + " flex max-h-14 justify-between pl-2 pr-2"
-            }
+    if (topic.bookReviews) {
+      const postList = topic.bookReviews.map((post, index) => {
+        return (
+          <Link
+            className={styles.blogLink}
+            key={index}
+            href={"/posts/" + post.slug}
           >
-            <h1 style={{ wordWrap: "break-word" }} className="mt-auto mb-auto">
-              {index + 1 + ". " + post.title}
-            </h1>
-            <img
-              src={`${
-                post.coverImage.url.startsWith("/")
-                  ? process.env.NEXT_PUBLIC_STRAPI_API_URL
-                  : ""
-              }${post.coverImage.url}`}
-              className="w-16 h-19"
-            />
-          </div>
-        </Link>
-      );
-    });
-    return postList;
+            <div
+              className={
+                styles.blogLink + " flex max-h-14 justify-between pl-2 pr-2"
+              }
+            >
+              <h1
+                style={{ wordWrap: "break-word" }}
+                className="mt-auto mb-auto"
+              >
+                {index + 1 + ". " + post.title}
+              </h1>
+              <img
+                src={`${
+                  post.coverImage.url.startsWith("/")
+                    ? process.env.NEXT_PUBLIC_STRAPI_API_URL
+                    : ""
+                }${post.coverImage.url}`}
+                className="w-16 h-19"
+              />
+            </div>
+          </Link>
+        );
+      });
+      return postList;
+    } else return [];
   }
   return (
     <>
