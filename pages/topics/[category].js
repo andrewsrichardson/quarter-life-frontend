@@ -136,7 +136,7 @@ export default function Category({ topic, content }) {
               <BlogPosts />
             </div>
             <div className={"outline bg-white " + styles.siteLinksCard}>
-              <h2 className="text-2xl text-center">Reccomended Reading</h2>
+              <h2 className="text-2xl text-center">Recommended Reading</h2>
               <BookReviews />
             </div>
             <div
