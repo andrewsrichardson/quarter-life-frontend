@@ -1,0 +1,33 @@
+.blogLink {
+  transition: 300ms;
+}
+.blogLink:hover {
+  cursor: pointer;
+  background-color: rgb(0, 0, 0, 0.1);
+}
+.content {
+  max-width: 50%;
+  border: 4px solid black;
+}
+.siteLinksContainer {
+  max-width: 45%;
+}
+.siteLinksCard {
+  min-height: 300px;
+  width: 45%;
+}
+
+@media (max-width: 700px) {
+  .content {
+    max-width: 100%;
+    margin: 0px;
+    padding: 1rem;
+  }
+  .siteLinksContainer,
+  .siteLinksCard {
+    max-width: 100%;
+    width: 100%;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+}

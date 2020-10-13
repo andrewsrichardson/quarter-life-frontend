@@ -1,0 +1,25 @@
+.dropdown:hover > .dropdownNav {
+  visibility: visible;
+  opacity: 1;
+  display: block;
+}
+
+.dropdownNav {
+  opacity: 0;
+  transition: transform 0.3s cubic-bezier(0.88, -0.72, 0, 1),
+    opacity 0.3s ease-in-out;
+  transform: translateY(-4rem);
+  list-style: none;
+  margin: 0;
+  padding: 1rem;
+  top: 8rem;
+  position: absolute;
+  z-index: 1;
+  background: white;
+  border: 4px solid black;
+  border-top: 0px;
+}
+.dropdownNav > li:hover {
+  cursor: pointer;
+  background-color: lightgray;
+}

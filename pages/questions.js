@@ -20,9 +20,9 @@ export default function Questions({ allQuestions, categories }) {
   }
 
   const postList = allQuestions.map(toPost);
-  const tagsList = categories.__type.enumValues.map((category) => {
+  const tagsList = categories.__type.enumValues.map((category, index) => {
     return (
-      <p className="pb-1">
+      <p className="pb-1" key={index}>
         {"#" + category.name.charAt(0).toUpperCase() + category.name.slice(1)}
       </p>
     );

@@ -1,18 +1,41 @@
 import Link from "next/link";
 import { logout } from "../lib/auth";
 import AppContext from "../context/AppContext";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { SITE_NAME } from "@/lib/constants";
 import classnames from "classnames";
+import { getCategories } from "@/lib/api";
+import styles from "./header.module.css";
 
-export default function Header() {
+export default function Header({}) {
   const { user, setUser } = useContext(AppContext);
   const [menu, setMenuOpen] = useState(false);
+  const [menuItems, setMenuItems] = useState(false);
+
+  useEffect(() => {
+    async function getTags() {
+      const categories = (await getCategories()) || [];
+      setMenuItems(categories);
+    }
+    getTags();
+  }, []);
 
   const menuClass = menu ? "" : " hidden";
 
   function toggleMenu() {
     setMenuOpen(!menu);
+  }
+  let tagsList = [];
+  if (menuItems) {
+    tagsList = menuItems.__type.enumValues.map((category, index) => {
+      return (
+        <Link href={"/topics/" + category.name}>
+          <li className="pb-1" key={index}>
+            {category.name.charAt(0).toUpperCase() + category.name.slice(1)}
+          </li>
+        </Link>
+      );
+    });
   }
 
   return (
@@ -49,10 +72,11 @@ export default function Header() {
           id="nav-content"
         >
           <ul className="list-reset lg:flex justify-end flex-1 items-center">
-            <li className="mr-3 mb-10 xl:mb-0">
+            <li className={"mr-3 mb-10 xl:mb-0 " + styles.dropdown}>
               <Link href="/#topics">
                 <a className="nav-link hover:underline xl:pr-10">Topics</a>
               </Link>
+              <ul className={styles.dropdownNav}>{tagsList}</ul>
             </li>
             <li className="mr-3 mb-10 xl:mb-0">
               <Link href="/blog">
