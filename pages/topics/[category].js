@@ -5,14 +5,7 @@ import {
   getAllQuestionsForForum,
 } from "@/lib/api";
 import Head from "next/head";
-import { useRouter } from "next/router";
-import AppContext from "../../context/AppContext";
-import CommentsList from "../../components/CommentList";
 import React, { useEffect, useState } from "react";
-import {
-  createComment,
-  linkCommentToQuestion,
-} from "../../lib/forum-interactions";
 import Footer from "@/components/footer";
 import ForumPost from "@/components/forumPost";
 import Link from "next/link";
@@ -41,7 +34,7 @@ export default function Category({ topic, content }) {
     : "Topic";
 
   function BlogPosts() {
-    if (topic.posts[0]) {
+    if (topic) {
       const postList = topic.posts.map((post, index) => {
         return (
           <Link
@@ -77,7 +70,7 @@ export default function Category({ topic, content }) {
   }
 
   function BookReviews() {
-    if (topic.bookReviews) {
+    if (topic) {
       const postList = topic.bookReviews.map((post, index) => {
         return (
           <Link
