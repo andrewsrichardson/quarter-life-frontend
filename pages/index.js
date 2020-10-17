@@ -57,11 +57,7 @@ export default function Index({ allPosts, preview }) {
                 Welcome to the home of all things{" "}
                 <span className="highlight">Quarter Life Crisis.</span>
               </h2>
-              <h3>
-                A Quarter Life Crisis is temporary, with research suggesting the
-                average case lasts 11 months. Don’t despair, we’ll be with you
-                all the way.{" "}
-              </h3>
+              <h3>Don’t despair, we’ll be with you all the way. </h3>
             </div>
             <div className={styles.descriptionlinks}>
               <h2>

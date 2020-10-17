@@ -34,7 +34,7 @@ export default function Meta() {
       <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
       <meta
         name="description"
-        content={`Welcome to the home of all things Quarter Life Crisis. A Quarter Life Crisis is temporary, with research suggesting the average case lasts 11 months. Don’t despair, we’ll be with you all the way.`}
+        content={`Welcome to the home of all things Quarter Life Crisis. Don’t despair, we’ll be with you all the way.`}
       />
       <meta property="og:image" content={HOME_OG_IMAGE_URL} />
     </Head>

@@ -85,6 +85,7 @@ function Login(props) {
                     setLoading(false);
                     // set authed User in global context to update header/app state
                     appContext.setUser(res.data.user);
+                    router.push("/talk");
                   })
                   .catch((error) => {
                     setError(error.response.data);

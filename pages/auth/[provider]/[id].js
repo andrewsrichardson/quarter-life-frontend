@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { useRouter } from "next/router";
 import AppContext from "../../../context/AppContext";
 import Cookie from "js-cookie";
+import Axios from "axios";
 
 const backendUrl = process.env.NEXT_PUBLIC_STRAPI_API_URL;
 
@@ -20,9 +21,16 @@ export default function LoginRedirect(props) {
       const query = router.asPath
         .replace("auth/google/callback", "")
         .replace("auth/facebook/callback", "");
-      fetch(`${backendUrl}/auth/${router.query.provider}/callback${query}`)
+      const username = "randomname261";
+      Axios.post(
+        `${backendUrl}/auth/${router.query.provider}/callback${query}`,
+        {
+          username,
+        }
+      )
         .then((res) => {
           if (res.status !== 200) {
+            console.log(res.body);
             throw new Error(`Couldn't login to Strapi. Status: ${res.status}`);
           }
           return res;
@@ -33,6 +41,7 @@ export default function LoginRedirect(props) {
           // Now saving the jwt to use it for future authenticated requests to Strapi
           Cookie.set("token", res.jwt);
           appContext.setUser(res.user);
+          console.log(res.user);
           setText(
             "You have been successfully logged in. You will be redirected in a few seconds..."
           );
