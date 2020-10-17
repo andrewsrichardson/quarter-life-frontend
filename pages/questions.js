@@ -32,11 +32,11 @@ export default function Questions({ allQuestions, categories }) {
     <>
       <Layout>
         <Head>
-          <title>Talk | 20sos</title>
+          <title>Talk | {SITE_NAME}</title>
         </Head>
         <Container>
           {" "}
-          <div className="flex flex">
+          <div className="flex flex-wrap">
             <div className="flex-grow">
               <section
                 style={{

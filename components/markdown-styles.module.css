@@ -8,6 +8,10 @@
 .markdown blockquote {
   @apply my-6;
 }
+.markdown blockquote {
+  @apply italic ml-5 pl-2;
+  border-left: 10px solid lightgray;
+}
 .markdown a {
   @apply underline;
 }

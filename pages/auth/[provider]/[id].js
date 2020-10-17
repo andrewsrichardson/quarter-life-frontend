@@ -21,13 +21,7 @@ export default function LoginRedirect(props) {
       const query = router.asPath
         .replace("auth/google/callback", "")
         .replace("auth/facebook/callback", "");
-      const username = "randomname261";
-      Axios.get(
-        `${backendUrl}/auth/${router.query.provider}/callback${query}`,
-        {
-          username,
-        }
-      )
+      fetch(`${backendUrl}/auth/${router.query.provider}/callback${query}`)
         .then((res) => {
           if (res.status !== 200) {
             console.log(res.body);

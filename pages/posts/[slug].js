@@ -8,7 +8,7 @@ import Layout from "@/components/layout";
 import { getAllPostsWithSlug, getPostAndMorePosts } from "@/lib/api";
 import PostTitle from "@/components/post-title";
 import Head from "next/head";
-import { CMS_NAME } from "@/lib/constants";
+import { SITE_NAME, SITE_URL } from "@/lib/constants";
 import markdownToHtml from "@/lib/markdownToHtml";
 import Footer from "@/components/footer";
 
@@ -17,7 +17,8 @@ export default function Post({ post, morePosts, preview }) {
   if (!router.isFallback && !post?.slug) {
     return <ErrorPage statusCode={404} />;
   }
-  console.log(post);
+
+  const url = SITE_URL + router.asPath;
   return (
     <Layout preview={preview}>
       <Container>
@@ -35,15 +36,20 @@ export default function Post({ post, morePosts, preview }) {
             >
               <Head>
                 <title>
-                  {post.title} | Next.js Blog Example with {CMS_NAME}
+                  {post.title} | {SITE_NAME}
                 </title>
-                <meta property="og:image" content={post.ogImage.url} />
+                <meta property="og:image" content={post.coverImage.url} />
+                <meta property="og:type" content="article" />
+                <meta property="og:url" content={url} />
+                <meta property="og:title" content={post.title} />
+                <meta property="og:site_name" content={SITE_NAME} />
               </Head>
               <PostHeader
                 title={post.title}
                 coverImage={post.coverImage}
                 date={post.date}
                 author={post.author}
+                url={url}
               />
               <PostBody content={post.content} />
             </article>

@@ -36,6 +36,7 @@
     "next-on-netlify": "^2.4.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-social-sharing": "^3.3.0",
     "remark": "12.0.0",
     "remark-html": "11.0.2"
   },

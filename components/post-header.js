@@ -1,9 +1,10 @@
-import Avatar from '../components/avatar'
-import Date from '../components/date'
-import CoverImage from '../components/cover-image'
-import PostTitle from '../components/post-title'
+import Avatar from "../components/avatar";
+import Date from "../components/date";
+import CoverImage from "../components/cover-image";
+import PostTitle from "../components/post-title";
+import { Facebook, Twitter, Linkedin } from "react-social-sharing";
 
-export default function PostHeader({ title, coverImage, date, author }) {
+export default function PostHeader({ title, coverImage, date, author, url }) {
   return (
     <>
       <PostTitle>{title}</PostTitle>
@@ -20,7 +21,10 @@ export default function PostHeader({ title, coverImage, date, author }) {
         <div className="mb-6 text-lg">
           <Date dateString={date} />
         </div>
+        <Facebook link={url} />
+        <Twitter link={url} />
+        <Linkedin link={url} />
       </div>
     </>
-  )
+  );
 }

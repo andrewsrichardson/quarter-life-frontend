@@ -59,6 +59,9 @@
   flex-grow: 3;
   background-color: white;
   padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
 }
 .descriptionlinks {
   min-height: 300px;
@@ -353,5 +356,15 @@
   }
   .ourmissioncontent {
     min-height: 100%;
+  }
+
+  .facttext {
+    flex-direction: column;
+  }
+  .facttext > h3 {
+    font-size: 2rem;
+  }
+  .facttext > p {
+    font-size: 1rem;
   }
 }

@@ -33,3 +33,6 @@ html {
   display: inline-block;
   margin: 8px;
 }
+.quote {
+  background-color: lightgray;
+}
