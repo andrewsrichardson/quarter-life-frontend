@@ -22,7 +22,7 @@ export default function LoginRedirect(props) {
         .replace("auth/google/callback", "")
         .replace("auth/facebook/callback", "");
       const username = "randomname261";
-      Axios.post(
+      Axios.get(
         `${backendUrl}/auth/${router.query.provider}/callback${query}`,
         {
           username,
