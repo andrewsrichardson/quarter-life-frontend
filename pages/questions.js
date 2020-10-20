@@ -2,10 +2,14 @@ import { Button } from "@chakra-ui/core";
 import Container from "@/components/container";
 import ForumPost from "@/components/forumPost";
 import Layout from "@/components/layout";
-import { getAllQuestionsForForum, getCategories } from "@/lib/api";
+import {
+  getAllQuestionsForForum,
+  getCategories,
+  getUpvotesByUser,
+} from "@/lib/api";
 import Head from "next/head";
 import { SITE_NAME } from "../lib/constants";
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import AppContext from "../context/AppContext";
 import { useRouter } from "next/router";
 import Footer from "@/components/footer";
@@ -15,11 +19,40 @@ export default function Questions({ allQuestions, categories }) {
   const appContext = useContext(AppContext);
   const router = useRouter();
 
+  const [upvotedQuestions, setUpvotedQuestions] = useState([]);
+
+  useEffect(() => {
+    setUpvotedQuestions(
+      appContext.upvotes.filter((upvote) => {
+        return upvote.question != null;
+      })
+    );
+  }, [appContext]);
+
+  const { user } = appContext;
+
   function toPost(question, index) {
-    return <ForumPost key={index} props={question}></ForumPost>;
+    let highlight = false;
+    upvotedQuestions.forEach((upvote) => {
+      if (question.id === upvote.question.id) {
+        highlight = true;
+      }
+    });
+
+    return (
+      <ForumPost
+        key={index}
+        props={question}
+        highlight={highlight}
+        me={user}
+        upvotedQuestions={appContext.upvotes}
+        setUpvotedQuestions={appContext.setUpvotes}
+      ></ForumPost>
+    );
   }
 
   const postList = allQuestions.map(toPost);
+
   const tagsList = categories.__type.enumValues.map((category, index) => {
     return (
       <p className="pb-1" key={index}>

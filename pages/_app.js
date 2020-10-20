@@ -4,9 +4,11 @@ import AppContext from "../context/AppContext";
 import Cookie from "js-cookie";
 import fetch from "isomorphic-fetch";
 import { ThemeProvider, CSSReset, theme } from "@chakra-ui/core";
+import { getUpvotes } from "@/lib/api";
 
 function MyApp({ Component, pageProps }) {
   const [user, setUser] = useState(null);
+  const [upvotes, setUpvotes] = useState([]);
 
   useEffect(() => {
     const token = Cookie.get("token");
@@ -27,6 +29,11 @@ function MyApp({ Component, pageProps }) {
         const user = await res.json();
         setUser(user);
       });
+      async function up() {
+        const upvotes = await getUpvotes();
+        setUpvotes(upvotes);
+      }
+      up();
     }
   }, []);
 
@@ -51,8 +58,10 @@ function MyApp({ Component, pageProps }) {
     <AppContext.Provider
       value={{
         user: user,
+        upvotes: upvotes,
         isAuthenticated: !!user,
         setUser: setUser,
+        setUpvotes: setUpvotes,
       }}
     >
       <ThemeProvider theme={customTheme}>

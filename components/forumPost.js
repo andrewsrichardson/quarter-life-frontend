@@ -1,18 +1,73 @@
+import { createUpvote, deleteUpvote } from "@/lib/api";
+import { Icon } from "@chakra-ui/core";
 import Link from "next/link";
+import Router from "next/router";
+import { useState, useEffect } from "react";
 import styles from "./forumpost.module.css";
 
 export default function ForumPost(props) {
-  const { title, id, user, created_at, comments } = props.props;
+  const { title, id, user, created_at, comments, upvotes } = props.props;
   const { username } = user;
+  let { me, upvotedQuestions, setUpvotedQuestions } = props;
   const date = created_at.slice(0, 10);
 
+  const [isUpvoted, setIsUpvoted] = useState(props.highlight);
+  const [isLoading, setIsLoading] = useState(false);
+  const [number, setNumber] = useState(upvotes.length);
+
+  useEffect(() => {
+    setIsUpvoted(props.highlight);
+    console.log(props.highlight);
+  }, [props.highlight]);
+
+  function handleUpvote() {
+    if (!me) {
+      Router.push("/register");
+    }
+    setIsLoading(true);
+    if (isUpvoted) {
+      const deleteID = upvotedQuestions.find((ele) => ele.question.id == id);
+      setNumber(number - 1);
+      deleteUpvote(deleteID.id).then((res) => {
+        setUpvotedQuestions(
+          upvotedQuestions.filter((ele) => ele.id !== deleteID.id)
+        );
+        setIsUpvoted(false);
+        setIsLoading(false);
+      });
+    } else {
+      setNumber(number + 1);
+      createUpvote(null, null, id)
+        .then((res) => {
+          setUpvotedQuestions([...upvotedQuestions, res.data]);
+          setIsUpvoted(!isUpvoted);
+          setIsLoading(false);
+        })
+        .catch((err) => console.log(err));
+    }
+  }
+
   return (
-    <Link href={"/questions/" + id}>
-      <div className={styles.wrapper}>
-        <h1 className="text-xl hover:underline">
-          {" "}
-          <a className="hover:underline cursor-pointer">{title}</a>
-        </h1>
+    <div className={styles.wrapper}>
+      <div className="m-auto mr-3">
+        <Icon
+          name="chevron-up"
+          size="1.5rem"
+          focusable={true}
+          role="button"
+          className="pointer"
+          color={isUpvoted ? "#D81E5B" : ""}
+          onClick={isLoading ? null : handleUpvote}
+        />
+        <h1 className="text-xl text-center">{number}</h1>
+      </div>
+      <div style={{ width: "100%" }}>
+        <Link href={"/questions/" + id}>
+          <h1 className="text-xl hover:underline">
+            {" "}
+            <a className="hover:underline cursor-pointer">{title}</a>
+          </h1>
+        </Link>
         <div className="flex">
           <h3 className="text-xs text-gray-600 mr-8">{"by " + username}</h3>
           <h3 className="text-xs text-gray-600 justify-self-start">
@@ -23,6 +78,6 @@ export default function ForumPost(props) {
           <p className="text-xs text-gray-600 text-right ml-auto">{date}</p>
         </div>
       </div>
-    </Link>
+    </div>
   );
 }
