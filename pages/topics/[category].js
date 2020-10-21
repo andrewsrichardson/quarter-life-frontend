@@ -5,7 +5,7 @@ import {
   getAllQuestionsForForum,
 } from "@/lib/api";
 import Head from "next/head";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Footer from "@/components/footer";
 import ForumPost from "@/components/forumPost";
 import Link from "next/link";
@@ -13,12 +13,37 @@ import markdownToHtml from "@/lib/markdownToHtml";
 import styles from "./category.module.css";
 import markdownStyles from "../../components/markdown-styles.module.css";
 import { Spinner } from "@chakra-ui/core";
+import AppContext from "context/AppContext";
 
 export default function Category({ topic, content }) {
-  function toPost(question, index) {
-    return <ForumPost key={index} props={question}></ForumPost>;
-  }
   const [questionsList, setQuestionsList] = useState(null);
+  const appContext = useContext(AppContext);
+  const [upvotedQuestions, setUpvotedQuestions] = useState([]);
+
+  const { user } = appContext;
+
+  function toPost(question, index) {
+    let highlight = false;
+    console.log("generating posts");
+
+    upvotedQuestions.forEach((upvote) => {
+      console.log(upvote);
+      if (question.id == upvote.question.id) {
+        highlight = true;
+      }
+    });
+
+    return (
+      <ForumPost
+        key={index}
+        props={question}
+        highlight={highlight}
+        me={user}
+        upvotedQuestions={appContext.upvotes}
+        setUpvotedQuestions={appContext.setUpvotes}
+      ></ForumPost>
+    );
+  }
 
   useEffect(() => {
     async function getPosts() {
@@ -26,7 +51,18 @@ export default function Category({ topic, content }) {
       setQuestionsList(forumPosts.map(toPost));
     }
     getPosts();
-  }, []);
+    return function del() {};
+  }, [upvotedQuestions]);
+
+  useEffect(() => {
+    console.log(appContext);
+    setUpvotedQuestions(
+      appContext.upvotes.filter((upvote) => {
+        return upvote.question && upvote.question != null;
+      })
+    );
+    return () => {};
+  }, [appContext]);
 
   const title = topic
     ? topic.topics[0].category.charAt(0).toUpperCase() +

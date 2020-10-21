@@ -2,11 +2,7 @@ import { Button } from "@chakra-ui/core";
 import Container from "@/components/container";
 import ForumPost from "@/components/forumPost";
 import Layout from "@/components/layout";
-import {
-  getAllQuestionsForForum,
-  getCategories,
-  getUpvotesByUser,
-} from "@/lib/api";
+import { getAllQuestionsForForum, getCategories } from "@/lib/api";
 import Head from "next/head";
 import { SITE_NAME } from "../lib/constants";
 import React, { useContext, useState, useEffect } from "react";
@@ -18,13 +14,12 @@ import Link from "next/link";
 export default function Questions({ allQuestions, categories }) {
   const appContext = useContext(AppContext);
   const router = useRouter();
-
   const [upvotedQuestions, setUpvotedQuestions] = useState([]);
 
   useEffect(() => {
     setUpvotedQuestions(
       appContext.upvotes.filter((upvote) => {
-        return upvote.question != null;
+        return upvote.question && upvote.question != null;
       })
     );
   }, [appContext]);
@@ -33,8 +28,9 @@ export default function Questions({ allQuestions, categories }) {
 
   function toPost(question, index) {
     let highlight = false;
+    console.log(upvotedQuestions);
     upvotedQuestions.forEach((upvote) => {
-      if (question.id === upvote.question.id) {
+      if (question.id == upvote.question.id) {
         highlight = true;
       }
     });

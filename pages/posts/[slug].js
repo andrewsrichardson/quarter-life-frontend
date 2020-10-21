@@ -17,7 +17,6 @@ export default function Post({ post, morePosts, preview }) {
   if (!router.isFallback && !post?.slug) {
     return <ErrorPage statusCode={404} />;
   }
-
   const url = SITE_URL + router.asPath;
   return (
     <Layout preview={preview}>
@@ -50,6 +49,8 @@ export default function Post({ post, morePosts, preview }) {
                 date={post.date}
                 author={post.author}
                 url={url}
+                upvotes={post.upvotes}
+                id={post.id}
               />
               <PostBody content={post.content} />
             </article>

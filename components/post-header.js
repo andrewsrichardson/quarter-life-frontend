@@ -4,13 +4,20 @@ import CoverImage from "../components/cover-image";
 import PostTitle from "../components/post-title";
 import { Facebook, Twitter, Linkedin } from "react-social-sharing";
 
-export default function PostHeader({ title, coverImage, date, author, url }) {
+export default function PostHeader({
+  title,
+  coverImage,
+  date,
+  author,
+  url,
+  upvotes,
+  id,
+}) {
   return (
     <>
-      <PostTitle>{title}</PostTitle>
-      <div className="hidden md:block md:mb-12">
-        <Avatar name={author.name} picture={author.picture} />
-      </div>
+      <PostTitle upvotes={upvotes} id={id}>
+        {title}
+      </PostTitle>
       <div className="mb-8 md:mb-16 sm:mx-0">
         <CoverImage title={title} url={coverImage.url} />
       </div>

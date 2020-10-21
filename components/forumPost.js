@@ -17,33 +17,39 @@ export default function ForumPost(props) {
 
   useEffect(() => {
     setIsUpvoted(props.highlight);
-    console.log(props.highlight);
   }, [props.highlight]);
 
   function handleUpvote() {
     if (!me) {
       Router.push("/register");
-    }
-    setIsLoading(true);
-    if (isUpvoted) {
-      const deleteID = upvotedQuestions.find((ele) => ele.question.id == id);
-      setNumber(number - 1);
-      deleteUpvote(deleteID.id).then((res) => {
-        setUpvotedQuestions(
-          upvotedQuestions.filter((ele) => ele.id !== deleteID.id)
-        );
-        setIsUpvoted(false);
-        setIsLoading(false);
-      });
     } else {
-      setNumber(number + 1);
-      createUpvote(null, null, id)
-        .then((res) => {
-          setUpvotedQuestions([...upvotedQuestions, res.data]);
-          setIsUpvoted(!isUpvoted);
-          setIsLoading(false);
-        })
-        .catch((err) => console.log(err));
+      setIsLoading(true);
+      if (isUpvoted) {
+        console.log(upvotedQuestions);
+        console.log(id);
+        const deleteID = upvotedQuestions.find(
+          (ele) => ele.question && ele.question.id == id
+        );
+        setNumber(number - 1);
+        deleteUpvote(deleteID.id)
+          .then((res) => {
+            setUpvotedQuestions(
+              upvotedQuestions.filter((ele) => ele.id !== deleteID.id)
+            );
+            setIsUpvoted(false);
+            setIsLoading(false);
+          })
+          .catch((err) => console.log(err));
+      } else {
+        setNumber(number + 1);
+        createUpvote(null, null, id.toString())
+          .then((res) => {
+            setUpvotedQuestions([...upvotedQuestions, res.data]);
+            setIsUpvoted(!isUpvoted);
+            setIsLoading(false);
+          })
+          .catch((err) => console.log(err));
+      }
     }
   }
 
