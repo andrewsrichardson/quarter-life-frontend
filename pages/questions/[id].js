@@ -94,33 +94,34 @@ export default function ForumPost({ question }) {
   function handleUpvote() {
     if (!me) {
       Router.push("/register");
-    }
-    setIsLoading(true);
-    if (isUpvoted) {
-      const deleteID = upvotedQuestions.find((ele) => ele.question.id == id);
-      setNumber(number - 1);
-      deleteUpvote(deleteID.id)
-        .then((res) => {
-          setUpvotedQuestions(
-            upvotedQuestions.filter((ele) => ele.id !== deleteID.id)
-          );
-          setGlobalUpvotes(
-            upvotedQuestions.filter((ele) => ele.id !== deleteID.id)
-          );
-          setIsUpvoted(false);
-          setIsLoading(false);
-        })
-        .catch((err) => console.log(err));
     } else {
-      setNumber(number + 1);
-      createUpvote(null, null, id.toString())
-        .then((res) => {
-          setUpvotedQuestions([...upvotedQuestions, res.data]);
-          setGlobalUpvotes([...upvotedQuestions, res.data]);
-          setIsUpvoted(!isUpvoted);
-          setIsLoading(false);
-        })
-        .catch((err) => console.log(err));
+      setIsLoading(true);
+      if (isUpvoted) {
+        const deleteID = upvotedQuestions.find((ele) => ele.question.id == id);
+        setNumber(number - 1);
+        deleteUpvote(deleteID.id)
+          .then((res) => {
+            setUpvotedQuestions(
+              upvotedQuestions.filter((ele) => ele.id !== deleteID.id)
+            );
+            setGlobalUpvotes(
+              upvotedQuestions.filter((ele) => ele.id !== deleteID.id)
+            );
+            setIsUpvoted(false);
+            setIsLoading(false);
+          })
+          .catch((err) => console.log(err));
+      } else {
+        setNumber(number + 1);
+        createUpvote(null, null, id.toString())
+          .then((res) => {
+            setUpvotedQuestions([...upvotedQuestions, res.data]);
+            setGlobalUpvotes([...upvotedQuestions, res.data]);
+            setIsUpvoted(!isUpvoted);
+            setIsLoading(false);
+          })
+          .catch((err) => console.log(err));
+      }
     }
   }
 
