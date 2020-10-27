@@ -1,3 +1,26 @@
+.cookie {
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  border: gray 2px solid;
+  border-radius: 2px;
+  box-shadow: gray;
+  width: 40%;
+  top: 90%;
+  left: 35%;
+  padding: 0.5rem;
+  background-color: white;
+  margin-left: auto;
+  margin-right: auto;
+  -webkit-box-shadow: 10px 10px 36px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 10px 10px 36px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 10px 10px 36px 0px rgba(0, 0, 0, 0.75);
+}
+.cookie > h3,
+.cookie > div > a {
+  margin: auto;
+}
+
 .wrapper {
   position: relative;
   background-color: #b1ede8;

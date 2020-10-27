@@ -1,4 +1,11 @@
-import { Input, FormControl, FormLabel, Button, Icon } from "@chakra-ui/core";
+import {
+  Input,
+  FormControl,
+  FormLabel,
+  Button,
+  Icon,
+  Textarea,
+} from "@chakra-ui/core";
 import { createUpvote, deleteUpvote } from "@/lib/api";
 import Container from "@/components/container";
 import Layout from "@/components/layout";
@@ -170,20 +177,21 @@ export default function ForumPost({ question }) {
             >
               <FormControl>
                 <FormLabel htmlFor="email">Add comment</FormLabel>
-                <Input
+                <Textarea
                   onChange={(event) => onChange(event)}
                   name="content"
                   className="mb-1"
                   type="text"
                   id="content"
                   size="sm"
+                  resize="vertical"
                   focusBorderColor="brand.900"
                 />
               </FormControl>
               <Button
                 bg="brand.800"
                 color="white"
-                size="xs"
+                size="sm"
                 onClick={() => {
                   setLoading(true);
                   createComment(data.content, appContext.user, id)

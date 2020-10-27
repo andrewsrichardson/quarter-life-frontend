@@ -1,7 +1,7 @@
 import Container from "@/components/container";
 import Layout from "@/components/layout";
 import Head from "next/head";
-import { SITE_NAME, ONS_DATA } from "@/lib/constants";
+import { SITE_NAME } from "@/lib/constants";
 import styles from "./index.module.css";
 import Footer from "@/components/footer";
 import Link from "next/link";
@@ -9,8 +9,13 @@ import MoreStories from "@/components/more-stories";
 import { getAllPostsForHome } from "lib/api";
 import { motion } from "framer-motion";
 import Topics from "@/components/topics";
+import Cookie from "js-cookie";
+import React, { useState, useEffect } from "react";
+import { Button } from "@chakra-ui/core";
 
 export default function Index({ allPosts, preview }) {
+  const [accepted, setAccepted] = useState(Cookie.get("accept"));
+
   function AnimatedIntro(props) {
     let intro = [];
     for (let i = 0; i < props.columns; i++) {
@@ -31,6 +36,42 @@ export default function Index({ allPosts, preview }) {
     }
     return intro;
   }
+  useEffect(() => {
+    return () => {
+      if (!accepted) {
+        Cookie.set("accept", true);
+      }
+    };
+  }, []);
+
+  function CookieBanner() {
+    if (!accepted) {
+      return (
+        <div className={styles.cookie}>
+          <h3>This site uses Cookies to help improve your experience!</h3>
+          <div className="flex">
+            <Link href="/privacy-policy">
+              <a className="hover:underline text-xs italic text-gray-600">
+                Learn More
+              </a>
+            </Link>
+            <Button
+              size="md"
+              variantColor="yellow"
+              className="ml-2"
+              onClick={() => {
+                Cookie.set("accept", true);
+                setAccepted(true);
+              }}
+            >
+              Okay
+            </Button>
+          </div>
+        </div>
+      );
+    } else return null;
+  }
+
   return (
     <>
       <Layout preview={preview}>
@@ -92,7 +133,9 @@ export default function Index({ allPosts, preview }) {
                 </Link>
               </h2>
             </div>
-            <div className={styles.rightspacer}></div>
+            <div className={styles.rightspacer}>
+              <CookieBanner />
+            </div>
           </div>
           <div className={styles.page2}>
             <div className={styles.leftspacer}>

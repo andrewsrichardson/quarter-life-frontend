@@ -6,9 +6,17 @@ import { SITE_NAME } from "@/lib/constants";
 import React, { useContext, useState } from "react";
 import { getCategories } from "@/lib/api";
 import AppContext from "../../context/AppContext";
-import { Input, FormControl, FormLabel, Button, Select } from "@chakra-ui/core";
+import {
+  Input,
+  FormControl,
+  FormLabel,
+  Button,
+  Select,
+  Textarea,
+} from "@chakra-ui/core";
 import { useRouter } from "next/router";
 import { createQuestion } from "../../lib/forum-interactions";
+import Footer from "@/components/footer";
 
 export default function Create({ categories }) {
   const [data, updateData] = useState({
@@ -31,7 +39,6 @@ export default function Create({ categories }) {
       </option>
     );
   });
-  console.log(data);
   return (
     <>
       <Layout>
@@ -81,13 +88,14 @@ export default function Create({ categories }) {
                 </div>
                 <FormControl className="pb-5">
                   <FormLabel htmlFor="content">Content</FormLabel>
-                  <Input
+                  <Textarea
                     onChange={(event) => onChange(event)}
                     name="content"
                     type="text"
+                    resize="vertical"
                     id="content"
                     focusBorderColor="brand.900"
-                    size="md"
+                    size="lg"
                     styles={{ marginBottom: "1rem" }}
                   />
                 </FormControl>
@@ -135,6 +143,7 @@ export default function Create({ categories }) {
             </div>
           )}
         </Container>
+        <Footer />
       </Layout>
     </>
   );
