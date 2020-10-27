@@ -13,8 +13,8 @@
   max-width: 45%;
 }
 .siteLinksCard {
-  min-height: 300px;
-  width: 45%;
+  min-height: 50%;
+  width: 100%;
 }
 
 @media (max-width: 1278px) {

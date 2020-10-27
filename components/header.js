@@ -6,11 +6,14 @@ import { SITE_NAME } from "@/lib/constants";
 import classnames from "classnames";
 import { getCategories } from "@/lib/api";
 import styles from "./header.module.css";
+import { Button } from "@chakra-ui/core";
+import { useRouter } from "next/router";
 
 export default function Header({}) {
   const { user, setUser } = useContext(AppContext);
   const [menu, setMenuOpen] = useState(false);
   const [menuItems, setMenuItems] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     async function getTags() {
@@ -79,16 +82,22 @@ export default function Header({}) {
               <ul className={styles.dropdownNav}>{tagsList}</ul>
             </li>
             <li className="mr-3 mb-10 xl:mb-0">
-              <Link href="/blog">
-                <a className="nav-link hover:underline xl:pr-10">Blog</a>
+              <Link href="/questions">
+                <a className="nav-link hover:underline pr-10">Talk</a>
               </Link>
             </li>
-            <li className="mr-3 mb-10 xl:mb-0">
-              <Link href="/questions">
-                <a className="nav-link hover:underline xl:border-r-2 pr-10">
-                  Talk
-                </a>
-              </Link>
+            <li className={"mr-3 mb-10 xl:mb-0 " + styles.dropdown}>
+              <a className="nav-link hover:underline xl:pr-10 xl:border-r-2">
+                More
+              </a>
+              <ul className={styles.dropdownNav}>
+                <Link href={"/posts/"}>
+                  <li className="pb-1">All Posts</li>
+                </Link>
+                <Link href={"/about-us/"}>
+                  <li className="pb-1">About Us</li>
+                </Link>
+              </ul>
             </li>
             <li className="mr-3 mb-10 xl:mb-0">
               {user ? (
@@ -107,13 +116,22 @@ export default function Header({}) {
                   </Link>
                 </div>
               ) : (
-                <div className="flex">
+                <div className="flex justify-between">
                   <Link href="/login">
-                    <a className="nav-link hover:underline">Login</a>
+                    <a className="nav-link hover:underline m-auto mr-3 text-sm">
+                      Login
+                    </a>
                   </Link>
-                  <Link href="/register">
-                    <a className="nav-link hover:underline">Register</a>
-                  </Link>
+                  <Button
+                    size="sm"
+                    bg="brand.800"
+                    color="white"
+                    onClick={() => {
+                      router.push("/register");
+                    }}
+                  >
+                    Join
+                  </Button>
                 </div>
               )}
             </li>

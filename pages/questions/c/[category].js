@@ -2,16 +2,16 @@ import { Button } from "@chakra-ui/core";
 import Container from "@/components/container";
 import ForumPost from "@/components/forumPost";
 import Layout from "@/components/layout";
-import { getAllQuestionsForForum, getCategories } from "@/lib/api";
+import { getCategories, getQuestionsByCategory } from "@/lib/api";
 import Head from "next/head";
-import { SITE_NAME } from "../lib/constants";
+import { SITE_NAME } from "../../../lib/constants";
 import React, { useContext, useState, useEffect } from "react";
-import AppContext from "../context/AppContext";
+import AppContext from "../../../context/AppContext";
 import { useRouter } from "next/router";
 import Footer from "@/components/footer";
 import Link from "next/link";
 
-export default function Questions({ allQuestions, categories }) {
+export default function Questions({ allQuestions, categories, category }) {
   const appContext = useContext(AppContext);
   const router = useRouter();
   const [upvotedQuestions, setUpvotedQuestions] = useState([]);
@@ -45,8 +45,12 @@ export default function Questions({ allQuestions, categories }) {
       ></ForumPost>
     );
   }
-
-  const postList = allQuestions.map(toPost);
+  let postList = [];
+  try {
+    postList = allQuestions.map(toPost);
+  } catch {
+    console.log("no posts");
+  }
 
   const tagsList = categories.__type.enumValues.map((category, index) => {
     return (
@@ -76,7 +80,7 @@ export default function Questions({ allQuestions, categories }) {
                 }}
                 className="flex flex-col mb-5 pt-5 bg-white p-10 outline"
               >
-                <h1 className="text-5xl">Welcome</h1>
+                <h1 className="text-5xl">{category}</h1>
                 <p className="text-md">
                   We're helping each other figure out what's going on in our
                   lives.
@@ -133,10 +137,11 @@ export default function Questions({ allQuestions, categories }) {
   );
 }
 
-export async function getServerSideProps() {
-  const allQuestions = (await getAllQuestionsForForum()) || [];
+export async function getServerSideProps({ params }) {
+  const { category } = params;
+  const allQuestions = (await getQuestionsByCategory(category)) || [];
   const categories = (await getCategories()) || [];
   return {
-    props: { allQuestions, categories },
+    props: { allQuestions, categories, category },
   };
 }

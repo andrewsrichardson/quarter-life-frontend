@@ -34,8 +34,9 @@ function Login(props) {
         <title>{"Login | " + SITE_NAME}</title>
       </Head>
       <Header></Header>
-
       <div className={styles.container + " outline p-10"}>
+        <h1 className="text-center text-xl">Login</h1>
+
         {Object.entries(error).length !== 0 &&
           error.constructor === Object &&
           error.message.map((error) => {
@@ -119,7 +120,7 @@ function Login(props) {
           </Link>{" "}
           and
           <Link href="/privacy-policy">
-            <a className="underline">Privacy Policy.</a>
+            <a className="underline"> Privacy Policy.</a>
           </Link>
         </p>
       </div>

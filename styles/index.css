@@ -15,7 +15,7 @@ main {
   border-top: 4px solid black;
 }
 html {
-  scroll-behavior: smooth;
+  /* scroll-behavior: smooth; */
   scrollbar-width: auto;
   scrollbar-color: #b1ede8 #54bab2;
 }

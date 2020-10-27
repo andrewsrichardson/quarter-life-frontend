@@ -140,14 +140,13 @@ export default function Index({ allPosts, preview }) {
                 offer solutions and provide support during this confusing time.{" "}
               </p>
               <p className={styles.sticky}>
-                We have frequent{" "}
-                <Link href="/posts">
-                  <a className="highlight">blog</a>
-                </Link>{" "}
-                posts which offer practical advice to those having a QLC, as
-                well as{" "}
+                We have{" "}
                 <Link href="/#topics">
                   <a className="highlight">think pieces</a>
+                </Link>{" "}
+                which offer practical advice to those having a QLC, as well as{" "}
+                <Link href="/questions">
+                  <a className="highlight">a community</a>
                 </Link>{" "}
                 raising awareness about the challenges facing young adults
                 today. Ultimately, we are here to help you navigate the rut

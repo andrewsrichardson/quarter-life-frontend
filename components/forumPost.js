@@ -4,6 +4,7 @@ import Link from "next/link";
 import Router from "next/router";
 import { useState, useEffect } from "react";
 import styles from "./forumpost.module.css";
+import * as timeago from "timeago.js";
 
 export default function ForumPost(props) {
   const { title, id, user, created_at, comments, upvotes } = props.props;
@@ -25,8 +26,6 @@ export default function ForumPost(props) {
     } else {
       setIsLoading(true);
       if (isUpvoted) {
-        console.log(upvotedQuestions);
-        console.log(id);
         const deleteID = upvotedQuestions.find(
           (ele) => ele.question && ele.question.id == id
         );
@@ -81,7 +80,9 @@ export default function ForumPost(props) {
               " comment" +
               (comments.length == 1 ? "" : "s")}
           </h3>
-          <p className="text-xs text-gray-600 text-right ml-auto">{date}</p>
+          <p className="text-xs text-gray-600 text-right ml-auto">
+            {timeago.format(date)}
+          </p>
         </div>
       </div>
     </div>

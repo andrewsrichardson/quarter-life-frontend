@@ -11,7 +11,14 @@ export default function PostPreview({
   excerpt,
   author,
   slug,
+  category,
 }) {
+  const cat = (
+    <Link to={`/topics/${category}`}>
+      <a className="hover:underline italic">{category}</a>
+    </Link>
+  );
+  const datey = <Date dateString={date} /> + " ◦ ";
   return (
     <div className={styles.story}>
       <div className="mb-5">
@@ -22,8 +29,12 @@ export default function PostPreview({
           <a className="hover:underline">{title}</a>
         </Link>
       </h3>
-      <div className="text-lg mb-4">
+      <div className="text-lg mb-4 flex">
         <Date dateString={date} />
+        <p className="mr-2 ml-2 text-gray-600"> ◦ </p>
+        <Link href={`/topics/${category}`}>
+          <a className="hover:underline italic text-gray-600">{category}</a>
+        </Link>
       </div>
       <p className="text-lg leading-relaxed mb-4">{excerpt}</p>
       <Avatar name={author.name} picture={author.picture} />

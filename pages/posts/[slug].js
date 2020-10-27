@@ -11,6 +11,8 @@ import Head from "next/head";
 import { SITE_NAME, SITE_URL } from "@/lib/constants";
 import markdownToHtml from "@/lib/markdownToHtml";
 import Footer from "@/components/footer";
+import Avatar from "@/components/avatar";
+import { Facebook, Twitter, Linkedin } from "react-social-sharing";
 
 export default function Post({ post, morePosts, preview }) {
   const router = useRouter();
@@ -53,6 +55,14 @@ export default function Post({ post, morePosts, preview }) {
                 id={post.id}
               />
               <PostBody content={post.content} />
+              <div className="max-w-2xl p-2 m-auto pb-20">
+                <Avatar name={post.author.name} />
+                <div className="pt-10">
+                  <Facebook link={url} />
+                  <Twitter link={url} />
+                  <Linkedin link={url} />
+                </div>
+              </div>
             </article>
             {morePosts.length > 0 && <MoreStories posts={morePosts} />}
           </>

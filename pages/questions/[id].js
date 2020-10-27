@@ -32,6 +32,7 @@ export default function ForumPost({ question }) {
   const [isLoading, setIsLoading] = useState(false);
   const [number, setNumber] = useState(upvotes.length);
   const [isUpvoted, setIsUpvoted] = useState(false);
+
   const router = useRouter();
   const appContext = useContext(AppContext);
   const commentIDs = comments.map((element) => {
@@ -93,7 +94,7 @@ export default function ForumPost({ question }) {
 
   function handleUpvote() {
     if (!me) {
-      Router.push("/register");
+      router.push("/register");
     } else {
       setIsLoading(true);
       if (isUpvoted) {

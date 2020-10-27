@@ -23,6 +23,7 @@ export default function MoreStories({ posts, label }) {
             author={post.author}
             slug={post.slug}
             excerpt={post.excerpt}
+            category={post.category}
           />
         ))}
       </div>

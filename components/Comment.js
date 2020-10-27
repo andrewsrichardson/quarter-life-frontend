@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { createUpvote, deleteUpvote } from "@/lib/api";
 import { Icon } from "@chakra-ui/core";
 import Router from "next/router";
+import * as timeago from "timeago.js";
 
 export default function Comment({
   comment,
@@ -51,7 +52,7 @@ export default function Comment({
   }
 
   return (
-    <div className="border-2 mt-5 flex justify-start p-5 bg-white">
+    <div className="border-2 flex justify-start p-2 bg-white">
       <div className="m-auto mr-3 ml-0">
         <Icon
           name="chevron-up"
@@ -64,11 +65,11 @@ export default function Comment({
         />
         <h1 className="text-xl text-center">{number}</h1>
       </div>
-      <div className="flex flex-col">
+      <div className="flex flex-col justify-between">
         <h3>{comment.content}</h3>
         <h3 className="text-xs">{comment.user.username}</h3>
       </div>
-      <p className="text-xs ml-auto">{date}</p>
+      <p className="text-xs ml-auto text-gray-700">{timeago.format(date)}</p>
     </div>
   );
 }

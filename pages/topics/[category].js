@@ -12,7 +12,7 @@ import Link from "next/link";
 import markdownToHtml from "@/lib/markdownToHtml";
 import styles from "./category.module.css";
 import markdownStyles from "../../components/markdown-styles.module.css";
-import { Spinner } from "@chakra-ui/core";
+import { Button, Spinner } from "@chakra-ui/core";
 import AppContext from "context/AppContext";
 
 export default function Category({ topic, content }) {
@@ -80,48 +80,12 @@ export default function Category({ topic, content }) {
           >
             <div
               className={
-                styles.blogLink + " flex max-h-14 justify-between  pl-2 pr-2"
+                styles.blogLink + " flex max-h-14 justify-between  p-2"
               }
             >
               <h1
                 style={{ wordWrap: "break-word", maxWidth: "80%" }}
-                className="mt-auto mb-auto"
-              >
-                {index + 1 + ". " + post.title}
-              </h1>
-              <img
-                src={`${
-                  post.coverImage.url.startsWith("/")
-                    ? process.env.NEXT_PUBLIC_STRAPI_API_URL
-                    : ""
-                }${post.coverImage.url}`}
-                className="w-16 h-19"
-              />
-            </div>
-          </Link>
-        );
-      });
-      return postList;
-    } else return [];
-  }
-
-  function BookReviews() {
-    if (topic) {
-      const postList = topic.bookReviews.map((post, index) => {
-        return (
-          <Link
-            className={styles.blogLink}
-            key={index}
-            href={"/posts/" + post.slug}
-          >
-            <div
-              className={
-                styles.blogLink + " flex max-h-14 justify-between pl-2 pr-2"
-              }
-            >
-              <h1
-                style={{ wordWrap: "break-word" }}
-                className="mt-auto mb-auto"
+                className="mt-auto mb-auto text-xl"
               >
                 {index + 1 + ". " + post.title}
               </h1>
@@ -168,12 +132,7 @@ export default function Category({ topic, content }) {
             }
           >
             <div className={"outline bg-white " + styles.siteLinksCard}>
-              <h2 className="text-2xl text-center">Posts</h2>
               <BlogPosts />
-            </div>
-            <div className={"outline bg-white " + styles.siteLinksCard}>
-              <h2 className="text-2xl text-center">Recommended Reading</h2>
-              <BookReviews />
             </div>
             <div
               className={"outline bg-white " + styles.siteLinksCard}
@@ -187,8 +146,17 @@ export default function Category({ topic, content }) {
                 }}
                 className="flex justify-between p-2"
               >
-                <h1>What's the community saying?</h1>
-                <h2 className="highlight">Join</h2>
+                <h1 className="text-xl">What's the community saying?</h1>
+                <Button
+                  size="sm"
+                  bg="brand.800"
+                  color="white"
+                  onClick={() => {
+                    router.push("/questions/create");
+                  }}
+                >
+                  Join
+                </Button>
               </div>
               {questionsList ? (
                 questionsList

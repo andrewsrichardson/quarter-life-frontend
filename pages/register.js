@@ -45,6 +45,8 @@ function Register() {
       </Head>
       <Header></Header>
       <div className={styles.container + " outline p-10"}>
+        <h1 className="text-center text-xl">Register</h1>
+
         {Object.entries(error).length !== 0 &&
           error.constructor === Object &&
           error.message.map((error) => {
@@ -110,6 +112,7 @@ function Register() {
                   appContext.setUser(res.data.user);
                 })
                 .catch((error) => {
+                  console.log(error);
                   setError(error.response.data);
                   setLoading(false);
                 });
@@ -153,7 +156,7 @@ function Register() {
           </Link>{" "}
           and
           <Link href="/privacy-policy">
-            <a className="underline">Privacy Policy.</a>
+            <a className="underline"> Privacy Policy.</a>
           </Link>
         </p>
       </div>

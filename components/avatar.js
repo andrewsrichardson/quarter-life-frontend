@@ -1,16 +1,9 @@
-export default function Avatar({ name, picture }) {
-  const url = picture.url ?? picture[0].url;
-
+export default function Avatar({ name }) {
   return (
     <div className="flex items-center">
-      <img
-        src={`${
-          url.startsWith("/") ? process.env.NEXT_PUBLIC_STRAPI_API_URL : ""
-        }${url}`}
-        className="w-12 h-12 rounded-full mr-4 grayscale"
-        alt={name}
-      />
-      <div className="text-md text-gray-600">{name}</div>
+      <div className="text-md text-gray-600 italic text-center">
+        {"By " + name}
+      </div>
     </div>
   );
 }

@@ -5,6 +5,13 @@ import Cookie from "js-cookie";
 import fetch from "isomorphic-fetch";
 import { ThemeProvider, CSSReset, theme } from "@chakra-ui/core";
 import { getUpvotes } from "@/lib/api";
+import Router from "next/router";
+import NProgress from "nprogress"; //nprogress module
+import "nprogress/nprogress.css"; //styles of nprogress//Binding events.
+
+Router.events.on("routeChangeStart", () => NProgress.start());
+Router.events.on("routeChangeComplete", () => NProgress.done());
+Router.events.on("routeChangeError", () => NProgress.done());
 
 function MyApp({ Component, pageProps }) {
   const [user, setUser] = useState(null);
