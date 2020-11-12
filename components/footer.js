@@ -12,13 +12,10 @@ export default function Footer() {
           <Link href="/#topics">
             <a className="hover:underline mb-5">Topics</a>
           </Link>
-          <Link href="/blog">
-            <a className="hover:underline mb-5">Blog</a>
-          </Link>
           <Link href="/questions">
             <a className="hover:underline mb-5">Talk</a>
           </Link>
-          <Link href="">
+          <Link href="/about-us">
             <a className="hover:underline mb-5">About Us</a>
           </Link>
           <Link href="mailto:drew@20sos.co.uk">
