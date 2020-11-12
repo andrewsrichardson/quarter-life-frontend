@@ -112,7 +112,7 @@ export default function Index({ allPosts, preview }) {
               </h2>
               <h2>
                 Get practical{" "}
-                <Link href="/blog">
+                <Link href="/#topics">
                   <p className={styles.link}>
                     <a className="highlight">Guidance</a>
                     <img className="arrow" src="/right-arrow-button.png"></img>

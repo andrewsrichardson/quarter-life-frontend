@@ -14,6 +14,7 @@ import styles from "./category.module.css";
 import markdownStyles from "../../components/markdown-styles.module.css";
 import { Button, Spinner } from "@chakra-ui/core";
 import AppContext from "context/AppContext";
+import MoreStories from "@/components/more-stories";
 
 export default function Category({ topic, content }) {
   const [questionsList, setQuestionsList] = useState(null);
@@ -24,10 +25,7 @@ export default function Category({ topic, content }) {
 
   function toPost(question, index) {
     let highlight = false;
-    console.log("generating posts");
-
     upvotedQuestions.forEach((upvote) => {
-      console.log(upvote);
       if (question.id == upvote.question.id) {
         highlight = true;
       }
@@ -69,41 +67,6 @@ export default function Category({ topic, content }) {
       topic.topics[0].category.slice(1)
     : "Topic";
 
-  function BlogPosts() {
-    if (topic) {
-      const postList = topic.posts.map((post, index) => {
-        return (
-          <Link
-            className={styles.blogLink}
-            key={index}
-            href={"/posts/" + post.slug}
-          >
-            <div
-              className={
-                styles.blogLink + " flex max-h-14 justify-between  p-2"
-              }
-            >
-              <h1
-                style={{ wordWrap: "break-word", maxWidth: "80%" }}
-                className="mt-auto mb-auto text-xl"
-              >
-                {index + 1 + ". " + post.title}
-              </h1>
-              <img
-                src={`${
-                  post.coverImage.url.startsWith("/")
-                    ? process.env.NEXT_PUBLIC_STRAPI_API_URL
-                    : ""
-                }${post.coverImage.url}`}
-                className="w-16 h-19"
-              />
-            </div>
-          </Link>
-        );
-      });
-      return postList;
-    } else return [];
-  }
   return (
     <>
       <Layout>
@@ -114,7 +77,7 @@ export default function Category({ topic, content }) {
           style={{ backgroundColor: "#b1ede8", maxHeight: "max-content" }}
           className="flex p-10 flex-col xl:flex-row"
         >
-          <section className={"bg-white p-10 m-auto " + styles.content}>
+          <section className={"bg-white p-5 m-auto " + styles.content}>
             <h1 className="text-5xl pb-2">
               <span className="highlight">{title}</span>
             </h1>
@@ -131,12 +94,9 @@ export default function Category({ topic, content }) {
               styles.siteLinksContainer
             }
           >
-            <div className={"outline bg-white " + styles.siteLinksCard}>
-              <BlogPosts />
-            </div>
             <div
               className={"outline bg-white " + styles.siteLinksCard}
-              style={{ minHeight: "45%", minWidth: "100%" }}
+              style={{ minHeight: "100%", minWidth: "100%" }}
             >
               <div
                 style={{
@@ -166,6 +126,8 @@ export default function Category({ topic, content }) {
             </div>
           </div>
         </div>
+        <MoreStories posts={topic.posts} label={""} />
+
         <Footer></Footer>
       </Layout>
     </>
