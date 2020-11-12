@@ -120,14 +120,20 @@ export default function Category({ topic, content }) {
               {questionsList ? (
                 questionsList
               ) : (
-                <Spinner size="md" className="m-auto" />
+                <div className="m-auto">
+                  <Spinner size="md" />
+                </div>
               )}
             </div>
           </div>
         </div>
-        {topic.posts ? <MoreStories posts={topic.posts} label={""} /> : null}
+        {topic ? (
+          topic.posts ? (
+            <MoreStories posts={topic.posts} label={""} />
+          ) : null
+        ) : null}
 
-        <Footer></Footer>
+        <Footer />
       </Layout>
     </>
   );
