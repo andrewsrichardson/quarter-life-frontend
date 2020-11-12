@@ -329,10 +329,7 @@ export default function Terms() {
           <h2>Credit &amp; Contact Information</h2>
           <p>
             This Terms of service page was created at{" "}
-            <a
-              style="color:inherit;text-decoration:none;cursor:text;"
-              href="https://privacyterms.io/terms-conditions-generator/"
-            >
+            <a href="https://privacyterms.io/terms-conditions-generator/">
               privacyterms.io terms &amp; conditions generator
             </a>
             . If you have any queries regarding any of our terms, please contact
