@@ -53,7 +53,6 @@ export default function Category({ topic, content }) {
   }, [upvotedQuestions]);
 
   useEffect(() => {
-    console.log(appContext);
     setUpvotedQuestions(
       appContext.upvotes.filter((upvote) => {
         return upvote.question && upvote.question != null;
@@ -126,7 +125,7 @@ export default function Category({ topic, content }) {
             </div>
           </div>
         </div>
-        <MoreStories posts={topic.posts} label={""} />
+        {topic.posts ? <MoreStories posts={topic.posts} label={""} /> : null}
 
         <Footer></Footer>
       </Layout>
