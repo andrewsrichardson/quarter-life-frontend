@@ -1,0 +1,37 @@
+.feedback {
+  position: fixed;
+  right: 0px;
+  top: 50%;
+  width: max-content;
+  display: flex;
+}
+.feedbackContent {
+  width: 0px;
+  transition: all 0.5s ease;
+  background-color: #f6e05e;
+  border: 4px solid black;
+  border-left: 0px;
+  border-right: 0px;
+  overflow: hidden;
+  min-height: 200px;
+}
+.feedbackOpen {
+  width: 480px;
+  overflow: hidden;
+  transition: all 1s ease;
+  padding: 1rem;
+  border-radius: 3px;
+  border: 4px solid black;
+  transition: all 0.5s ease;
+}
+.feedbackContent > h3,
+.feedbackContent > p {
+  height: 3rem;
+  overflow: hidden;
+}
+
+.feedbackButton {
+  transform: rotate(90deg);
+  right: -33px;
+  top: 64px;
+}

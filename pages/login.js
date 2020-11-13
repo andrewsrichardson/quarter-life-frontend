@@ -11,7 +11,7 @@ import { SITE_NAME } from "../lib/constants";
 
 const backendUrl = process.env.NEXT_PUBLIC_STRAPI_API_URL;
 
-function Login(props) {
+function Login() {
   const [data, updateData] = useState({ identifier: "", password: "" });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);

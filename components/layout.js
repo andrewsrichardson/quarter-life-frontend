@@ -1,18 +1,17 @@
 import Alert from "./alert";
-import Footer from "./footer";
+import Feedback from "./feedback";
 import Header from "./header";
 import Meta from "./meta";
 
-export default function Layout({ preview, children }) {
+export default function Layout({ children }) {
   return (
     <>
       <Meta />
       <div className="min-h-screen">
         <Header></Header>
-        {/* <Alert preview={preview} /> */}
         <main>{children}</main>
+        <Feedback />
       </div>
-      {/* <Footer /> */}
     </>
   );
 }
