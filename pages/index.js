@@ -15,6 +15,9 @@ import { Button } from "@chakra-ui/core";
 
 export default function Index({ allPosts, preview }) {
   const [accepted, setAccepted] = useState(Cookie.get("accept"));
+  const [isIntroClosed, setIsIntroClosed] = useState(true);
+
+  let introSize = isIntroClosed ? styles.closedIntro : null;
 
   function AnimatedIntro(props) {
     let intro = [];
@@ -30,7 +33,7 @@ export default function Index({ allPosts, preview }) {
             repeatType: "reverse",
           }}
         >
-          20sos . 20sos . 20sos .{" "}
+          {SITE_NAME} . {SITE_NAME} . {SITE_NAME} .{" "}
         </motion.h2>
       );
     }
@@ -40,6 +43,9 @@ export default function Index({ allPosts, preview }) {
     return () => {
       if (!accepted) {
         Cookie.set("accept", true);
+      }
+      if (!isIntroClosed) {
+        Cookie.set("intro", true);
       }
     };
   }, []);
@@ -85,7 +91,6 @@ export default function Index({ allPosts, preview }) {
                 <AnimatedIntro columns={5}></AnimatedIntro>
               </div>
               <div className={styles.spacer}></div>
-
               <h1 className={styles.title}>
                 20<span className="highlight">SOS</span>
               </h1>
@@ -132,12 +137,23 @@ export default function Index({ allPosts, preview }) {
                   </p>
                 </Link>
               </h2>
+              {isIntroClosed ? (
+                <>
+                  <Button
+                    variantColor="gray"
+                    size="xs"
+                    onClick={() => setIsIntroClosed(false)}
+                  >
+                    Open Introduction
+                  </Button>
+                </>
+              ) : null}
             </div>
             <div className={styles.rightspacer}>
               <CookieBanner />
             </div>
           </div>
-          <div className={styles.page2}>
+          <div className={`${styles.page2} ${introSize}`}>
             <div className={styles.leftspacer}>
               <h1 className={styles.problem}>What's the Problem?</h1>
               <h2 className={styles.horizontaltext}>
@@ -167,7 +183,7 @@ export default function Index({ allPosts, preview }) {
             </div>
             <div className={styles.rightspacer}></div>
           </div>
-          <div className={styles.ourmission}>
+          <div className={`${styles.ourmission} ${introSize}`}>
             <div className={styles.leftspacer}>
               <h1 className={styles.problem}>
                 Our <span className="highlight">Mission</span>
@@ -201,7 +217,7 @@ export default function Index({ allPosts, preview }) {
             <div className={styles.rightspacer}></div>
           </div>
           <Container>
-            <div className={styles.fact}>
+            <div className={`${styles.fact} ${introSize}`}>
               <div className={styles.facttext}>
                 <h3>
                   <span>75%</span>

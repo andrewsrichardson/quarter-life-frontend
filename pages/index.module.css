@@ -21,6 +21,13 @@
   margin: auto;
 }
 
+.closedIntro {
+  height: 0px;
+  overflow: hidden;
+  padding: 0px !important;
+  border: 0px !important;
+}
+
 .wrapper {
   position: relative;
   background-color: #b1ede8;
