@@ -293,7 +293,7 @@ export default function Privacy() {
               privacyterms.io privacy policy generator
             </a>
             . If you have any questions about our Privacy Policy, please contact
-            us via <a href="mailto:drew@20sos.co.uk">email</a> or{" "}
+            us via <a href="mailto:contact@20sos.co.uk">email</a> or{" "}
             <a href="tel:">phone</a>.
           </p>
 

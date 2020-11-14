@@ -18,7 +18,7 @@ export default function Footer() {
           <Link href="/about-us">
             <a className="hover:underline mb-5">About Us</a>
           </Link>
-          <Link href="mailto:drew@20sos.co.uk">
+          <Link href="mailto:contact@20sos.co.uk">
             <a className="hover:underline mb-5">Contact</a>
           </Link>
         </div>

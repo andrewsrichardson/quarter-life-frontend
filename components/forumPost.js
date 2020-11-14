@@ -5,12 +5,12 @@ import Router from "next/router";
 import { useState, useEffect } from "react";
 import styles from "./forumpost.module.css";
 import * as timeago from "timeago.js";
+import TimeAgo from "timeago-react";
 
 export default function ForumPost(props) {
   const { title, id, user, created_at, comments, upvotes } = props.props;
   const { username } = user;
   let { me, upvotedQuestions, setUpvotedQuestions } = props;
-  const date = created_at.slice(0, 10);
 
   const [isUpvoted, setIsUpvoted] = useState(props.highlight);
   const [isLoading, setIsLoading] = useState(false);
@@ -81,7 +81,7 @@ export default function ForumPost(props) {
               (comments.length == 1 ? "" : "s")}
           </h3>
           <p className="text-xs text-gray-600 text-right ml-auto">
-            {timeago.format(date)}
+            <TimeAgo datetime={created_at} />
           </p>
         </div>
       </div>

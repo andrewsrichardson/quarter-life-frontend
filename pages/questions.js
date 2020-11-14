@@ -67,7 +67,7 @@ export default function Questions({ allQuestions, categories }) {
         <Container>
           {" "}
           <div className="flex flex-wrap">
-            <div className="flex-grow">
+            <div style={{ maxWidth: "75%" }} className="flex-grow pb-10">
               <section
                 style={{
                   borderRight: "4px solid black",
@@ -102,13 +102,13 @@ export default function Questions({ allQuestions, categories }) {
                   )}
                 </div>
               </section>
-              <div className="min-h-screen">
+              <div>
                 <div className="flex justify-center flex-wrap flex-2">
                   {postList}
                 </div>
               </div>
             </div>
-            <div className="min-h-screen">
+            <div style={{ maxWidth: "25%" }}>
               <div
                 style={{ height: "max-content" }}
                 className="max-w-7xl m-10  p-10 bg-white outline"
@@ -119,7 +119,7 @@ export default function Questions({ allQuestions, categories }) {
               <div className="max-w-7xl m-10 p-10 outline">
                 <a
                   className="italic cursor-pointer text-sm"
-                  href="mailto:drew@20sos.co.uk"
+                  href="mailto:contact@20sos.co.uk"
                 >
                   Your sponsorship here
                 </a>

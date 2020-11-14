@@ -35,3 +35,8 @@
   right: -33px;
   top: 64px;
 }
+@media (max-width: 500px) {
+  .feedbackOpen {
+    width: 300px;
+  }
+}

@@ -206,7 +206,7 @@ export default function Terms() {
             are interested in linking to our website, you must notify us by
             sending an e-mail to{" "}
             <a
-              href="mailto:drew@20sos.co.uk"
+              href="mailto:contact@20sos.co.uk"
               title="send an email to drew@20sos.co.uk"
             >
               drew@20sos.co.uk

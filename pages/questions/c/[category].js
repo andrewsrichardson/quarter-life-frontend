@@ -123,7 +123,7 @@ export default function Questions({ allQuestions, categories, category }) {
               <div className="max-w-7xl m-10 p-10 outline">
                 <a
                   className="italic cursor-pointer text-sm"
-                  href="mailto:drew@20sos.co.uk"
+                  href="mailto:contact@20sos.co.uk"
                 >
                   Your sponsorship here
                 </a>

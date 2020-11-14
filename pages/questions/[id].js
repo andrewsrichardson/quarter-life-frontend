@@ -21,7 +21,6 @@ import {
 } from "../../lib/forum-interactions";
 import Footer from "@/components/footer";
 import Link from "next/link";
-import PostBody from "@/components/post-body";
 
 export default function ForumPost({ question }) {
   const {
@@ -78,7 +77,7 @@ export default function ForumPost({ question }) {
         highlight = true;
       }
     });
-    const date = comment.created_at.slice(0, 10);
+    const date = comment.created_at;
 
     return (
       <Comment
@@ -161,14 +160,20 @@ export default function ForumPost({ question }) {
               <h1 className="text-4xl">{title}</h1>
             </div>
 
-            <PostBody content={content} />
-            <h3 className="text-sm">{"by " + username}</h3>
-            <h3 className="text-sm">
-              {comments.length.toString() +
-                " comment" +
-                (comments.length == 1 ? "" : "s")}
-            </h3>
-            <p className="text-sm text-right">{date}</p>
+            <div className="max-w-6xl m-auto pb-10">
+              <p>{content}</p>
+            </div>
+            <div className="flex justify-between">
+              <div>
+                <h3 className="text-sm pr-10">{"by " + username}</h3>
+                <h3 className="text-sm">
+                  {comments.length.toString() +
+                    " comment" +
+                    (comments.length == 1 ? "" : "s")}
+                </h3>
+              </div>
+              <p className="text-sm justify-self-end">{date}</p>
+            </div>
           </div>
           {appContext.isAuthenticated ? (
             <div
@@ -196,7 +201,6 @@ export default function ForumPost({ question }) {
                   setLoading(true);
                   createComment(data.content, appContext.user, id)
                     .then((res) => {
-                      console.log(res);
                       commentIDs.push(res.data.id.toString());
                       linkCommentToQuestion(id, res.data.id, commentIDs).then(
                         (res) => {
@@ -215,9 +219,21 @@ export default function ForumPost({ question }) {
               </Button>
             </div>
           ) : (
-            <Link href="/login">
-              <p className="hover:underline">Login to comment</p>
-            </Link>
+            <div
+              style={{ border: "4px solid black", borderTop: "0px" }}
+              className="m-5 mt-0 p-5 bg-white"
+            >
+              <Button
+                size="sm"
+                bg="brand.800"
+                color="white"
+                onClick={() => {
+                  router.push("/register");
+                }}
+              >
+                Sign Up to Comment
+              </Button>
+            </div>
           )}
           <div className="min-h-screen">{commentsList}</div>
         </Container>
