@@ -1,6 +1,7 @@
 import Container from "@/components/container";
 import Footer from "@/components/footer";
 import Header from "@/components/header";
+import { SITE_NAME } from "@/lib/constants";
 
 export default function Terms() {
   return (
@@ -8,15 +9,15 @@ export default function Terms() {
       <Header />
       <Container>
         <div className="bg-white p-24 outline">
-          <h2>Welcome to 20sos</h2>
+          <h2>Welcome to {SITE_NAME}</h2>
           <p>
             These terms of service outline the rules and regulations for the use
-            of 20sos's Website.
+            of {SITE_NAME}'s Website.
           </p>
 
           <p>
             By accessing this website we assume you accept these terms of
-            service in full. Do not continue to use 20sos's website if you do
+            service in full. Do not continue to use {SITE_NAME}'s website if you do
             not accept all of the terms of service stated on this page.
           </p>
           <p>
@@ -40,8 +41,8 @@ export default function Terms() {
 
           <h2>Cookies</h2>
           <p>
-            We employ the use of cookies. By using 20sos's website you consent
-            to the use of cookies in accordance with 20sos's privacy policy.
+            We employ the use of cookies. By using {SITE_NAME}'s website you consent
+            to the use of cookies in accordance with {SITE_NAME}'s privacy policy.
           </p>
           <p>
             Most of the modern day interactive web sites use cookies to enable
@@ -53,20 +54,20 @@ export default function Terms() {
 
           <h2>License</h2>
           <p>
-            Unless otherwise stated, 20sos and/or it's licensors own the
-            intellectual property rights for all material on 20sos. All
+            Unless otherwise stated, {SITE_NAME} and/or it's licensors own the
+            intellectual property rights for all material on {SITE_NAME}. All
             intellectual property rights are reserved. You may view and/or print
-            pages from 20sos.co.uk for your own personal use subject to
+            pages from {SITE_NAME}.co.uk for your own personal use subject to
             restrictions set in these terms of service.
           </p>
           <p>You must not:</p>
           <ol>
-            <li>Republish material from 20sos.co.uk</li>
-            <li>Sell, rent or sub-license material from 20sos.co.uk</li>
-            <li>Reproduce, duplicate or copy material from 20sos.co.uk</li>
+            <li>Republish material from {SITE_NAME}.co.uk</li>
+            <li>Sell, rent or sub-license material from {SITE_NAME}.co.uk</li>
+            <li>Reproduce, duplicate or copy material from {SITE_NAME}.co.uk</li>
           </ol>
           <p>
-            Redistribute content from 20sos (unless content is specifically made
+            Redistribute content from {SITE_NAME} (unless content is specifically made
             for redistribution).
           </p>
 
@@ -76,19 +77,19 @@ export default function Terms() {
             <li>
               Certain parts of this website offer the opportunity for users to
               post and exchange opinions, information, material and data
-              ('Comments') in areas of the website. 20sos does not screen, edit,
+              ('Comments') in areas of the website. {SITE_NAME} does not screen, edit,
               publish or review Comments prior to their appearance on the
               website and Comments do not reflect the views or opinions of
-              20sos, its agents or affiliates. Comments reflect the view and
+              {SITE_NAME}, its agents or affiliates. Comments reflect the view and
               opinion of the person who posts such view or opinion. To the
-              extent permitted by applicable laws 20sos shall not be responsible
+              extent permitted by applicable laws {SITE_NAME} shall not be responsible
               or liable for the Comments or for any loss cost, liability,
               damages or expenses caused and or suffered as a result of any use
               of and/or posting of and/or appearance of the Comments on this
               website.
             </li>
             <li>
-              20sos reserves the right to monitor all Comments and to remove any
+              {SITE_NAME} reserves the right to monitor all Comments and to remove any
               Comments which it considers in its absolute discretion to be
               inappropriate, offensive or otherwise in breach of these Terms of
               Service.
@@ -118,7 +119,7 @@ export default function Terms() {
               </ol>
             </li>
             <li>
-              You hereby grant to <strong>20sos</strong> a non-exclusive
+              You hereby grant to <strong>{SITE_NAME}</strong> a non-exclusive
               royalty-free license to use, reproduce, edit and authorize others
               to use, reproduce and edit any of your Comments in any and all
               forms, formats or media.
@@ -187,7 +188,7 @@ export default function Terms() {
             such as work-at-home opportunities, shall not be allowed to link);
             (b)the organization does not have an unsatisfactory record with us;
             (c) the benefit to us from the visibility associated with the
-            hyperlink outweighs the absence of 20sos; and (d) where the link is
+            hyperlink outweighs the absence of {SITE_NAME}; and (d) where the link is
             in the context of general resource information or is otherwise
             consistent with editorial content in a newsletter or similar product
             furthering the mission of the organization.
@@ -235,7 +236,7 @@ export default function Terms() {
             </li>
           </ol>
           <p>
-            No use of 20sos's logo or other artwork will be allowed for linking
+            No use of {SITE_NAME}'s logo or other artwork will be allowed for linking
             absent a trademark license agreement.
           </p>
           <h2>Iframes</h2>
