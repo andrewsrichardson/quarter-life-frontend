@@ -2,13 +2,12 @@ import Layout from "@/components/layout";
 import {
   getTopicByCategory,
   getCategories,
-  getAllQuestionsForForum,
+  getQuestionsByCategory,
 } from "@/lib/api";
 import Head from "next/head";
 import React, { useContext, useEffect, useState } from "react";
 import Footer from "@/components/footer";
 import ForumPost from "@/components/forumPost";
-import Link from "next/link";
 import markdownToHtml from "@/lib/markdownToHtml";
 import styles from "./category.module.css";
 import markdownStyles from "../../components/markdown-styles.module.css";
@@ -47,7 +46,8 @@ export default function Category({ topic, content }) {
 
   useEffect(() => {
     async function getPosts() {
-      const forumPosts = (await getAllQuestionsForForum()) || [];
+      const forumPosts =
+        (await getQuestionsByCategory(topic.topics[0].category)) || [];
       setQuestionsList(forumPosts.map(toPost));
     }
     getPosts();
@@ -103,7 +103,6 @@ export default function Category({ topic, content }) {
                 style={{
                   borderLeft: "4px solid black",
                   borderRight: "4px solid black",
-                  overflow: "auto",
                 }}
                 className="flex justify-between p-2"
               >
@@ -120,7 +119,7 @@ export default function Category({ topic, content }) {
                 </Button>
               </div>
               {questionsList ? (
-                questionsList
+                <div style={{ overflowY: "scroll" }}>{questionsList}</div>
               ) : (
                 <div className="m-auto">
                   <Spinner size="md" />
