@@ -108,13 +108,11 @@ export default function Create({ categories }) {
                     createQuestion(data.title, data.content, appContext.user)
                       .then(() => {
                         setLoading(false);
+                        router.push("/questions");
                       })
                       .catch((error) => {
                         setError(error.response.data.data.errors);
                         setLoading(false);
-                      })
-                      .then(() => {
-                        router.push("/questions");
                       });
                   }}
                 >
@@ -129,6 +127,11 @@ export default function Create({ categories }) {
                 <ol>
                   <li>• Dont be a dick</li>
                   <li>• Behave like you would in real life</li>
+                  <li>
+                    • Try and keep things on-topic for the category that you
+                    choose.
+                  </li>
+                  <li>• Remember - there's real people behind these posts!</li>
                 </ol>
               </div>
             </div>
