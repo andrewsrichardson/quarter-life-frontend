@@ -157,8 +157,8 @@ export default function Index({ allPosts, preview }) {
             <div className={styles.leftspacer}>
               <h1 className={styles.problem}>What's the Problem?</h1>
               <h2 className={styles.horizontaltext}>
-                20sos . 20sos . 20sos . 20sos . 20sos . 20sos . 20sos . 20sos .
-                20sos . 20sos . 20sos . 20sos . 20sos . 20sos .
+                20SOS . 20SOS . 20SOS . 20SOS . 20SOS . 20SOS . 20SOS . 20SOS .
+                20SOS . 20SOS . 20SOS . 20SOS . 20SOS . 20SOS .
               </h2>{" "}
             </div>
             <div className={styles.page2content}>

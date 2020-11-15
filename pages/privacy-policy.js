@@ -16,7 +16,7 @@ export default function Privacy() {
           <h3>Your privacy is important to us</h3>
 
           <p>
-            It is 20sos's policy to respect your privacy regarding any
+            It is 20SOS's policy to respect your privacy regarding any
             information we may collect while operating our website. This Privacy
             Policy applies to <a href="https://20sos.co.uk"> 20sos.co.uk</a>{" "}
             (hereinafter, "us", "we", or "20sos.co.uk"). We respect your privacy
@@ -99,20 +99,20 @@ export default function Privacy() {
           </ol>
           <h2 id="websitevisitors">1. Website Visitors</h2>
           <p>
-            Like most website operators, 20sos collects
+            Like most website operators, 20SOS collects
             non-personally-identifying information of the sort that web browsers
             and servers typically make available, such as the browser type,
             language preference, referring site, and the date and time of each
-            visitor request. 20sos's purpose in collecting non-personally
-            identifying information is to better understand how 20sos's visitors
-            use its website. From time to time, 20sos may release
+            visitor request. 20SOS's purpose in collecting non-personally
+            identifying information is to better understand how 20SOS's visitors
+            use its website. From time to time, 20SOS may release
             non-personally-identifying information in the aggregate, e.g., by
             publishing a report on trends in the usage of its website.
           </p>
           <p>
-            20sos also collects potentially personally-identifying information
+            20SOS also collects potentially personally-identifying information
             like Internet Protocol (IP) addresses for logged in users and for
-            users leaving comments on https://20sos.co.uk blog posts. 20sos only
+            users leaving comments on https://20sos.co.uk blog posts. 20SOS only
             discloses logged in user and commenter IP addresses under the same
             circumstances that it uses and discloses personally-identifying
             information as described below.
@@ -123,9 +123,9 @@ export default function Privacy() {
           </p>
           <h2 id="PII">2. Personally-Identifying Information</h2>
           <p>
-            Certain visitors to 20sos's websites choose to interact with 20sos
-            in ways that require 20sos to gather personally-identifying
-            information. The amount and type of information that 20sos gathers
+            Certain visitors to 20SOS's websites choose to interact with 20SOS
+            in ways that require 20SOS to gather personally-identifying
+            information. The amount and type of information that 20SOS gathers
             depends on the nature of the interaction. For example, we ask
             visitors who leave a comment at https://20sos.co.uk to provide a
             username and email address.
@@ -155,7 +155,7 @@ export default function Privacy() {
             use your computer. This information allows ad networks to, among
             other things, deliver targeted advertisements that they believe will
             be of most interest to you. This Privacy Policy covers the use of
-            cookies by 20sos and does not cover the use of cookies by any
+            cookies by 20SOS and does not cover the use of cookies by any
             advertisers.
           </p>
 
@@ -183,35 +183,35 @@ export default function Privacy() {
             6. Protection of Certain Personally-Identifying Information
           </h2>
           <p>
-            20sos discloses potentially personally-identifying and
+            20SOS discloses potentially personally-identifying and
             personally-identifying information only to those of its employees,
             contractors and affiliated organisations that (i) need to know that
-            information in order to process it on 20sos's behalf or to provide
-            services available at 20sos's website, and (ii) that have agreed not
+            information in order to process it on 20SOS's behalf or to provide
+            services available at 20SOS's website, and (ii) that have agreed not
             to disclose it to others. Some of those employees, contractors and
             affiliated organisations may be located outside of your home
-            country; by using 20sos's website, you consent to the transfer of
-            such information to them. 20sos will not rent or sell potentially
+            country; by using 20SOS's website, you consent to the transfer of
+            such information to them. 20SOS will not rent or sell potentially
             personally-identifying and personally-identifying information to
             anyone. Other than to its employees, contractors and affiliated
-            organisations, as described above, 20sos discloses potentially
+            organisations, as described above, 20SOS discloses potentially
             personally-identifying and personally-identifying information only
             in response to a subpoena, court order or other governmental
-            request, or when 20sos believes in good faith that disclosure is
-            reasonably necessary to protect the property or rights of 20sos,
+            request, or when 20SOS believes in good faith that disclosure is
+            reasonably necessary to protect the property or rights of 20SOS,
             third parties or the public at large.
           </p>
           <p>
             If you are a registered user of https://20sos.co.uk and have
-            supplied your email address, 20sos may occasionally send you an
+            supplied your email address, 20SOS may occasionally send you an
             email to tell you about new features, solicit your feedback, or just
-            keep you up to date with what's going on with 20sos and our
+            keep you up to date with what's going on with 20SOS and our
             products. We primarily use our blog to communicate this type of
             information, so we expect to keep this type of email to a minimum.
             If you send us a request (for example via a support email or via one
             of our feedback mechanisms), we reserve the right to publish it in
             order to help us clarify or respond to your request or to help us
-            support other users. 20sos takes all measures reasonably necessary
+            support other users. 20SOS takes all measures reasonably necessary
             to protect against the unauthorized access, use, alteration or
             destruction of potentially personally-identifying and
             personally-identifying information.
@@ -222,9 +222,9 @@ export default function Privacy() {
           </p>
           <h2 id="Stats">7. Aggregated Statistics</h2>
           <p>
-            20sos may collect statistics about the behaviour of visitors to its
-            website. 20sos may display this information publicly or provide it
-            to others. However, 20sos does not disclose your
+            20SOS may collect statistics about the behaviour of visitors to its
+            website. 20SOS may display this information publicly or provide it
+            to others. However, 20SOS does not disclose your
             personally-identifying information.
           </p>
 
@@ -243,7 +243,7 @@ export default function Privacy() {
           </p>
           <h2 id="Cookies">9. Cookies</h2>
           <p>
-            To enrich and perfect your online experience, 20sos uses "Cookies",
+            To enrich and perfect your online experience, 20SOS uses "Cookies",
             similar technologies and services provided by others to display
             personalised content, appropriate advertising and store your
             preferences on your computer.
@@ -251,17 +251,17 @@ export default function Privacy() {
           <p>
             A cookie is a string of information that a website stores on a
             visitor's computer, and that the visitor's browser provides to the
-            website each time the visitor returns. 20sos uses cookies to help
-            20sos identify and track visitors, their usage of
-            https://20sos.co.uk, and their website access preferences. 20sos
+            website each time the visitor returns. 20SOS uses cookies to help
+            20SOS identify and track visitors, their usage of
+            https://20sos.co.uk, and their website access preferences. 20SOS
             visitors who do not wish to have cookies placed on their computers
-            should set their browsers to refuse cookies before using 20sos's
-            websites, with the drawback that certain features of 20sos's
+            should set their browsers to refuse cookies before using 20SOS's
+            websites, with the drawback that certain features of 20SOS's
             websites may not function properly without the aid of cookies.
           </p>
           <p>
             By continuing to navigate our website without changing your cookie
-            settings, you hereby acknowledge and agree to 20sos's use of
+            settings, you hereby acknowledge and agree to 20SOS's use of
             cookies.
           </p>
 
@@ -270,9 +270,9 @@ export default function Privacy() {
           </p>
           <h2 id="Changes">10. Privacy Policy Changes</h2>
           <p>
-            Although most changes are likely to be minor, 20sos may change its
-            Privacy Policy from time to time, and in 20sos's sole discretion.
-            20sos encourages visitors to frequently check this page for any
+            Although most changes are likely to be minor, 20SOS may change its
+            Privacy Policy from time to time, and in 20SOS's sole discretion.
+            20SOS encourages visitors to frequently check this page for any
             changes to its Privacy Policy. Your continued use of this site after
             any change in this Privacy Policy will constitute your acceptance of
             such change.

@@ -70,7 +70,7 @@ export default function Category({ topic, content }) {
     <>
       <Layout>
         <Head>
-          <title>{title + " | 20sos"}</title>
+          <title>{title + " | 20SOS"}</title>
         </Head>
         <div
           style={{ backgroundColor: "#b1ede8", maxHeight: "max-content" }}
