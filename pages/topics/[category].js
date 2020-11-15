@@ -15,6 +15,8 @@ import markdownStyles from "../../components/markdown-styles.module.css";
 import { Button, Spinner } from "@chakra-ui/core";
 import AppContext from "context/AppContext";
 import MoreStories from "@/components/more-stories";
+import { SITE_NAME } from "@/lib/constants";
+
 
 export default function Category({ topic, content }) {
   const [questionsList, setQuestionsList] = useState(null);
@@ -70,7 +72,7 @@ export default function Category({ topic, content }) {
     <>
       <Layout>
         <Head>
-          <title>{title + " | 20SOS"}</title>
+          <title>{title + " | " + {SITE_NAME} + " "}</title>
         </Head>
         <div
           style={{ backgroundColor: "#b1ede8", maxHeight: "max-content" }}
