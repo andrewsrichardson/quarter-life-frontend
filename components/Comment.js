@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { createUpvote, deleteUpvote } from "@/lib/api";
-import { Icon } from "@chakra-ui/core";
+import { Badge, Icon } from "@chakra-ui/core";
 import Router from "next/router";
 import TimeAgo from "timeago-react";
 
@@ -67,7 +67,14 @@ export default function Comment({
       </div>
       <div className="flex flex-col justify-between">
         <h3>{comment.content}</h3>
-        <h3 className="text-xs">{comment.user.username}</h3>
+        <div className="flex">
+          <h3 className="text-xs pr-3">{comment.user.username}</h3>
+          {comment.user.isAdmin ? (
+            <Badge fontSize="0.7rem" variant="outline" variantColor="blue">
+              Admin
+            </Badge>
+          ) : null}
+        </div>
         <p className="text-xs ml-auto text-gray-700">
           <TimeAgo datetime={date} />
         </p>

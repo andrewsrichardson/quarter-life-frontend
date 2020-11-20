@@ -21,6 +21,7 @@ import {
 } from "../../lib/forum-interactions";
 import Footer from "@/components/footer";
 import Link from "next/link";
+import { SITE_NAME } from "@/lib/constants";
 
 export default function ForumPost({ question }) {
   const {
@@ -136,7 +137,7 @@ export default function ForumPost({ question }) {
     <>
       <Layout>
         <Head>
-          <title>{title}</title>
+          <title>{title + " | " + SITE_NAME}</title>
         </Head>
         <Container>
           {" "}

@@ -1,58 +1,65 @@
-import Container from "@/components/container";
 import Footer from "@/components/footer";
 import Header from "@/components/header";
+import { SITE_NAME } from "@/lib/constants";
+import Head from "next/head";
 
 export default function About() {
   return (
     <>
+      <Head>
+        <title>About us | {SITE_NAME}</title>
+      </Head>
       <Header />
-      <Container>
-        <section className="min-h-screen bg-white">
+      <section
+        className="min-h-screen pb-10"
+        style={{ borderTop: "4px solid black", backgroundColor: "#b1ede8" }}
+      >
+        <div
+          className="bg-white max-w-5xl m-auto mt-10 p-10"
+          style={{ border: "4px solid black" }}
+        >
           <h1 className="text-center text-4xl p-10">About Us</h1>
-          <div className="max-w-3xl m-auto">
-            <h2 className="text-2xl text-center pb-5"> Ross, 23</h2>
-            <p className="text-center pb-2">
-              My name is Ross, and I am a 23 year old Politics graduate (and
-              aspiring adult) undergoing my own quarter life crisis. After
-              growing disillusioned with life after uni- there's only so many
-              times you can read a job listing which considers “the opportunity
-              to become a paid role” a benefit - I decided to create this blog
-              to foster a community where we can discuss these issues, support
-              each other and raise awareness.
+          <div>
+            <p className="text-lg pb-5">
+              We are three guys who met at University, currently undergoing out
+              own quarter life crisies. After growing disillusioned with the
+              world of work we decided to create this place to foster a
+              community where we can discuss issues, support each other and
+              raise awareness of things which plague the life of a 20-something.
             </p>
-            <p className="text-center pb-2">
-              I’ve been inadvertently writing about a quarter life crisis for
-              the last few years, but never had a name for my predicament. In
-              article after article I bemoaned unpaid internships and the
-              underwhelming reality of life after Uni; I dreamt of travelling
-              but also wanted to get on the career ladder; I felt defined by my
-              degree which no longer represented my long term ambitions and I
-              envied my friends for their relationships and jobs which were
-              broadcast online.
+            <p className="text-lg pb-5">
+              During this time we encountered others who felt equally lost and
+              shared our angst regarding their purpose and the overall
+              trajectory of their life. Common buzzwords kept popping up in
+              conversation with our friendship group; many spoke of feeling
+              lost, dissatisfied with work or underwhelmed by the pace their
+              life’s were moving at. Indeed, no one seemed to be immune. Some
+              thought they’d be in a good job with a partner and a home by 25,
+              but instead they were in their childhood bedroom working unpaid
+              internships to get dream roles. Alternatively, others had secured
+              good graduate jobs and quickly grew disenchanted with the reality,
+              asking 'Is this it?'. Whilst their parents, friends and partners
+              were proud, they were miserable. Eventually we stumbled across the
+              term Quarter Life Crisis, and realised how widespread this feeling
+              is among 18-30 year olds, particularly those in their mid
+              twenties.
             </p>
-            <p className="text-center pb-2">
-              During this time I encountered others who felt equally lost and
-              shared my angst regarding their purpose and the overall trajectory
-              of their life. Common buzzwords kept popping up in conversation
-              with my age group; many spoke of feeling lost, dissatisfied with
-              work or underwhelmed by the pace their life’s were moving at.
-              Indeed, no one seemed to be immune. Some thought they’d be in a
-              good job with a partner and a home by 25, but instead they were in
-              their childhood bedroom working unpaid internships to get dream
-              roles. Alternatively, others had secured good graduate jobs and
-              quickly grew disenchanted with the reality- “Is this it?” clouded
-              their minds. Whilst their parents, friends and partners were
-              proud, they were miserable. Eventually I stumbled across the term
-              Quarter Life Crisis, and realised how widespread this feeling is
-              among 18-30 year olds, particularly those in their mid twenties.
+            <p className="text-lg pb-5">
+              We hope that you can use {SITE_NAME} to talk about issues, big and
+              small, which may be hard to address in person. We hope that our
+              articles can not only show you that you are not the only one
+              feeling this way, but can also offer some sort of start towards a
+              path of a more fulfilling outlook on your life.
             </p>
-            <h2 className="text-2xl text-center p-5"> Andrew, 23</h2>
-            <p className="text-center pb-2">
-              Not sure what to write here, but I made this site.
-            </p>
+
+            <h3 className="text-center">Joe, Ross and Andrew</h3>
+            <img
+              className="m-auto max-w-xs xl:max-w-md"
+              src="/the_boys.jpg"
+            ></img>
           </div>
-        </section>
-      </Container>
+        </div>
+      </section>
       <Footer />
     </>
   );

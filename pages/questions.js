@@ -50,8 +50,8 @@ export default function Questions({ allQuestions, categories }) {
 
   const tagsList = categories.__type.enumValues.map((category, index) => {
     return (
-      <Link href={"/questions/c/" + category.name}>
-        <p className="pb-1 hover:underline cursor-pointer" key={index}>
+      <Link href={"/questions/c/" + category.name} key={index}>
+        <p className="pb-1 hover:underline cursor-pointer">
           {"#" + category.name.charAt(0).toUpperCase() + category.name.slice(1)}
         </p>
       </Link>

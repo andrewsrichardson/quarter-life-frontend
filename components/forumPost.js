@@ -1,10 +1,9 @@
 import { createUpvote, deleteUpvote } from "@/lib/api";
-import { Icon } from "@chakra-ui/core";
+import { Badge, Icon } from "@chakra-ui/core";
 import Link from "next/link";
 import Router from "next/router";
 import { useState, useEffect } from "react";
 import styles from "./forumpost.module.css";
-import * as timeago from "timeago.js";
 import TimeAgo from "timeago-react";
 
 export default function ForumPost(props) {
@@ -68,13 +67,18 @@ export default function ForumPost(props) {
       </div>
       <div style={{ width: "100%" }}>
         <Link href={"/questions/" + id}>
-          <h1 className="text-xl hover:underline">
+          <h1 className="text-lg hover:underline">
             {" "}
             <a className="hover:underline cursor-pointer">{title}</a>
           </h1>
         </Link>
         <div className="flex">
           <h3 className="text-xs text-gray-600 mr-8">{"by " + username}</h3>
+          {user.isAdmin ? (
+            <Badge fontSize="0.7rem" variant="outline" variantColor="blue">
+              Admin
+            </Badge>
+          ) : null}
           <h3 className="text-xs text-gray-600 justify-self-start">
             {comments.length.toString() +
               " comment" +
