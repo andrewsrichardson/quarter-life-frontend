@@ -39,6 +39,7 @@ export default function Create({ categories }) {
       </option>
     );
   });
+
   return (
     <>
       <Layout>
@@ -105,7 +106,12 @@ export default function Create({ categories }) {
                   color="white"
                   onClick={() => {
                     setLoading(true);
-                    createQuestion(data.title, data.content, appContext.user)
+                    createQuestion(
+                      data.title,
+                      data.content,
+                      data.category,
+                      appContext.user
+                    )
                       .then(() => {
                         setLoading(false);
                         router.push("/questions");
