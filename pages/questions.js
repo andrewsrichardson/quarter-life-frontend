@@ -74,33 +74,35 @@ export default function Questions({ allQuestions, categories }) {
                   borderLeft: "4px solid black",
                   borderTop: "0px",
                 }}
-                className="flex flex-col mb-5 pt-5 bg-white p-10 outline"
+                className="flex flex-col bg-white p-5 mb-5 outline"
               >
-                <h1 className="text-5xl">Welcome</h1>
+                <div className="flex justify-between align-middle">
+                  <h1 className="text-2xl">Welcome</h1>
+                  <div className="self-end">
+                    {appContext.isAuthenticated ? (
+                      <Button
+                        size="sm"
+                        bg="brand.800"
+                        color="white"
+                        onClick={() => {
+                          router.push("/questions/create");
+                        }}
+                      >
+                        Create Post
+                      </Button>
+                    ) : (
+                      <h3 className="highlight text-xl">
+                        <Link href="/login">
+                          <a className="hover:underline">Login to post.</a>
+                        </Link>
+                      </h3>
+                    )}
+                  </div>
+                </div>
                 <p className="text-md">
                   We're helping each other figure out what's going on in our
                   lives.
                 </p>
-                <div className="self-end">
-                  {appContext.isAuthenticated ? (
-                    <Button
-                      size="sm"
-                      bg="brand.800"
-                      color="white"
-                      onClick={() => {
-                        router.push("/questions/create");
-                      }}
-                    >
-                      Create Post
-                    </Button>
-                  ) : (
-                    <h3 className="highlight text-xl">
-                      <Link href="/login">
-                        <a className="hover:underline">Login to post.</a>
-                      </Link>
-                    </h3>
-                  )}
-                </div>
               </section>
               <div>
                 <div className="flex justify-center flex-wrap flex-2">

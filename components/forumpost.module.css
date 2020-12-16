@@ -1,5 +1,5 @@
 .wrapper {
-  padding: 1rem;
+  padding: 0.5rem;
   min-width: 100%;
   max-height: min-content;
   border-right: 4px solid black;
@@ -8,6 +8,6 @@
   transition: 0.3s;
   display: flex;
 }
-.wrapper:hover {
+.title:hover {
   background-color: rgb(0, 0, 0, 0.1);
 }

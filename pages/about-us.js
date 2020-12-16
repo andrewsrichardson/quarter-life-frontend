@@ -21,7 +21,7 @@ export default function About() {
           <h1 className="text-center text-4xl p-10">About Us</h1>
           <div>
             <p className="text-lg pb-5">
-              We are three guys who met at University, currently undergoing out
+              We are three guys who met at University, currently undergoing our
               own quarter life crisies. After growing disillusioned with the
               world of work we decided to create this place to foster a
               community where we can discuss issues, support each other and

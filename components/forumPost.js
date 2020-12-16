@@ -7,7 +7,15 @@ import styles from "./forumpost.module.css";
 import TimeAgo from "timeago-react";
 
 export default function ForumPost(props) {
-  const { title, id, user, created_at, comments, upvotes } = props.props;
+  const {
+    title,
+    id,
+    user,
+    created_at,
+    comments,
+    upvotes,
+    category,
+  } = props.props;
   const { username } = user;
   let { me, upvotedQuestions, setUpvotedQuestions } = props;
 
@@ -63,13 +71,13 @@ export default function ForumPost(props) {
           color={isUpvoted ? "#D81E5B" : ""}
           onClick={isLoading ? null : handleUpvote}
         />
-        <h1 className="text-xl text-center">{number}</h1>
+        <h1 className="text-lg text-center">{number}</h1>
       </div>
       <div style={{ width: "100%" }}>
         <Link href={"/questions/" + id}>
-          <h1 className="text-lg hover:underline">
+          <h1 className={`text-md`}>
             {" "}
-            <a className="hover:underline cursor-pointer">{title}</a>
+            <a className={`${styles.title} cursor-pointer`}>{title}</a>
           </h1>
         </Link>
         <div className="flex">
@@ -79,11 +87,15 @@ export default function ForumPost(props) {
               Admin
             </Badge>
           ) : null}
-          <h3 className="text-xs text-gray-600 justify-self-start">
+          <h3 className="text-xs text-gray-600 justify-self-start mr-8">
             {comments.length.toString() +
               " comment" +
               (comments.length == 1 ? "" : "s")}
           </h3>
+          <h3 className="text-xs text-gray-600 mr-8 italic">
+            {"in " + category}
+          </h3>
+
           <p className="text-xs text-gray-600 text-right ml-auto">
             <TimeAgo datetime={created_at} />
           </p>

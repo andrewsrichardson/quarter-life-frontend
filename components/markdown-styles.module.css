@@ -1,5 +1,5 @@
 .markdown {
-  @apply text-xl leading-relaxed;
+  @apply text-lg leading-relaxed;
 }
 
 .markdown p,

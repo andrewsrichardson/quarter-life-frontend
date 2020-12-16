@@ -71,39 +71,37 @@ export default function Questions({ allQuestions, categories, category }) {
         <Container>
           {" "}
           <div className="flex flex-wrap">
-            <div className="flex-grow">
+            <div style={{ maxWidth: "75%" }} className="flex-grow">
               <section
                 style={{
                   borderRight: "4px solid black",
                   borderLeft: "4px solid black",
                   borderTop: "0px",
                 }}
-                className="flex flex-col mb-5 pt-5 bg-white p-10 outline"
+                className="flex flex-col mb-5 pt-5 bg-white p-5 outline"
               >
-                <h1 className="text-5xl">{category}</h1>
-                <p className="text-md">
-                  We're helping each other figure out what's going on in our
-                  lives.
-                </p>
-                <div className="self-end">
-                  {appContext.isAuthenticated ? (
-                    <Button
-                      size="sm"
-                      bg="brand.800"
-                      color="white"
-                      onClick={() => {
-                        router.push("/questions/create");
-                      }}
-                    >
-                      Create Post
-                    </Button>
-                  ) : (
-                    <h3 className="highlight text-xl">
-                      <Link href="/login">
-                        <a className="hover:underline">Login to post.</a>
-                      </Link>
-                    </h3>
-                  )}
+                <div className="flex justify-between align-middle">
+                  <h1 className="text-3xl">{category}</h1>
+                  <div className="self-end">
+                    {appContext.isAuthenticated ? (
+                      <Button
+                        size="sm"
+                        bg="brand.800"
+                        color="white"
+                        onClick={() => {
+                          router.push("/questions/create");
+                        }}
+                      >
+                        Create Post
+                      </Button>
+                    ) : (
+                      <h3 className="highlight text-xl">
+                        <Link href="/login">
+                          <a className="hover:underline">Login to post.</a>
+                        </Link>
+                      </h3>
+                    )}
+                  </div>
                 </div>
               </section>
               <div className="min-h-screen">
@@ -112,7 +110,7 @@ export default function Questions({ allQuestions, categories, category }) {
                 </div>
               </div>
             </div>
-            <div className="min-h-screen">
+            <div style={{ maxWidth: "25%" }} className="min-h-screen">
               <div
                 style={{ height: "max-content" }}
                 className="max-w-7xl m-10  p-10 bg-white outline"
