@@ -157,8 +157,10 @@ export default function Index({ allPosts, preview }) {
             <div className={styles.leftspacer}>
               <h1 className={styles.problem}>What's the Problem?</h1>
               <h2 className={styles.horizontaltext}>
-                {SITE_NAME} . {SITE_NAME} . {SITE_NAME} . {SITE_NAME} . {SITE_NAME} . {SITE_NAME} . {SITE_NAME} . {SITE_NAME} .
-                {SITE_NAME} . {SITE_NAME} . {SITE_NAME} . {SITE_NAME} . {SITE_NAME} . {SITE_NAME} .
+                {SITE_NAME} . {SITE_NAME} . {SITE_NAME} . {SITE_NAME} .{" "}
+                {SITE_NAME} . {SITE_NAME} . {SITE_NAME} . {SITE_NAME} .
+                {SITE_NAME} . {SITE_NAME} . {SITE_NAME} . {SITE_NAME} .{" "}
+                {SITE_NAME} . {SITE_NAME} .
               </h2>{" "}
             </div>
             <div className={styles.page2content}>
@@ -216,39 +218,10 @@ export default function Index({ allPosts, preview }) {
             </div>
             <div className={styles.rightspacer}></div>
           </div>
-          <Container>
-            <div className={`${styles.fact} ${introSize}`}>
-              <div className={styles.facttext}>
-                <h3>
-                  <span>75%</span>
-                </h3>
-                <p>
-                  of 25-33 year olds have experienced a quarter-life crisis,
-                  with the average age being 27. The number one cause of the
-                  crisis in this study were fears around finding a career they
-                  are passionate about, even more so than about finding a life
-                  partner (47%) or dealing with student debt (22%). Another top
-                  reason was comparing themselves to their more successful
-                  friends. Nearly half (48%) say this has caused them anxiety.
-                </p>
-              </div>
-              <h2 className="text-3xl text-center m-5">
-                See the{" "}
-                <Link href="/facts">
-                  <p className={styles.link}>
-                    <a className="highlight">Facts</a>
-                    <img
-                      className="arrow"
-                      src="/right-arrow-button.png"
-                      alt="arrow"
-                    ></img>
-                  </p>
-                </Link>
-              </h2>
-            </div>
+          <div style={{ maxWidth: "75%" }} className="pt-10 m-auto">
             <Topics />
-            <MoreStories label={"Recent Posts"} posts={allPosts}></MoreStories>
-          </Container>
+            <MoreStories posts={allPosts}></MoreStories>
+          </div>
         </div>
         <Footer></Footer>
       </Layout>

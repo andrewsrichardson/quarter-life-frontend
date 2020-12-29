@@ -3,6 +3,7 @@ import { createUpvote, deleteUpvote } from "@/lib/api";
 import { Badge, Icon } from "@chakra-ui/core";
 import Router from "next/router";
 import TimeAgo from "timeago-react";
+import Link from "next/link";
 
 export default function Comment({
   comment,
@@ -68,7 +69,12 @@ export default function Comment({
       <div className="flex flex-col justify-between">
         <h3>{comment.content}</h3>
         <div className="flex">
-          <h3 className="text-xs pr-3">{comment.user.username}</h3>
+          <Link href={"/users/" + comment.user.username}>
+            <h3 className="text-xs pr-3 cursor-pointer hover:underline">
+              {comment.user.username}
+            </h3>
+          </Link>
+
           {comment.user.isAdmin ? (
             <Badge fontSize="0.7rem" variant="outline" variantColor="blue">
               Admin
