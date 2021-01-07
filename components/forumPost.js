@@ -81,7 +81,11 @@ export default function ForumPost(props) {
           </h1>
         </Link>
         <div className="flex">
-          <h3 className="text-xs text-gray-600 mr-8">{"by " + username}</h3>
+          <Link href={"/users/" + username}>
+            <h3 className="text-xs text-gray-600 mr-8 hover:underline cursor-pointer">
+              {"by " + username}
+            </h3>
+          </Link>
           {user.isAdmin ? (
             <Badge fontSize="0.7rem" variant="outline" variantColor="blue">
               Admin

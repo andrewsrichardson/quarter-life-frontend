@@ -173,7 +173,9 @@ export default function Header({}) {
             <li className="mr-2 mb-10 xl:mb-0">
               {user ? (
                 <div className="flex">
-                  <h2 className="nav-link">{user.username}</h2>
+                  <Link href={"/users/" + user.username}>
+                    <a className="nav-link hover:underline">{user.username}</a>
+                  </Link>
                   <Link href="/">
                     <a
                       className="nav-link hover:underline"
