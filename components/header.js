@@ -2,12 +2,12 @@ import Link from "next/link";
 import { logout } from "../lib/auth";
 import AppContext from "../context/AppContext";
 import React, { useContext, useEffect, useState } from "react";
-import { SITE_NAME } from "@/lib/constants";
 import classnames from "classnames";
 import { getCategories } from "@/lib/api";
 import styles from "./header.module.css";
 import { Button } from "@chakra-ui/core";
 import { useRouter } from "next/router";
+import { motion } from "framer-motion";
 
 export default function Header({}) {
   const { user, setUser } = useContext(AppContext);
@@ -28,14 +28,77 @@ export default function Header({}) {
   function toggleMenu() {
     setMenuOpen(!menu);
   }
+
+  const textMotion = {
+    rest: {
+      color: "grey",
+      x: 0,
+      transition: {
+        duration: 2,
+        type: "tween",
+        ease: "easeIn"
+      }
+    },
+    hover: {
+      color: "black",
+      x: 20,
+      transition: {
+        duration: 0.4,
+        type: "tween",
+        ease: "easeOut"
+      }
+    }
+  };
+  const slashMotion = {
+    rest: { opacity: 0, ease: "easeOut", duration: 0.2, type: "tween" },
+    hover: {
+      opacity: 1,
+      transition: {
+        duration: 0.4,
+        type: "tween",
+        ease: "easeIn"
+      }
+    }
+  };
+
   let tagsList = [];
   if (menuItems) {
     tagsList = menuItems.__type.enumValues.map((category, index) => {
       return (
         <Link href={"/topics/" + category.name}>
-          <li className="pb-1" key={index}>
-            {category.name.charAt(0).toUpperCase() + category.name.slice(1)}
-          </li>
+          <motion.li
+            className="text-xl"
+            key={index}
+            whileHover="hover"
+            animate="rest"
+            initial="rest"
+          >
+            <motion.h5
+              className="mr-10"
+              variants={textMotion}
+              style={{ display: "inline-block" }}
+            >
+              {category.name.charAt(0).toUpperCase() + category.name.slice(1)}
+            </motion.h5>
+            <motion.span
+              variants={slashMotion}
+              style={{
+                height: "22px",
+                width: "22px",
+                display: "inline-block",
+                marginTop: "4px",
+                backgroundColor: "white",
+                borderRadius: "4px"
+              }}
+            >
+              <img
+                className="arrow"
+                style={{ margin: "0px", marginBottom: "9px" }}
+                src="/right-arrow-button.png"
+                alt="arrow"
+              ></img>
+            </motion.span>
+          </motion.li>
         </Link>
       );
     });
@@ -46,7 +109,10 @@ export default function Header({}) {
       <nav className="flex items-center justify-between flex-wrap p-6 w-full z-10 lg:container m-auto">
         <div className="flex items-center flex-no-shrink mr-6">
           <Link href="/" replace>
-            <a className="hover:underline">{SITE_NAME}</a>
+            <a className="text-xl">
+              <span style={{ backgroundColor: "#B1EDE8" }}>20</span>
+              <span className="highlight">SOS</span>
+            </a>
           </Link>
         </div>
 
@@ -75,18 +141,23 @@ export default function Header({}) {
           id="nav-content"
         >
           <ul className="list-reset lg:flex justify-end flex-1 items-center">
-            <li className={"mr-3 mb-10 xl:mb-0 " + styles.dropdown}>
+            <li className="mr-2 mb-10 xl:mb-0">
+              <Link href="/start-here">
+                <a className="nav-link hover:underline pr-10">Start Here</a>
+              </Link>
+            </li>
+            <li className={"mr-2 mb-10 xl:mb-0 " + styles.dropdown}>
               <Link href="/#topics">
-                <a className="nav-link hover:underline xl:pr-10">Topics</a>
+                <a className="nav-link xl:pr-10">Topics</a>
               </Link>
               <ul className={styles.dropdownNav}>{tagsList}</ul>
             </li>
-            <li className="mr-3 mb-10 xl:mb-0">
-              <Link href="/questions">
-                <a className="nav-link hover:underline pr-10">Talk</a>
+            <li className="mr-2 mb-10 xl:mb-0">
+              <Link href="/community">
+                <a className="nav-link hover:underline pr-10">Community</a>
               </Link>
             </li>
-            <li className={"mr-3 mb-10 xl:mb-0 " + styles.dropdown}>
+            <li className={"mr-2 mb-10 xl:mb-0 " + styles.dropdown}>
               <a className="nav-link hover:underline xl:pr-10 xl:border-r-2">
                 More
               </a>
@@ -99,7 +170,7 @@ export default function Header({}) {
                 </Link>
               </ul>
             </li>
-            <li className="mr-3 mb-10 xl:mb-0">
+            <li className="mr-2 mb-10 xl:mb-0">
               {user ? (
                 <div className="flex">
                   <Link href={"/users/" + user.username}>

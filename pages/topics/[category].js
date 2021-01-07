@@ -2,7 +2,7 @@ import Layout from "@/components/layout";
 import {
   getTopicByCategory,
   getCategories,
-  getQuestionsByCategory,
+  getQuestionsByCategory
 } from "@/lib/api";
 import Head from "next/head";
 import React, { useContext, useEffect, useState } from "react";
@@ -25,7 +25,7 @@ export default function Category({ topic, content }) {
 
   function toPost(question, index) {
     let highlight = false;
-    upvotedQuestions.forEach((upvote) => {
+    upvotedQuestions.forEach(upvote => {
       if (question.id == upvote.question.id) {
         highlight = true;
       }
@@ -55,7 +55,7 @@ export default function Category({ topic, content }) {
 
   useEffect(() => {
     setUpvotedQuestions(
-      appContext.upvotes.filter((upvote) => {
+      appContext.upvotes.filter(upvote => {
         return upvote.question && upvote.question != null;
       })
     );
@@ -74,19 +74,27 @@ export default function Category({ topic, content }) {
           <title>{title + " | " + SITE_NAME}</title>
         </Head>
         <div
-          style={{ backgroundColor: "#b1ede8", maxHeight: "max-content" }}
+          style={{
+            backgroundColor: "#b1ede8",
+            maxHeight: "max-content",
+            marginBottom: "2rem",
+            borderBottom: "4px solid black"
+          }}
           className="flex p-10 flex-col xl:flex-row"
         >
-          <section className={"bg-white p-5 m-auto " + styles.content}>
+          <section
+            style={{ borderTop: "4px solid black" }}
+            className={"bg-white p-5 m-auto relative " + styles.content}
+          >
             <h1 className="text-5xl pb-2">
               <span className="highlight">{title}</span>
             </h1>
             <div
               className={markdownStyles["markdown"]}
               dangerouslySetInnerHTML={{
-                __html: content,
+                __html: content
               }}
-            />
+            ></div>
           </section>
           <div
             className={
@@ -101,7 +109,7 @@ export default function Category({ topic, content }) {
               <div
                 style={{
                   borderLeft: "4px solid black",
-                  borderRight: "4px solid black",
+                  borderRight: "4px solid black"
                 }}
                 className="flex justify-between p-2"
               >
@@ -111,7 +119,7 @@ export default function Category({ topic, content }) {
                   bg="brand.800"
                   color="white"
                   onClick={() => {
-                    router.push("/questions/create");
+                    router.push("/community/create");
                   }}
                 >
                   Join
@@ -145,15 +153,14 @@ export async function getStaticProps({ params }) {
   const content = await markdownToHtml(topic?.topics[0]?.content || "");
 
   return {
-    props: { topic, content },
+    props: { topic, content }
   };
 }
 export async function getStaticPaths() {
   const allTopics = await getCategories();
   return {
     paths:
-      allTopics.__type.enumValues?.map((topic) => `/topics/${topic.name}`) ||
-      [],
-    fallback: true,
+      allTopics.__type.enumValues?.map(topic => `/topics/${topic.name}`) || [],
+    fallback: true
   };
 }

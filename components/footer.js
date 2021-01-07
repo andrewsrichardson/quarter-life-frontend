@@ -12,7 +12,7 @@ export default function Footer() {
           <Link href="/#topics">
             <a className="hover:underline mb-5">Topics</a>
           </Link>
-          <Link href="/questions">
+          <Link href="/community">
             <a className="hover:underline mb-5">Talk</a>
           </Link>
           <Link href="/about-us">
