@@ -1,36 +1,79 @@
-import Container from "@/components/container";
-import Layout from "@/components/layout";
 import Head from "next/head";
 import { SITE_NAME } from "@/lib/constants";
 import styles from "./index.module.css";
 import Footer from "@/components/footer";
-import Link from "next/link";
 import MoreStories from "@/components/more-stories";
 import { getAllPostsForHome } from "lib/api";
 import { motion } from "framer-motion";
-import Topics from "@/components/topics";
 import Cookie from "js-cookie";
-import React, { useState, useEffect } from "react";
 import { Button } from "@chakra-ui/core";
+import ForumPost from "@/components/forumPost";
+import Layout from "@/components/layout";
+import { getAllQuestionsForForum, getCategories } from "@/lib/api";
+import React, { useContext, useState, useEffect } from "react";
+import AppContext from "../context/AppContext";
+import { useRouter } from "next/router";
+import Link from "next/link";
+import Container from "@/components/container";
+import Topics from "@/components/topics";
 
 export default function Index({ allPosts, preview }) {
   const [accepted, setAccepted] = useState(Cookie.get("accept"));
   const [isIntroClosed, setIsIntroClosed] = useState(true);
+  const appContext = useContext(AppContext);
+  const router = useRouter();
+  const [upvotedQuestions, setUpvotedQuestions] = useState([]);
+  const [allQuestions, setQuestions] = useState([]);
 
-  let introSize = isIntroClosed ? styles.closedIntro : null;
+  useEffect(() => {
+    setUpvotedQuestions(
+      appContext.upvotes.filter(upvote => {
+        return upvote.question && upvote.question != null;
+      })
+    );
+  }, [appContext]);
+  useEffect(() => {
+    const getQuestions = async () => (await getAllQuestionsForForum()) || [];
+    getQuestions().then(q => setQuestions(q));
+  }, []);
+
+  const { user } = appContext;
+
+  function toPost(question, index) {
+    let highlight = false;
+    upvotedQuestions.forEach(upvote => {
+      if (question.id == upvote.question.id) {
+        highlight = true;
+      }
+    });
+
+    return (
+      <ForumPost
+        key={index}
+        props={question}
+        highlight={highlight}
+        me={user}
+        upvotedQuestions={appContext.upvotes}
+        setUpvotedQuestions={appContext.setUpvotes}
+      ></ForumPost>
+    );
+  }
+
+  let postList = allQuestions.map(toPost);
 
   function AnimatedIntro(props) {
     let intro = [];
     for (let i = 0; i < props.columns; i++) {
       intro.push(
         <motion.h2
+          style={{ marginTop: "0px" }}
           key={i}
           animate={{ y: 30 }}
           transition={{
             duration: 2,
             delay: i * 0.2,
             repeat: Infinity,
-            repeatType: "reverse",
+            repeatType: "reverse"
           }}
         >
           {SITE_NAME} . {SITE_NAME} . {SITE_NAME} .{" "}
@@ -85,170 +128,68 @@ export default function Index({ allPosts, preview }) {
           <title>{SITE_NAME}</title>
         </Head>
         <div className={styles.wrapper}>
-          <section className={styles.intro}>
-            <div className={styles.titlecontent}>
-              <div className={styles.horizontaltext}>
-                <AnimatedIntro columns={5}></AnimatedIntro>
-              </div>
-              <div className={styles.spacer}></div>
-              <h1 className={styles.title}>
-                20<span className="highlight">SOS</span>
-              </h1>
+          <section style={{ height: "200px" }} className={styles.intro}>
+            <div className={styles.horizontaltext}>
+              <AnimatedIntro columns={5}></AnimatedIntro>
             </div>
           </section>
-          <div className={styles.description}>
-            <div className={styles.leftspacer}></div>
-            <div className={styles.descriptioncontent}>
-              <h2>
-                Welcome to the home of all things{" "}
-                <span className="highlight">Quarter Life Crisis.</span>
-              </h2>
-              <h3>Don’t despair, we’ll be with you all the way. </h3>
-            </div>
-            <div className={styles.descriptionlinks}>
-              <h2>
-                Join a{" "}
-                <Link href="/questions">
-                  <p className={styles.link}>
-                    <a className="highlight">Community</a>
-                    <img className="arrow" src="/right-arrow-button.png"></img>
-                  </p>
-                </Link>
-              </h2>
-              <h2>
-                Get practical{" "}
-                <Link href="/#topics">
-                  <p className={styles.link}>
-                    <a className="highlight">Guidance</a>
-                    <img className="arrow" src="/right-arrow-button.png"></img>
-                  </p>
-                </Link>
-              </h2>
-              <h2>
-                Hear the{" "}
-                <Link href="/facts">
-                  <p className={styles.link}>
-                    <a className="highlight">Facts</a>
-                    <img
-                      className="arrow"
-                      src="/right-arrow-button.png"
-                      alt="arrow"
-                    ></img>
-                  </p>
-                </Link>
-              </h2>
-              {isIntroClosed ? (
-                <>
-                  <Button
-                    variantColor="gray"
-                    size="xs"
-                    onClick={() => setIsIntroClosed(false)}
-                  >
-                    Open Introduction
-                  </Button>
-                </>
-              ) : null}
-            </div>
-            <div className={styles.rightspacer}>
-              <CookieBanner />
-            </div>
-          </div>
-          <div className={`${styles.page2} ${introSize}`}>
-            <div className={styles.leftspacer}>
-              <h1 className={styles.problem}>What's the Problem?</h1>
-              <h2 className={styles.horizontaltext}>
-                {SITE_NAME} . {SITE_NAME} . {SITE_NAME} . {SITE_NAME} . {SITE_NAME} . {SITE_NAME} . {SITE_NAME} . {SITE_NAME} .
-                {SITE_NAME} . {SITE_NAME} . {SITE_NAME} . {SITE_NAME} . {SITE_NAME} . {SITE_NAME} .
-              </h2>{" "}
-            </div>
-            <div className={styles.page2content}>
-              <p>
-                Young adults today face many challenges that leave them feeling
-                unfulfilled and frustrated at their circumstances.
-              </p>
-              <p>
-                This feeling of anxiety over the quality and direction of your
-                life in your early twenties and up to your thirties has been
-                coined a quarter life crisis, and is defined by a period of soul
-                searching and rumination over your progress in the professional
-                and private sphere.
-              </p>
-              <p>
-                The conditions to bring about such a crisis are optimal; with
-                property prices soaring, moving back in with the parents
-                increasingly common, and the job market more competitive, the
-                climate faced by young adults is a perfect storm for anxiety
-                regarding love and livelihood.
-              </p>
-            </div>
-            <div className={styles.rightspacer}></div>
-          </div>
-          <div className={`${styles.ourmission} ${introSize}`}>
-            <div className={styles.leftspacer}>
-              <h1 className={styles.problem}>
-                Our <span className="highlight">Mission</span>
-              </h1>
-            </div>
-            <div className={styles.ourmissioncontent}>
-              <p>
-                {SITE_NAME} looks into the many different factors which confound
-                a QLC from the increasing price of properties, to the grim
-                necessity of Unpaid internships, the rise in “bullshit” jobs and
-                the toxic comparison culture that social media has bred. But
-                this website is about far more than outlining a problem- we also
-                offer solutions and provide support during this confusing time.{" "}
-              </p>
-              <p className={styles.sticky}>
-                We have{" "}
-                <Link href="/#topics">
-                  <a className="highlight">think pieces</a>
-                </Link>{" "}
-                which offer practical advice to those having a QLC, as well as{" "}
-                <Link href="/questions">
-                  <a className="highlight">a community</a>
-                </Link>{" "}
-                raising awareness about the challenges facing young adults
-                today. Ultimately, we are here to help you navigate the rut
-                you’re in, because we have been there, in many respects we are
-                there, and we understand that it is a time better faced with
-                support and resources than in isolation.
-              </p>
-            </div>
-            <div className={styles.rightspacer}></div>
-          </div>
+          <CookieBanner />
           <Container>
-            <div className={`${styles.fact} ${introSize}`}>
-              <div className={styles.facttext}>
-                <h3>
-                  <span>75%</span>
-                </h3>
-                <p>
-                  of 25-33 year olds have experienced a quarter-life crisis,
-                  with the average age being 27. The number one cause of the
-                  crisis in this study were fears around finding a career they
-                  are passionate about, even more so than about finding a life
-                  partner (47%) or dealing with student debt (22%). Another top
-                  reason was comparing themselves to their more successful
-                  friends. Nearly half (48%) say this has caused them anxiety.
-                </p>
-              </div>
-              <h2 className="text-3xl text-center m-5">
-                See the{" "}
-                <Link href="/facts">
-                  <p className={styles.link}>
-                    <a className="highlight">Facts</a>
-                    <img
-                      className="arrow"
-                      src="/right-arrow-button.png"
-                      alt="arrow"
-                    ></img>
+            <div className="flex flex-wrap">
+              <div className="flex-grow pb-10">
+                <section
+                  style={{
+                    border: "4px solid black"
+                  }}
+                  className="flex flex-col bg-white p-5 mb-5 outline"
+                >
+                  <div className="flex justify-between align-middle">
+                    <h1 className="text-2xl">Welcome</h1>
+                    <div className="self-end">
+                      {appContext.isAuthenticated ? (
+                        <Button
+                          size="sm"
+                          bg="brand.800"
+                          color="white"
+                          onClick={() => {
+                            router.push("/community/create");
+                          }}
+                        >
+                          Create Post
+                        </Button>
+                      ) : (
+                        <h3 className="highlight text-xl">
+                          <Link href="/login">
+                            <a className="hover:underline">Login to post.</a>
+                          </Link>
+                        </h3>
+                      )}
+                    </div>
+                  </div>
+                  <p className="text-md">
+                    We're helping each other figure out what's going on in our
+                    lives.
                   </p>
-                </Link>
-              </h2>
+                </section>
+                <div
+                  style={{
+                    borderTop: "4px solid black",
+                    borderBottom: "4px solid black"
+                  }}
+                >
+                  <div className="flex justify-center flex-wrap flex-2">
+                    {postList}
+                  </div>
+                </div>
+              </div>
             </div>
-            <Topics />
-            <MoreStories label={"Recent Posts"} posts={allPosts}></MoreStories>
           </Container>
+          <MoreStories label={"Recent Posts"} posts={allPosts}></MoreStories>
+          <div className="pb-10">
+            <Container>
+              <Topics />
+            </Container>
+          </div>
         </div>
         <Footer></Footer>
       </Layout>
@@ -259,6 +200,6 @@ export default function Index({ allPosts, preview }) {
 export async function getStaticProps({ preview = null }) {
   const allPosts = (await getAllPostsForHome(preview)) || [];
   return {
-    props: { allPosts, preview },
+    props: { allPosts, preview }
   };
 }

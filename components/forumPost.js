@@ -14,7 +14,7 @@ export default function ForumPost(props) {
     created_at,
     comments,
     upvotes,
-    category,
+    category
   } = props.props;
   const { username } = user;
   let { me, upvotedQuestions, setUpvotedQuestions } = props;
@@ -34,27 +34,27 @@ export default function ForumPost(props) {
       setIsLoading(true);
       if (isUpvoted) {
         const deleteID = upvotedQuestions.find(
-          (ele) => ele.question && ele.question.id == id
+          ele => ele.question && ele.question.id == id
         );
         setNumber(number - 1);
         deleteUpvote(deleteID.id)
-          .then((res) => {
+          .then(res => {
             setUpvotedQuestions(
-              upvotedQuestions.filter((ele) => ele.id !== deleteID.id)
+              upvotedQuestions.filter(ele => ele.id !== deleteID.id)
             );
             setIsUpvoted(false);
             setIsLoading(false);
           })
-          .catch((err) => console.log(err));
+          .catch(err => console.log(err));
       } else {
         setNumber(number + 1);
         createUpvote(null, null, id.toString())
-          .then((res) => {
+          .then(res => {
             setUpvotedQuestions([...upvotedQuestions, res.data]);
             setIsUpvoted(!isUpvoted);
             setIsLoading(false);
           })
-          .catch((err) => console.log(err));
+          .catch(err => console.log(err));
       }
     }
   }
@@ -74,7 +74,7 @@ export default function ForumPost(props) {
         <h1 className="text-lg text-center">{number}</h1>
       </div>
       <div style={{ width: "100%" }}>
-        <Link href={"/questions/" + id}>
+        <Link href={"/community/" + id}>
           <h1 className={`text-md`}>
             {" "}
             <a className={`${styles.title} cursor-pointer`}>{title}</a>

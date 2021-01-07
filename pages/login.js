@@ -39,7 +39,7 @@ function Login() {
 
         {Object.entries(error).length !== 0 &&
           error.constructor === Object &&
-          error.message.map((error) => {
+          error.message.map(error => {
             return (
               <div key={error.messages[0].id} style={{ marginBottom: 10 }}>
                 <small style={{ color: "red" }}>
@@ -51,7 +51,7 @@ function Login() {
         <FormControl>
           <FormLabel htmlFor="email">Email address</FormLabel>
           <Input
-            onChange={(event) => onChange(event)}
+            onChange={event => onChange(event)}
             name="identifier"
             className="mb-5"
             type="email"
@@ -64,7 +64,7 @@ function Login() {
         <FormControl>
           <FormLabel htmlFor="password">Password</FormLabel>
           <Input
-            onChange={(event) => onChange(event)}
+            onChange={event => onChange(event)}
             className="mb-5"
             name="password"
             type="password"
@@ -82,13 +82,13 @@ function Login() {
               onClick={() => {
                 setLoading(true);
                 login(data.identifier, data.password)
-                  .then((res) => {
+                  .then(res => {
                     setLoading(false);
                     // set authed User in global context to update header/app state
                     appContext.setUser(res.data.user);
-                    router.push("/questions");
+                    router.push("/community");
                   })
-                  .catch((error) => {
+                  .catch(error => {
                     setError(error.response.data);
                     setLoading(false);
                   });

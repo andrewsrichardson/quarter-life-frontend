@@ -12,7 +12,7 @@ import {
   FormLabel,
   Button,
   Select,
-  Textarea,
+  Textarea
 } from "@chakra-ui/core";
 import { useRouter } from "next/router";
 import { createQuestion } from "../../lib/forum-interactions";
@@ -22,7 +22,7 @@ export default function Create({ categories }) {
   const [data, updateData] = useState({
     title: "",
     content: "",
-    category: "",
+    category: ""
   });
   const appContext = useContext(AppContext);
   const router = useRouter();
@@ -65,7 +65,7 @@ export default function Create({ categories }) {
                     Title
                   </FormLabel>
                   <Input
-                    onChange={(event) => onChange(event)}
+                    onChange={event => onChange(event)}
                     name="title"
                     type="title"
                     id="title"
@@ -90,7 +90,7 @@ export default function Create({ categories }) {
                 <FormControl className="pb-5">
                   <FormLabel htmlFor="content">Content</FormLabel>
                   <Textarea
-                    onChange={(event) => onChange(event)}
+                    onChange={event => onChange(event)}
                     name="content"
                     type="text"
                     resize="vertical"
@@ -114,9 +114,9 @@ export default function Create({ categories }) {
                     )
                       .then(() => {
                         setLoading(false);
-                        router.push("/questions");
+                        router.push("/community");
                       })
-                      .catch((error) => {
+                      .catch(error => {
                         setError(error.response.data.data.errors);
                         setLoading(false);
                       });
@@ -161,6 +161,6 @@ export default function Create({ categories }) {
 export async function getServerSideProps() {
   const categories = (await getCategories()) || [];
   return {
-    props: { categories },
+    props: { categories }
   };
 }
