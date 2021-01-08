@@ -24,6 +24,7 @@ export default function Header({}) {
   }, []);
 
   const menuClass = menu ? "" : " hidden";
+  console.log(menuItems);
 
   function toggleMenu() {
     setMenuOpen(!menu);

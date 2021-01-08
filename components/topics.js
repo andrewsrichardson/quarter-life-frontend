@@ -48,7 +48,7 @@ export default function Topics() {
         How to alleviate loneliness, whether you are in a new city or have
         drifted from childhood friends.
       </p>
-      <Link href="/topics/livingAtHome">
+      <Link href="/topics/livingArrangement">
         <p className={styles.link + " text-2xl"}>
           <a className="highlight">Living Arrangement 🏠</a>
           <img

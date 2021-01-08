@@ -40,6 +40,7 @@ export default function Index({ allPosts, preview }) {
   const { user } = appContext;
 
   function toPost(question, index) {
+    if (question == undefined) return;
     let highlight = false;
     upvotedQuestions.forEach(upvote => {
       if (question.id == upvote.question.id) {
@@ -133,9 +134,12 @@ export default function Index({ allPosts, preview }) {
               <AnimatedIntro columns={5}></AnimatedIntro>
             </div>
           </section>
-          <CookieBanner />
+          <div>
+            <CookieBanner />
+          </div>
+          <MoreStories label={"Recent Posts"} posts={allPosts}></MoreStories>
           <Container>
-            <div className="flex flex-wrap">
+            <div className="flex flex-wrap pt-10">
               <div className="flex-grow pb-10">
                 <section
                   style={{
@@ -144,7 +148,7 @@ export default function Index({ allPosts, preview }) {
                   className="flex flex-col bg-white p-5 mb-5 outline"
                 >
                   <div className="flex justify-between align-middle">
-                    <h1 className="text-2xl">Welcome</h1>
+                    <h1 className="text-2xl">Community</h1>
                     <div className="self-end">
                       {appContext.isAuthenticated ? (
                         <Button
@@ -184,7 +188,6 @@ export default function Index({ allPosts, preview }) {
               </div>
             </div>
           </Container>
-          <MoreStories label={"Recent Posts"} posts={allPosts}></MoreStories>
           <div className="pb-10">
             <Container>
               <Topics />

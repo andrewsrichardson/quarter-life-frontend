@@ -27,6 +27,8 @@ export default function Questions({ allQuestions, categories }) {
   const { user } = appContext;
 
   function toPost(question, index) {
+    if (question == undefined) return;
+
     let highlight = false;
     upvotedQuestions.forEach(upvote => {
       if (question.id == upvote.question.id) {
