@@ -16,10 +16,10 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import Container from "@/components/container";
 import Topics from "@/components/topics";
+import HeroPost from "@/components/hero-post";
 
 export default function Index({ allPosts, preview }) {
   const [accepted, setAccepted] = useState(Cookie.get("accept"));
-  const [isIntroClosed, setIsIntroClosed] = useState(true);
   const appContext = useContext(AppContext);
   const router = useRouter();
   const [upvotedQuestions, setUpvotedQuestions] = useState([]);
@@ -27,14 +27,14 @@ export default function Index({ allPosts, preview }) {
 
   useEffect(() => {
     setUpvotedQuestions(
-      appContext.upvotes.filter(upvote => {
+      appContext.upvotes.filter((upvote) => {
         return upvote.question && upvote.question != null;
       })
     );
   }, [appContext]);
   useEffect(() => {
     const getQuestions = async () => (await getAllQuestionsForForum()) || [];
-    getQuestions().then(q => setQuestions(q));
+    getQuestions().then((q) => setQuestions(q));
   }, []);
 
   const { user } = appContext;
@@ -42,7 +42,7 @@ export default function Index({ allPosts, preview }) {
   function toPost(question, index) {
     if (question == undefined) return;
     let highlight = false;
-    upvotedQuestions.forEach(upvote => {
+    upvotedQuestions.forEach((upvote) => {
       if (question.id == upvote.question.id) {
         highlight = true;
       }
@@ -74,7 +74,7 @@ export default function Index({ allPosts, preview }) {
             duration: 2,
             delay: i * 0.2,
             repeat: Infinity,
-            repeatType: "reverse"
+            repeatType: "reverse",
           }}
         >
           {SITE_NAME} . {SITE_NAME} . {SITE_NAME} .{" "}
@@ -87,9 +87,6 @@ export default function Index({ allPosts, preview }) {
     return () => {
       if (!accepted) {
         Cookie.set("accept", true);
-      }
-      if (!isIntroClosed) {
-        Cookie.set("intro", true);
       }
     };
   }, []);
@@ -121,6 +118,8 @@ export default function Index({ allPosts, preview }) {
       );
     } else return null;
   }
+  const heroPosts = allPosts.filter((post) => post);
+  const heroPost = heroPosts[0];
 
   return (
     <>
@@ -134,16 +133,23 @@ export default function Index({ allPosts, preview }) {
               <AnimatedIntro columns={5}></AnimatedIntro>
             </div>
           </section>
+          <div className="flex">
+            <div className="flex-grow"></div>
+            <div className="flex-grow-0">
+              <HeroPost props={heroPost} />
+            </div>
+            <div className="flex-grow"></div>
+          </div>
           <div>
             <CookieBanner />
           </div>
-          <MoreStories label={"Recent Posts"} posts={allPosts}></MoreStories>
+          <MoreStories posts={allPosts}></MoreStories>
           <Container>
             <div className="flex flex-wrap pt-10">
               <div className="flex-grow pb-10">
                 <section
                   style={{
-                    border: "4px solid black"
+                    border: "4px solid black",
                   }}
                   className="flex flex-col bg-white p-5 mb-5 outline"
                 >
@@ -178,7 +184,7 @@ export default function Index({ allPosts, preview }) {
                 <div
                   style={{
                     borderTop: "4px solid black",
-                    borderBottom: "4px solid black"
+                    borderBottom: "4px solid black",
                   }}
                 >
                   <div className="flex justify-center flex-wrap flex-2">
@@ -203,6 +209,6 @@ export default function Index({ allPosts, preview }) {
 export async function getStaticProps({ preview = null }) {
   const allPosts = (await getAllPostsForHome(preview)) || [];
   return {
-    props: { allPosts, preview }
+    props: { allPosts, preview },
   };
 }
