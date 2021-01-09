@@ -72,7 +72,6 @@ const CustomForm = () => (
                 onSubmitted={(formData) => subscribe(formData)}
               />
             )}
-
             {status === "sending" && (
               <div style={{ color: "blue" }}>sending...</div>
             )}

@@ -68,9 +68,6 @@ export default function Category({ topic, content }) {
 
   const heroPost =
     topic.posts.filter((post) => post.featured == true)[0] || topic.posts[0];
-
-  console.log(topic.posts);
-
   return (
     <>
       <Layout>
@@ -130,7 +127,7 @@ export default function Category({ topic, content }) {
         </div>
         {topic ? (
           topic.posts ? (
-            <div style={{ maxWidth: "1600px", margin: "auto" }}>
+            <div style={{ maxWidth: "1800px", margin: "auto" }}>
               <MoreStories posts={topic.posts} label={""} />
             </div>
           ) : null

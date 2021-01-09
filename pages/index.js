@@ -168,7 +168,9 @@ export default function Index({ allPosts, preview }) {
           <div>
             <CookieBanner />
           </div>
-          <MoreStories posts={allPosts}></MoreStories>
+          <div style={{ maxWidth: "1800px", margin: "auto" }}>
+            <MoreStories posts={allPosts}></MoreStories>
+          </div>
           <Container>
             <div className="flex flex-wrap pt-10">
               <div className="flex-grow pb-10">
