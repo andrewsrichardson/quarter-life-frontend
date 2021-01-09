@@ -24,7 +24,6 @@ export default function Header({}) {
   }, []);
 
   const menuClass = menu ? "" : " hidden";
-  console.log(menuItems);
 
   function toggleMenu() {
     setMenuOpen(!menu);
@@ -37,8 +36,8 @@ export default function Header({}) {
       transition: {
         duration: 2,
         type: "tween",
-        ease: "easeIn"
-      }
+        ease: "easeIn",
+      },
     },
     hover: {
       color: "black",
@@ -46,9 +45,9 @@ export default function Header({}) {
       transition: {
         duration: 0.4,
         type: "tween",
-        ease: "easeOut"
-      }
-    }
+        ease: "easeOut",
+      },
+    },
   };
   const slashMotion = {
     rest: { opacity: 0, ease: "easeOut", duration: 0.2, type: "tween" },
@@ -57,9 +56,9 @@ export default function Header({}) {
       transition: {
         duration: 0.4,
         type: "tween",
-        ease: "easeIn"
-      }
-    }
+        ease: "easeIn",
+      },
+    },
   };
 
   let tagsList = [];
@@ -89,7 +88,7 @@ export default function Header({}) {
                 display: "inline-block",
                 marginTop: "4px",
                 backgroundColor: "white",
-                borderRadius: "4px"
+                borderRadius: "4px",
               }}
             >
               <img

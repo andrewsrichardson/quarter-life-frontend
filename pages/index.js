@@ -17,6 +17,7 @@ import Link from "next/link";
 import Container from "@/components/container";
 import Topics from "@/components/topics";
 import HeroPost from "@/components/hero-post";
+import Subscribe from "@/components/subscribe";
 
 export default function Index({ allPosts, preview }) {
   const [accepted, setAccepted] = useState(Cookie.get("accept"));
@@ -118,8 +119,9 @@ export default function Index({ allPosts, preview }) {
       );
     } else return null;
   }
-  const heroPosts = allPosts.filter((post) => post);
-  const heroPost = heroPosts[0];
+  const heroPosts = allPosts.filter((post) => post.featured == true);
+  let heroPost = heroPosts[0];
+  if (heroPost == undefined) heroPost = allPosts[4];
 
   return (
     <>
@@ -133,12 +135,35 @@ export default function Index({ allPosts, preview }) {
               <AnimatedIntro columns={5}></AnimatedIntro>
             </div>
           </section>
-          <div className="flex">
-            <div className="flex-grow"></div>
+          <div className="flex pb-10">
+            <div className="flex-grow">
+              <div
+                className="bg-white"
+                style={{
+                  width: "100%",
+                  height: "40%",
+                  borderTop: "4px solid black",
+                  borderBottom: "4px solid black",
+                }}
+              >
+                <Subscribe />
+              </div>
+            </div>
             <div className="flex-grow-0">
               <HeroPost props={heroPost} />
             </div>
-            <div className="flex-grow"></div>
+            <div className="flex-grow">
+              <div
+                className="bg-white"
+                style={{
+                  width: "20%",
+                  height: "90%",
+                  borderTop: "4px solid black",
+                  borderBottom: "4px solid black",
+                  borderRight: "4px solid black",
+                }}
+              ></div>
+            </div>
           </div>
           <div>
             <CookieBanner />

@@ -2,7 +2,7 @@ import Layout from "@/components/layout";
 import {
   getTopicByCategory,
   getCategories,
-  getQuestionsByCategory
+  getQuestionsByCategory,
 } from "@/lib/api";
 import Head from "next/head";
 import React, { useContext, useEffect, useState } from "react";
@@ -15,7 +15,7 @@ import { Button, Spinner } from "@chakra-ui/core";
 import AppContext from "context/AppContext";
 import MoreStories from "@/components/more-stories";
 import { SITE_NAME } from "@/lib/constants";
-
+import HeroPost from "@/components/hero-post";
 export default function Category({ topic, content }) {
   const [questionsList, setQuestionsList] = useState(null);
   const appContext = useContext(AppContext);
@@ -25,7 +25,7 @@ export default function Category({ topic, content }) {
 
   function toPost(question, index) {
     let highlight = false;
-    upvotedQuestions.forEach(upvote => {
+    upvotedQuestions.forEach((upvote) => {
       if (question.id == upvote.question.id) {
         highlight = true;
       }
@@ -50,12 +50,11 @@ export default function Category({ topic, content }) {
       setQuestionsList(forumPosts.map(toPost));
     }
     getPosts();
-    return function del() {};
   }, [upvotedQuestions]);
 
   useEffect(() => {
     setUpvotedQuestions(
-      appContext.upvotes.filter(upvote => {
+      appContext.upvotes.filter((upvote) => {
         return upvote.question && upvote.question != null;
       })
     );
@@ -66,6 +65,11 @@ export default function Category({ topic, content }) {
     ? topic.topics[0].category.charAt(0).toUpperCase() +
       topic.topics[0].category.slice(1)
     : "Topic";
+
+  const heroPost =
+    topic.posts.filter((post) => post.featured == true)[0] || topic.posts[0];
+
+  console.log(topic.posts);
 
   return (
     <>
@@ -78,27 +82,16 @@ export default function Category({ topic, content }) {
             backgroundColor: "#b1ede8",
             maxHeight: "max-content",
             marginBottom: "2rem",
-            borderBottom: "4px solid black"
+            borderBottom: "4px solid black",
           }}
-          className="flex p-10 flex-col xl:flex-row"
+          className="flex p-10 flex-col xl:flex-row justify-around"
         >
-          <section
-            style={{ borderTop: "4px solid black" }}
-            className={"bg-white p-5 m-auto relative " + styles.content}
-          >
-            <h1 className="text-5xl pb-2">
-              <span className="highlight">{title}</span>
-            </h1>
-            <div
-              className={markdownStyles["markdown"]}
-              dangerouslySetInnerHTML={{
-                __html: content
-              }}
-            ></div>
+          <section className="pr-2">
+            <HeroPost props={heroPost} />
           </section>
           <div
             className={
-              "flex flex-wrap flex-col xl:flex-row mr-auto justify-between content-between " +
+              "flex flex-wrap flex-col xl:flex-row content-between " +
               styles.siteLinksContainer
             }
           >
@@ -109,7 +102,7 @@ export default function Category({ topic, content }) {
               <div
                 style={{
                   borderLeft: "4px solid black",
-                  borderRight: "4px solid black"
+                  borderRight: "4px solid black",
                 }}
                 className="flex justify-between p-2"
               >
@@ -137,7 +130,9 @@ export default function Category({ topic, content }) {
         </div>
         {topic ? (
           topic.posts ? (
-            <MoreStories posts={topic.posts} label={""} />
+            <div style={{ maxWidth: "1600px", margin: "auto" }}>
+              <MoreStories posts={topic.posts} label={""} />
+            </div>
           ) : null
         ) : null}
 
@@ -153,14 +148,15 @@ export async function getStaticProps({ params }) {
   const content = await markdownToHtml(topic?.topics[0]?.content || "");
 
   return {
-    props: { topic, content }
+    props: { topic, content },
   };
 }
 export async function getStaticPaths() {
   const allTopics = await getCategories();
   return {
     paths:
-      allTopics.__type.enumValues?.map(topic => `/topics/${topic.name}`) || [],
-    fallback: true
+      allTopics.__type.enumValues?.map((topic) => `/topics/${topic.name}`) ||
+      [],
+    fallback: true,
   };
 }

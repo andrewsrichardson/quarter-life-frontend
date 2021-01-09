@@ -3,18 +3,18 @@ import CoverImage from "./cover-image";
 import Link from "next/link";
 
 export default function HeroPost(props) {
-  const { title, date, coverImage, slug, excerpt } = props.props;
-  const fontColour = "white";
+  const { title, date, coverImage, slug, excerpt, colour } = props.props;
+  const fontColour = colour || "black";
   return (
     <>
       <section
-        className="bg-white outline m-auto max-w-screen-xl flex justify-end"
+        className="bg-black outline m-auto max-w-screen-xl flex justify-end"
         style={{
           borderRight: "4px solid black",
           borderLeft: "4px solid black",
         }}
       >
-        <div className="">
+        <div style={{ opacity: 0.9 }}>
           <CoverImage title={title} url={coverImage.url} slug={slug} />
         </div>
         <div className="absolute max-w-md flex self-end pr-10 pb-10">
