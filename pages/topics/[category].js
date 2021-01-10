@@ -66,8 +66,9 @@ export default function Category({ topic, content }) {
       topic.topics[0].category.slice(1)
     : "Topic";
 
-  const heroPost =
-    topic.posts.filter((post) => post.featured == true)[0] || topic.posts[0];
+  let heroPost = topic?.posts.filter((post) => post.featured == true)[0];
+
+  if (heroPost == undefined) heroPost = topic?.posts[0];
   return (
     <>
       <Layout>
@@ -84,7 +85,7 @@ export default function Category({ topic, content }) {
           className="flex p-10 flex-col xl:flex-row justify-around"
         >
           <section className="pr-2">
-            <HeroPost props={heroPost} />
+            {topic ? <HeroPost props={heroPost} /> : null}
           </section>
           <div
             className={

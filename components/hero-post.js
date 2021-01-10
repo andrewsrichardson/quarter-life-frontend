@@ -3,7 +3,8 @@ import CoverImage from "./cover-image";
 import Link from "next/link";
 
 export default function HeroPost(props) {
-  const { title, date, coverImage, slug, excerpt, colour } = props.props;
+  if (props == undefined || props == null) return null;
+  const { title, date, coverImage, slug, excerpt, colour } = props?.props;
   const fontColour = colour || "black";
   return (
     <>

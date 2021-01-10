@@ -17,16 +17,7 @@ export default function Posts({ allPosts, preview }) {
           <title>{SITE_NAME}</title>
         </Head>
         <Container>
-          {heroPost && (
-            <HeroPost
-              title={heroPost.title}
-              coverImage={heroPost.coverImage}
-              date={heroPost.date}
-              author={heroPost.author}
-              slug={heroPost.slug}
-              excerpt={heroPost.excerpt}
-            />
-          )}
+          {heroPost && <HeroPost props={heroPost} />}
           {morePosts.length > 0 && (
             <MoreStories label={"Recent Posts"} posts={morePosts} />
           )}
