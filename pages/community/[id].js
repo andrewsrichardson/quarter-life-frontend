@@ -166,7 +166,11 @@ export default function ForumPost({ question }) {
             </div>
             <div className="flex justify-between">
               <div>
-                <h3 className="text-sm pr-10">{"by " + username}</h3>
+                <Link href={"/users/" + username}>
+                  <h3 className="text-xs pr-3 cursor-pointer hover:underline">
+                    {username}
+                  </h3>
+                </Link>
                 <h3 className="text-sm">
                   {comments.length.toString() +
                     " comment" +
