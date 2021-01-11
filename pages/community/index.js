@@ -10,6 +10,8 @@ import AppContext from "../../context/AppContext";
 import { useRouter } from "next/router";
 import Footer from "@/components/footer";
 import Link from "next/link";
+import { parse } from "date-fns";
+import { parseTopic } from "@/lib/util";
 
 export default function Questions({ allQuestions, categories }) {
   const appContext = useContext(AppContext);
@@ -53,8 +55,8 @@ export default function Questions({ allQuestions, categories }) {
   const tagsList = categories.__type.enumValues.map((category, index) => {
     return (
       <Link href={"/community/c/" + category.name} key={index}>
-        <p className="pb-1 hover:underline cursor-pointer">
-          {"#" + category.name.charAt(0).toUpperCase() + category.name.slice(1)}
+        <p className="pb-1 hover:underline cursor-pointer text-sm">
+          {"#" + parseTopic(category.name)}
         </p>
       </Link>
     );
@@ -64,7 +66,7 @@ export default function Questions({ allQuestions, categories }) {
     <>
       <Layout>
         <Head>
-          <title>Talk | {SITE_NAME}</title>
+          <title>Community | {SITE_NAME}</title>
         </Head>
         <Container>
           {" "}

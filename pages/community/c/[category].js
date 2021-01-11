@@ -10,6 +10,7 @@ import AppContext from "../../../context/AppContext";
 import { useRouter } from "next/router";
 import Footer from "@/components/footer";
 import Link from "next/link";
+import { parseTopic } from "lib/util";
 
 export default function Questions({ allQuestions, categories, category }) {
   const appContext = useContext(AppContext);
@@ -55,8 +56,8 @@ export default function Questions({ allQuestions, categories, category }) {
   const tagsList = categories.__type.enumValues.map((category, index) => {
     return (
       <Link href={"/community/c/" + category.name}>
-        <p className="pb-1 hover:underline cursor-pointer" key={index}>
-          {"#" + category.name.charAt(0).toUpperCase() + category.name.slice(1)}
+        <p className="pb-1 hover:underline cursor-pointer text-sm" key={index}>
+          {"#" + parseTopic(category.name)}
         </p>
       </Link>
     );
@@ -66,7 +67,9 @@ export default function Questions({ allQuestions, categories, category }) {
     <>
       <Layout>
         <Head>
-          <title>Talk | {SITE_NAME}</title>
+          <title>
+            {parseTopic(category)}| Community | {SITE_NAME}
+          </title>
         </Head>
         <Container>
           {" "}
@@ -81,7 +84,7 @@ export default function Questions({ allQuestions, categories, category }) {
                 className="flex flex-col mb-5 pt-5 bg-white p-5 outline"
               >
                 <div className="flex justify-between align-middle">
-                  <h1 className="text-3xl">{category}</h1>
+                  <h1 className="text-3xl">{parseTopic(category)}</h1>
                   <div className="self-end">
                     {appContext.isAuthenticated ? (
                       <Button

@@ -5,6 +5,7 @@ import Router from "next/router";
 import { useState, useEffect } from "react";
 import styles from "./forumpost.module.css";
 import TimeAgo from "timeago-react";
+import { parseTopic } from "@/lib/util";
 
 export default function ForumPost(props) {
   const {
@@ -97,7 +98,7 @@ export default function ForumPost(props) {
               (comments.length == 1 ? "" : "s")}
           </h3>
           <h3 className="text-xs text-gray-600 mr-8 italic">
-            {"in " + category}
+            {"in " + parseTopic(category)}
           </h3>
 
           <p className="text-xs text-gray-600 text-right ml-auto">

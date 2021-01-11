@@ -19,28 +19,6 @@ export default function Post({ post, morePosts, preview }) {
   if (!router.isFallback && !post?.slug) {
     return <ErrorPage statusCode={404} />;
   }
-  const generateRssItem = (post) => `
-  <item>
-    <guid>https://emilioschepis.com/blog/${post.slug}</guid>
-    <title>${post.title}</title>
-    <link>https://emilioschepis.com/blog/${post.slug}</link>
-    <description>${post.excerpt}</description>
-    <pubDate>${new Date(post.date).toUTCString()}</pubDate>
-  </item>
-`;
-  const generateRss = (posts) => `
-  <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-    <channel>
-      <title>20SOS</title>
-      <link>https://20sos.co.uk</link>
-      <description>[...]</description>
-      <language>en</language>
-      <lastBuildDate>${new Date(posts[0].date).toUTCString()}</lastBuildDate>
-      <atom:link href="https://emilioschepis.com/rss.xml" rel="self" type="application/rss+xml"/>
-      ${posts.map(generateRssItem).join("")}
-    </channel>
-  </rss>
-`;
 
   const url = SITE_URL + router.asPath;
   return (
@@ -55,7 +33,7 @@ export default function Post({ post, morePosts, preview }) {
               style={{
                 borderRight: "4px solid black",
                 borderLeft: "4px solid black",
-                borderTop: "0",
+                borderTop: "0"
               }}
             >
               <Head>
@@ -100,26 +78,22 @@ export async function getStaticProps({ params, preview = null }) {
   const data = await getPostAndMorePosts(params.slug, preview);
   const content = await markdownToHtml(data?.posts[0]?.content || "");
 
-  const rss = generateRss(posts);
-
-  fs.writeFileSync("./public/rss.xml", rss);
-
   return {
     props: {
       preview,
       post: {
         ...data?.posts[0],
-        content,
+        content
       },
-      morePosts: data?.morePosts,
-    },
+      morePosts: data?.morePosts
+    }
   };
 }
 
 export async function getStaticPaths() {
   const allPosts = await getAllPostsWithSlug();
   return {
-    paths: allPosts?.map((post) => `/posts/${post.slug}`) || [],
-    fallback: true,
+    paths: allPosts?.map(post => `/posts/${post.slug}`) || [],
+    fallback: true
   };
 }

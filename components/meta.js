@@ -34,7 +34,7 @@ export default function Meta() {
       <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
       <meta
         name="description"
-        content={`Welcome to the home of all things Quarter Life Crisis. Don’t despair, we’ll be with you all the way.`}
+        content={`Connect with like-minded people on the trials and tribulations of being 20-something. Welcome to the home of all things Quarter Life Crisis.`}
       />
       <meta property="og:image" content={HOME_OG_IMAGE_URL} />
     </Head>
