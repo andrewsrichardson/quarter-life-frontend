@@ -108,7 +108,7 @@ export default function Index({ allPosts, preview }) {
                   <a className="highlight">think pieces</a>
                 </Link>{" "}
                 which offer practical advice to those having a QLC, as well as{" "}
-                <Link href="/questions">
+                <Link href="/community">
                   <a className="highlight">a community</a>
                 </Link>{" "}
                 raising awareness about the challenges facing young adults
