@@ -63,7 +63,7 @@ export default function Questions({ user }) {
           <div className="flex justify-between">
             <p className="italic text-xs text-gray-500">
               on{" "}
-              <Link as={"/questions/" + comment.id} href={"/questions/[id]"}>
+              <Link as={"/community/" + comment.id} href={"/community/[id]"}>
                 <a className="pl-3 hover:underline">{comment.title}</a>
               </Link>
             </p>
