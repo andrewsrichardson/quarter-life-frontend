@@ -39,7 +39,7 @@ export default function LoginRedirect(props) {
           setText(
             "You have been successfully logged in. You will be redirected in a few seconds..."
           );
-          setTimeout(() => router.push("/questions"), 2000); // Redirect to homepage after 2 sec
+          setTimeout(() => router.push("/community"), 2000); // Redirect to homepage after 2 sec
         })
         .catch((err) => {
           console.log(err);
