@@ -5,9 +5,38 @@ export default function Topics() {
   return (
     <div id="topics" className="outline bg-white p-10">
       <h1 className="text-4xl text-center">Topics</h1>
-      <Link href="/topics/love">
+      <Link href="/topics/occupation">
         <p className={styles.link + " text-2xl"}>
-          <a className="highlight">Love 💑</a>
+          <a className="highlight">Society&Culture ☀️</a>
+          <img
+            className="arrow"
+            src="/right-arrow-button.png"
+            alt="arrow"
+          ></img>
+        </p>
+      </Link>
+      <p className="mb-10">
+        A look at how the world works, what's going wrong and possible ways we
+        can fix it, along with analysis of relevant media.
+      </p>
+      <Link href="/topics/philosophymindset">
+        <p className={styles.link + " text-2xl"}>
+          <a className="highlight">Philosophy&Mindset 🧠</a>
+          <img
+            className="arrow"
+            src="/right-arrow-button.png"
+            alt="arrow"
+          ></img>
+        </p>
+      </Link>
+      <p className="mb-10">
+        Ideas which challenge the way we think, or help to improve our outlook
+        on life. It's mind over matter and fresh concepts can change the way we
+        view out current situation.
+      </p>
+      <Link href="/topics/relationships">
+        <p className={styles.link + " text-2xl"}>
+          <a className="highlight">Relationships 💑</a>
           <img
             className="arrow"
             src="/right-arrow-button.png"
@@ -21,7 +50,7 @@ export default function Topics() {
       </p>
       <Link href="/topics/livelihood">
         <p className={styles.link + " text-2xl"}>
-          <a className="highlight">Livelihood 🎓</a>
+          <a className="highlight">Occupation 🎓</a>
           <img
             className="arrow"
             src="/right-arrow-button.png"
@@ -32,42 +61,11 @@ export default function Topics() {
       <p className="mb-10">
         Look at the many career anxieties weighing on young adults and the
         social factors making it harder to get into desired industries; Unpaid
-        internships, the Experience Catch 22 and more.
-      </p>
-      <Link href="/topics/loneliness">
-        <p className={styles.link + " text-2xl"}>
-          <a className="highlight">Loneliness 😔</a>
-          <img
-            className="arrow"
-            src="/right-arrow-button.png"
-            alt="arrow"
-          ></img>
-        </p>
-      </Link>
-      <p className="mb-10">
-        How to alleviate loneliness, whether you are in a new city or have
-        drifted from childhood friends.
-      </p>
-      <Link href="/topics/livingArrangement">
-        <p className={styles.link + " text-2xl"}>
-          <a className="highlight">Living Arrangement 🏠</a>
-          <img
-            className="arrow"
-            src="/right-arrow-button.png"
-            alt="arrow"
-          ></img>
-        </p>
-      </Link>
-      <h1 className="text-2xl">
-        <span className="highlight"></span>
-      </h1>
-      <p className="mb-10">
-        Look at the stats around the Boomerang Generation and the struggles of
-        moving back home as a twenty something.
+        internships, the experience catch-22 and more.
       </p>
       <Link href="/topics/lockdown">
         <p className={styles.link + " text-2xl"}>
-          <a className="highlight">Lockdown 😷</a>
+          <a className="highlight">Lifestyle&Wellbeing 🌿</a>
           <img
             className="arrow"
             src="/right-arrow-button.png"
@@ -76,10 +74,8 @@ export default function Topics() {
         </p>
       </Link>
       <p className="mb-10">
-        The ongoing pandemic and resultant lockdown is confounding all the
-        issues mentioned above. We provide some practical ways to maintain your
-        wellbeing in light of it, as well as documenting the many ways it is
-        having an adverse impact on mental health.
+        Keeping fitness of the body and mind in check is key to feeling on top
+        form. Here we discuss ideas and approaches to staying fit and healthy.
       </p>
     </div>
   );

@@ -66,7 +66,7 @@ export default function Header({}) {
   if (menuItems) {
     tagsList = menuItems.__type.enumValues.map((category, index) => {
       return (
-        <Link href={"/topics/" + category.name}>
+        <Link key={category.name} href={"/topics/" + category.name}>
           <motion.li
             className="text-xl"
             key={index}

@@ -2,7 +2,7 @@ import Layout from "@/components/layout";
 import {
   getTopicByCategory,
   getCategories,
-  getQuestionsByCategory,
+  getQuestionsByCategory
 } from "@/lib/api";
 import Head from "next/head";
 import React, { useContext, useEffect, useState } from "react";
@@ -10,23 +10,22 @@ import Footer from "@/components/footer";
 import ForumPost from "@/components/forumPost";
 import markdownToHtml from "@/lib/markdownToHtml";
 import styles from "./category.module.css";
-import markdownStyles from "../../components/markdown-styles.module.css";
 import { Button, Spinner } from "@chakra-ui/core";
 import AppContext from "context/AppContext";
 import MoreStories from "@/components/more-stories";
 import { SITE_NAME } from "@/lib/constants";
 import HeroPost from "@/components/hero-post";
 import { parseTopic } from "@/lib/util";
+
 export default function Category({ topic, content }) {
   const [questionsList, setQuestionsList] = useState(null);
   const appContext = useContext(AppContext);
   const [upvotedQuestions, setUpvotedQuestions] = useState([]);
-
   const { user } = appContext;
 
-  function toPost(question, index) {
+  function toPost(question) {
     let highlight = false;
-    upvotedQuestions.forEach((upvote) => {
+    upvotedQuestions.forEach(upvote => {
       if (question.id == upvote.question.id) {
         highlight = true;
       }
@@ -34,7 +33,7 @@ export default function Category({ topic, content }) {
 
     return (
       <ForumPost
-        key={index}
+        key={question.title}
         props={question}
         highlight={highlight}
         me={user}
@@ -55,16 +54,15 @@ export default function Category({ topic, content }) {
 
   useEffect(() => {
     setUpvotedQuestions(
-      appContext.upvotes.filter((upvote) => {
+      appContext.upvotes.filter(upvote => {
         return upvote.question && upvote.question != null;
       })
     );
-    return () => {};
   }, [appContext]);
 
   const title = parseTopic(topic?.topics[0].category);
 
-  let heroPost = topic?.posts.filter((post) => post.featured == true)[0];
+  let heroPost = topic?.posts.filter(post => post.featured == true)[0];
 
   if (heroPost == undefined) heroPost = topic?.posts[0];
   return (
@@ -78,7 +76,7 @@ export default function Category({ topic, content }) {
             backgroundColor: "#b1ede8",
             maxHeight: "max-content",
             marginBottom: "2rem",
-            borderBottom: "4px solid black",
+            borderBottom: "4px solid black"
           }}
           className="flex p-10 flex-col xl:flex-row justify-around"
         >
@@ -98,7 +96,7 @@ export default function Category({ topic, content }) {
               <div
                 style={{
                   borderLeft: "4px solid black",
-                  borderRight: "4px solid black",
+                  borderRight: "4px solid black"
                 }}
                 className="flex justify-between p-2"
               >
@@ -146,15 +144,14 @@ export async function getStaticProps({ params }) {
   const content = await markdownToHtml(topic?.topics[0]?.content || "");
 
   return {
-    props: { topic, content },
+    props: { topic, content }
   };
 }
 export async function getStaticPaths() {
   const allTopics = await getCategories();
   return {
     paths:
-      allTopics.__type.enumValues?.map((topic) => `/topics/${topic.name}`) ||
-      [],
-    fallback: true,
+      allTopics.__type.enumValues?.map(topic => `/topics/${topic.name}`) || [],
+    fallback: true
   };
 }

@@ -49,10 +49,10 @@ export default function ForumPost(props) {
           .catch(err => console.log(err));
       } else {
         setNumber(number + 1);
+        setIsUpvoted(!isUpvoted);
         createUpvote(null, null, id.toString())
           .then(res => {
             setUpvotedQuestions([...upvotedQuestions, res.data]);
-            setIsUpvoted(!isUpvoted);
             setIsLoading(false);
           })
           .catch(err => console.log(err));
