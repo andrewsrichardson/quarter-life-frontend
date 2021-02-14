@@ -135,7 +135,7 @@ export default function Index({ allPosts, preview }) {
               <AnimatedIntro columns={5}></AnimatedIntro>
             </div>
           </section>
-          <div className="flex pb-10">
+          <div className="flex lg:flex-row flex-col-reverse pb-10">
             <div className="flex-grow">
               <div
                 className="bg-white"
@@ -178,10 +178,10 @@ export default function Index({ allPosts, preview }) {
                   style={{
                     border: "4px solid black",
                   }}
-                  className="flex flex-col bg-white p-5 mb-5 outline"
+                  className="bg-white p-5 mb-5 outline flex-col"
                 >
                   <div className="flex justify-between align-middle">
-                    <h1 className="text-2xl">Community</h1>
+                    <h1 className="text-md xl:text-2xl">Community</h1>
                     <div className="self-end">
                       {appContext.isAuthenticated ? (
                         <Button
@@ -195,7 +195,7 @@ export default function Index({ allPosts, preview }) {
                           Create Post
                         </Button>
                       ) : (
-                        <h3 className="highlight text-xl">
+                        <h3 className="text-sm highlight xl:text-xl">
                           <Link href="/login">
                             <a className="hover:underline">Login to post.</a>
                           </Link>
@@ -203,7 +203,7 @@ export default function Index({ allPosts, preview }) {
                       )}
                     </div>
                   </div>
-                  <p className="text-md">
+                  <p className="text-xs md:text-md">
                     We're helping each other figure out what's going on in our
                     lives.
                   </p>
@@ -214,7 +214,10 @@ export default function Index({ allPosts, preview }) {
                     borderBottom: "4px solid black",
                   }}
                 >
-                  <div className="flex justify-center flex-wrap flex-2">
+                  <div
+                    className="flex justify-center flex-wrap flex-2"
+                    style={{}}
+                  >
                     {postList}
                   </div>
                 </div>

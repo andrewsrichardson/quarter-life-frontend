@@ -21,14 +21,17 @@ export default function HeroPost(props) {
         <div className="absolute max-w-md flex self-end pr-10 pb-10">
           <div className="">
             <h1
-              className="mb-4 text-4xl lg:text-6xl leading-tight"
+              className="mb-4 text-2xl lg:text-6xl leading-tight"
               style={{ color: fontColour }}
             >
               <Link as={`/posts/${slug}`} href="/posts/[slug]">
                 <a className="">{title}</a>
               </Link>
             </h1>
-            <h2 style={{ color: fontColour }} className="text-2xl">
+            <h2
+              style={{ color: fontColour }}
+              className="text-md md:text-xl xl:text-2xl"
+            >
               {excerpt}
             </h2>
             <div style={{ color: fontColour }} className="">

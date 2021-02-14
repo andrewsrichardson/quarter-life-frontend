@@ -15,7 +15,7 @@ export default function ForumPost(props) {
     created_at,
     comments,
     upvotes,
-    category
+    category,
   } = props.props;
   const { username } = user;
   let { me, upvotedQuestions, setUpvotedQuestions } = props;
@@ -35,27 +35,27 @@ export default function ForumPost(props) {
       setIsLoading(true);
       if (isUpvoted) {
         const deleteID = upvotedQuestions.find(
-          ele => ele.question && ele.question.id == id
+          (ele) => ele.question && ele.question.id == id
         );
         setNumber(number - 1);
         deleteUpvote(deleteID.id)
-          .then(res => {
+          .then((res) => {
             setUpvotedQuestions(
-              upvotedQuestions.filter(ele => ele.id !== deleteID.id)
+              upvotedQuestions.filter((ele) => ele.id !== deleteID.id)
             );
             setIsUpvoted(false);
             setIsLoading(false);
           })
-          .catch(err => console.log(err));
+          .catch((err) => console.log(err));
       } else {
         setNumber(number + 1);
         setIsUpvoted(!isUpvoted);
         createUpvote(null, null, id.toString())
-          .then(res => {
+          .then((res) => {
             setUpvotedQuestions([...upvotedQuestions, res.data]);
             setIsLoading(false);
           })
-          .catch(err => console.log(err));
+          .catch((err) => console.log(err));
       }
     }
   }
@@ -81,9 +81,9 @@ export default function ForumPost(props) {
             <a className={`${styles.title} cursor-pointer`}>{title}</a>
           </h1>
         </Link>
-        <div className="flex">
+        <div className="flex flex-col md:flex-row">
           <Link href={"/users/" + username}>
-            <h3 className="text-xs text-gray-600 mr-8 hover:underline cursor-pointer">
+            <h3 className="text-xs text-gray-600 mr-1 hover:underline cursor-pointer md:mr-8">
               {"by " + username}
             </h3>
           </Link>
@@ -92,12 +92,12 @@ export default function ForumPost(props) {
               Admin
             </Badge>
           ) : null}
-          <h3 className="text-xs text-gray-600 justify-self-start mr-8">
+          <h3 className="text-xs text-gray-600 justify-self-start mr-1 md:mr-8">
             {comments.length.toString() +
               " comment" +
               (comments.length == 1 ? "" : "s")}
           </h3>
-          <h3 className="text-xs text-gray-600 mr-8 italic">
+          <h3 className="text-gray-600 mr-1 italic text-xs md:mr-8">
             {"in " + parseTopic(category)}
           </h3>
 

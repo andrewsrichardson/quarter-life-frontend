@@ -20,7 +20,7 @@ export default function Questions({ allQuestions, categories }) {
 
   useEffect(() => {
     setUpvotedQuestions(
-      appContext.upvotes.filter(upvote => {
+      appContext.upvotes.filter((upvote) => {
         return upvote.question && upvote.question != null;
       })
     );
@@ -32,7 +32,7 @@ export default function Questions({ allQuestions, categories }) {
     if (question == undefined) return;
 
     let highlight = false;
-    upvotedQuestions.forEach(upvote => {
+    upvotedQuestions.forEach((upvote) => {
       if (question.id == upvote.question.id) {
         highlight = true;
       }
@@ -70,13 +70,13 @@ export default function Questions({ allQuestions, categories }) {
         </Head>
         <Container>
           {" "}
-          <div className="flex flex-wrap">
-            <div style={{ maxWidth: "75%" }} className="flex-grow pb-10">
+          <div className="flex-col flex md:flex-wrap md:flex-row">
+            <div className="flex-grow pb-10">
               <section
                 style={{
                   borderRight: "4px solid black",
                   borderLeft: "4px solid black",
-                  borderTop: "0px"
+                  borderTop: "0px",
                 }}
                 className="flex flex-col bg-white p-5 mb-5 outline"
               >
@@ -114,10 +114,10 @@ export default function Questions({ allQuestions, categories }) {
                 </div>
               </div>
             </div>
-            <div style={{ maxWidth: "25%" }}>
+            <div>
               <div
                 style={{ height: "max-content" }}
-                className="max-w-7xl m-10  p-10 bg-white outline"
+                className="bg-white outline xl:max-w-7xl m-10 p-10"
               >
                 <h2 className="text-2xl pb-2">Categories</h2>
                 {tagsList}
@@ -143,6 +143,6 @@ export async function getServerSideProps() {
   const allQuestions = (await getAllQuestionsForForum()) || [];
   const categories = (await getCategories()) || [];
   return {
-    props: { allQuestions, categories }
+    props: { allQuestions, categories },
   };
 }
